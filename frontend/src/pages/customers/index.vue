@@ -1,5 +1,3 @@
 <template>
-    <div>
-        this is the customers page
-    </div>
+  <div>this is the customers page</div>
 </template>

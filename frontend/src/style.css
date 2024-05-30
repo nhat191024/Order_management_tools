@@ -19,3 +19,8 @@ body {
   padding: 0;
   background-color: white;
 }
+
+.logo-size {
+  width: 60px;
+  height: 60px;
+}

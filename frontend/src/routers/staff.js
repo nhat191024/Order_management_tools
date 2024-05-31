@@ -18,6 +18,11 @@ const staff = [
         name: "select_kitchen",
         component: () => import("../pages/staffs/selectKitchen.vue"),
       },
+      {
+        path: "/show_food_waiting",
+        name: "WaitFood",
+        component: () => import("../pages/staffs/show_food_waiting.vue"),
+      }
     ],
   },
 ];

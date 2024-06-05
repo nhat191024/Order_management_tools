@@ -11,6 +11,7 @@ body::-webkit-scrollbar {
 body {
   -ms-overflow-style: none;
   scrollbar-width: none;
+  font-family: "Lexend", sans-serif;
 }
 
 /* set margin and padding to 0 for the body tag in the style.css file. */

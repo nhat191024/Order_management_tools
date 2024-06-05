@@ -1,7 +1,7 @@
 <template>
-  <div class="h-screen w-screen">
-    <div class="p-4">
-      <div class="flex items-center">
+  <div class="h-screen w-screen overflow-scroll">
+    <div class="block bg-white w-full fixed shadow-md">
+      <div class="flex items-center p-4">
         <a class="flex items-center" href="/">
           <svg
             class="w-11 h-11 fill-white bg-orange-500 rounded-xl m-1 p-1"
@@ -17,13 +17,15 @@
         <h1 class="flex-grow text-center font-bold text-black text-5xl">
           Bếp xào
         </h1>
-        <!-- phải có class w-20 thì hiển thị chữ bếp ... mới ra giữa -->
+
         <div class="w-20"></div>
       </div>
+      <hr class="mt-3" />
     </div>
 
-    <hr class="" />
-    <div class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div
+      class="p-4 mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center"
+    >
       <Card
         v-for="(item, index) in items"
         :key="index"
@@ -47,6 +49,78 @@ export default {
   data() {
     return {
       items: [
+        {
+          title: "Ốc sên xào",
+          description: "Không nướng",
+          table: "Bàn 1",
+          checked: true,
+        },
+        {
+          title: "Ốc bươu xào",
+          description: "Không nướng",
+          table: "Bàn 2",
+          checked: false,
+        },
+        {
+          title: "Ốc sên xào",
+          description: "Không nướng",
+          table: "Bàn 3",
+          checked: true,
+        },
+        {
+          title: "Ốc sên xào",
+          description: "Không nướng",
+          table: "Bàn 1",
+          checked: true,
+        },
+        {
+          title: "Ốc bươu xào",
+          description: "Không nướng",
+          table: "Bàn 2",
+          checked: false,
+        },
+        {
+          title: "Ốc sên xào",
+          description: "Không nướng",
+          table: "Bàn 3",
+          checked: true,
+        },
+        {
+          title: "Ốc sên xào",
+          description: "Không nướng",
+          table: "Bàn 1",
+          checked: true,
+        },
+        {
+          title: "Ốc bươu xào",
+          description: "Không nướng",
+          table: "Bàn 2",
+          checked: false,
+        },
+        {
+          title: "Ốc sên xào",
+          description: "Không nướng",
+          table: "Bàn 3",
+          checked: true,
+        },
+        {
+          title: "Ốc sên xào",
+          description: "Không nướng",
+          table: "Bàn 1",
+          checked: true,
+        },
+        {
+          title: "Ốc bươu xào",
+          description: "Không nướng",
+          table: "Bàn 2",
+          checked: false,
+        },
+        {
+          title: "Ốc sên xào",
+          description: "Không nướng",
+          table: "Bàn 3",
+          checked: true,
+        },
         {
           title: "Ốc sên xào",
           description: "Không nướng",

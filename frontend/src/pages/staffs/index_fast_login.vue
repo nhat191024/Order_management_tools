@@ -3,7 +3,7 @@
         <p class="col-start-2 col-span-4 row-start-2 row-auto self-center font-extrabold text-black text-4xl">
             Đăng Nhập Nhanh
         </p>
-        <div class="col-start-2 col-span-4 row-start-3 row-auto self-end bg-orange-500 py-3 pl-5 rounded-full flex items-center gap-6">
+        <div class="col-start-2 col-span-4 row-start-3 row-span-2 self-start bg-orange-500 py-3 pl-5 rounded-[30px] flex items-center gap-6">
             <img src="../../assets/logo.jpg" alt="" class="rounded-full w-1/6">
             <p class="font-bold text-white text-xl">Nguyễn Thị Nở</p>
         </div>

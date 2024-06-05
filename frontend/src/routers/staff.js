@@ -4,9 +4,14 @@ const staff = [
         component: () => import("../layouts/staff.vue"),
         children: [
             {
-                path: "/",
+                path: "/staff",
                 name: "staff",
                 component: () => import("../pages/staffs/index.vue"),
+            },
+            {
+                path: "/staff_2",
+                name: "staff fast login",
+                component: () => import("../pages/staffs/index_fast_login.vue"),
             },
             {
                 path: "/selectTable",

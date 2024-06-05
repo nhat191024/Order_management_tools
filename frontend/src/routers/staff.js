@@ -9,14 +9,10 @@ const staff = [
         component: () => import("../pages/staffs/index.vue"),
       },
       {
-        path: "/selectTable",
-        name: "select_table",
-        component: () => import("../pages/staffs/selectTable.vue"),
-      },
-      {
-        path: "/selectKitchen",
-        name: "select_kitchen",
-        component: () => import("../pages/staffs/selectKitchen.vue"),
+        path: "/show_food_waiting",
+        name: "WaitFood",
+        component: () => import("../pages/staffs/show_food_waiting.vue"),
+      
       },
       {
         path: "/show_food_waiting",

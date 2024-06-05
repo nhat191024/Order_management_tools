@@ -32,8 +32,6 @@
         :title="item.title"
         :description="item.description"
         :table="item.table"
-        :checked="item.checked"
-        @toggle-check="toggleCheck(index)"
       />
     </div>
   </div>

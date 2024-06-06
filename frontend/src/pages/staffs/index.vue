@@ -15,7 +15,7 @@
             <ErrorMessage class="col-span-full row-start-5 self-end mb-1 place-self-center text-white font-bold"
                 name="password" />
             <button type="submit"
-                class="btn btn-primary border-0 drop-shadow-lg text-white row-start-6 row-span-2 col-span-3 self-center">
+                class="btn btn-secondary border-0 drop-shadow-lg text-white row-start-6 row-span-2 col-span-3 self-center">
                 Đăng Nhập
             </button>
         </Form>

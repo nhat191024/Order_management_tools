@@ -1,8 +1,8 @@
 <template>
-</template>
-<div class="grid grid-cols-12 grid-rows-8 gap-5 h-screen w-screen ">
+    <div class="grid grid-cols-12 grid-rows-8 gap-5 h-screen w-screen ">
 
-</div>
+    </div>
+</template>
 <script>
 export default {
     data() {

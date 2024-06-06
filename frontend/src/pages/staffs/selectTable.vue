@@ -2,7 +2,7 @@
     <div class="grid grid-cols-12 grid-rows-8 gap-5 h-screen w-screen ">
         <div class="col-span-2 flex items-center justify-center ">
             <button class="items-center bg-white drop-shadow-2x text-black inline-flex">
-                <div :class="mainColor" class="w-10 h-10 m-2 drop-shadow-2xl rounded-xl p-1">
+                <div class="bg-primary w-10 h-10 m-2 drop-shadow-2xl rounded-xl p-1">
                     <img src="./../../assets/left-long-solid.svg" alt="My SVG Icon" class="">
                 </div>
                 <span class="text-xl drop-shadow">Trở về</span>
@@ -20,7 +20,7 @@
                 <span class="text-xl drop-shadow-sm font-bold text-black">Bàn trống</span>
             </div>
             <div class="w-full h-full flex items-center justify-center">
-                <div :class="mainColor" class="w-8 h-8 mr-2 rounded-full drop-shadow-sm"></div>
+                <div class="bg-primary w-8 h-8 mr-2 rounded-full drop-shadow-sm"></div>
                 <span class="text-xl drop-shadow-sm font-bold text-black">Bàn có khách</span>
             </div>
         </div>
@@ -40,7 +40,7 @@ export default {
     data() {
         return {
             // đổi màu chủ đạo { mainColor: table.status === 1, disabled: table.status !== 1 }
-            mainColor: 'bg-orange-500',
+            mainColor: 'bg-primary',
             disabled: 'bg-gray-300',
             // thay đổi số lượng phần tử tương ứng với số bàn 
             // (scroll dọc)

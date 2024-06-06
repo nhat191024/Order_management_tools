@@ -11,19 +11,19 @@
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 m-8 place-items-center">
         <a href="#">
-          <div class="bg-orange-400 text-white font-bold text-center p-3 rounded-xl">
+          <div class="bg-primary text-white font-bold text-center p-3 rounded-xl">
             <img src="https://cdn.tgdd.vn/2021/11/CookDish/mach-ban-vat-dung-trang-tri-nha-bep-nen-co-cho-gian-bep-them-avt-1200x676.jpg" width="260" height="130" class="mb-2 rounded-lg" alt="Bếp nướng"/>
             Bếp nướng
           </div>
         </a>
         <a href="#">
-          <div class="bg-orange-400 text-white font-bold text-center p-3 rounded-xl">
+          <div class="bg-primary text-white font-bold text-center p-3 rounded-xl">
             <img src="https://cdn.tgdd.vn/2021/11/CookDish/mach-ban-vat-dung-trang-tri-nha-bep-nen-co-cho-gian-bep-them-avt-1200x676.jpg" width="260" height="130" class="mb-2 rounded-lg" alt="Bếp nướng"/>
             Bếp nướng
           </div>
         </a>
         <a href="#">
-          <div class="bg-orange-400 text-white font-bold text-center p-3 rounded-xl">
+          <div class="bg-primary text-white font-bold text-center p-3 rounded-xl">
             <img src="https://cdn.tgdd.vn/2021/11/CookDish/mach-ban-vat-dung-trang-tri-nha-bep-nen-co-cho-gian-bep-them-avt-1200x676.jpg" width="260" height="130" class="mb-2 rounded-lg" alt="Bếp nướng"/>
             Bếp nướng
           </div>

@@ -12,7 +12,12 @@ const staff = [
                 path: "/kitchen/selectTable",
                 name: "kitchen_select_Table",
                 component: () => import("../pages/staffs/selectTable.vue"),
-            }
+            },
+            {
+                path: "/kitchen/selectKitchen",
+                name: "kitchen_select_kitchen",
+                component: () => import("../pages/staffs/selectKitchen.vue"),
+            },
         ]
     }
 ]

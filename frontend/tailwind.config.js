@@ -8,6 +8,7 @@ export default {
     extend: {
       colors: {
         'primary': '#FF7A00',
+        'secondary': '#FFA14A',
       }
     },
   },
@@ -18,7 +19,8 @@ export default {
     themes: [
       {
         orange: {
-          primary: '#FFA14A'
+          'primary': '#FF7A00',
+          'secondary': '#FFA14A',
         }
       }
     ]

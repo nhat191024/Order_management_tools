@@ -1,5 +1,9 @@
 const staff = [
-    {
+  {
+    path: "/",
+    component: () => import("../layouts/staff.vue"),
+    children: [
+      {
         path: "/",
         component: () => import("../layouts/staff.vue"),
         children: [
@@ -20,7 +24,6 @@ const staff = [
             },
         ]
     }
+    
 ]
-
-
 export default staff;

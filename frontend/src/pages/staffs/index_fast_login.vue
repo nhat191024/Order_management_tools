@@ -1,7 +1,16 @@
 <template>
     <div class="grid grid-cols-12 grid-rows-10 gap-5 h-screen w-screen">
-        <Form @submit="onSubmit"
-            class="col-start-5 col-span-4 row-start-2 row-span-8 border border-solid bg-orange-500 rounded-xl grid grid-cols-3 grid-rows-7 px-10">
+        <p class="col-start-2 col-span-4 row-start-2 row-auto self-center font-extrabold text-black text-4xl">
+            Đăng Nhập Nhanh
+        </p>
+        <div class="col-start-2 col-span-4 row-start-3 row-span-7 flex flex-col gap-3 overflow-scroll">
+            <div class="flex items-center gap-6 bg-orange-500 py-2 pl-5 rounded-[20px] ">
+                <img src="../../assets/logo.jpg" alt="" class="rounded-full w-1/6">
+                <p class="font-bold text-white text-xl">Nguyễn Thị Nở</p>
+            </div>
+        </div>
+        <Form
+            class="col-start-8 col-span-4 row-start-2 row-span-8 border border-solid bg-orange-500 rounded-xl grid grid-cols-3 grid-rows-7 px-10">
             <img src="../../assets/logo.jpg" alt="logo"
                 class=" rounded-full col-span-full row-span-3 self-center place-self-center w-[50%]">
             <Field type="text" name="username" placeholder="Tên Đăng Nhập"

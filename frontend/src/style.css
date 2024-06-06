@@ -20,3 +20,21 @@ body {
   padding: 0;
   background-color: white;
 }
+
+.logo-size {
+  width: 60px;
+  height: 60px;
+}
+
+.post-filter {
+  column-gap: 1.5rem;
+}
+
+.filter-item {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.active-filter {
+  border-bottom: 3px #000 solid;
+}

@@ -1,7 +1,7 @@
 <template>
     <div class="grid grid-cols-12 grid-rows-10 gap-5 h-screen w-screen">
         <Form @submit="onSubmit"
-            class="col-start-5 col-span-4 row-start-2 row-span-8 border border-solid bg-orange-500 rounded-xl grid grid-cols-3 grid-rows-7 px-10">
+            class="col-start-5 col-span-4 row-start-2 row-span-8 border border-solid bg-primary rounded-xl grid grid-cols-3 grid-rows-7 px-10">
             <img src="../../assets/logo.jpg" alt="logo"
                 class=" rounded-full col-span-full row-span-3 self-center place-self-center w-[50%]">
             <Field type="text" name="username" placeholder="Tên Đăng Nhập"
@@ -15,7 +15,7 @@
             <ErrorMessage class="col-span-full row-start-5 self-end mb-1 place-self-center text-white font-bold"
                 name="password" />
             <button type="submit"
-                class="btn bg-orange-400 border-0 drop-shadow-lg text-white row-start-6 row-span-2 col-span-3 self-center">
+                class="btn btn-primary border-0 drop-shadow-lg text-white row-start-6 row-span-2 col-span-3 self-center">
                 Đăng Nhập
             </button>
         </Form>

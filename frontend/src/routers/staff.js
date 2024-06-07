@@ -18,6 +18,11 @@ const staff = [
                         component: () => import("../pages/staffs/selectTable.vue"),
                     },
                     {
+                        path: "/staff/table/:id",
+                        name: "table detail",
+                        component: () => import("../pages/staffs/tableDetail.vue"),
+                    },
+                    {
                         path: "/kitchen/select",
                         name: "kitchen selection",
                         component: () => import("../pages/staffs/selectKitchen.vue"),

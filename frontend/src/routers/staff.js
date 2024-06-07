@@ -9,17 +9,17 @@ const staff = [
                 children: [
                     {
                         path: "/staff/login",
-                        name: "staff_login",
+                        name: "login",
                         component: () => import("../pages/staffs/index.vue"),
                     },
                     {
-                        path: "/kitchen/selectTable",
-                        name: "kitchen_select_Table",
+                        path: "/staff/table",
+                        name: "table selection",
                         component: () => import("../pages/staffs/selectTable.vue"),
                     },
                     {
-                        path: "/kitchen/selectKitchen",
-                        name: "kitchen_select_kitchen",
+                        path: "/kitchen/select",
+                        name: "kitchen selection",
                         component: () => import("../pages/staffs/selectKitchen.vue"),
                     },
                 ]

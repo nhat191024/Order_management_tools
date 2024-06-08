@@ -12,18 +12,18 @@
             <div v-for="cate in menu"
                 class="w-full collapse collapse-arrow bg-primary rounded-none border-b border-black text-white">
                 <input type="radio" name="my-accordion-2 " />
-                <div class="collapse-title text-xl font-medium shadow-md">
+                <div class="collapse-title text-lg font-medium shadow-md">
                     {{ cate.dishCategory }}
                 </div>
                 <div class="collapse-content bg-secondary p-0 m-0">
                     <div v-for="dish in cate.dishes" :key="dish.id"
-                        class="w-full h-fit p-4 font-medium text-xl flex items-center justify-between border-b border-white ">
+                        class="w-full h-fit p-4 font-medium text-lg flex items-center justify-between border-b border-white ">
                         <div>
                             <p class="w-[95%]">{{ dish.name }}</p>
                             <p>{{ formatPrice(dish.price) }} VNĐ</p>
                         </div>
                         <button
-                            class="w-8 h-8 flex justify-center transition-all transform linear duration-300 active:scale-90 active:fill-green-600"
+                            class="w-6 h-6 flex justify-center transition-all transform linear duration-300 active:scale-90 active:fill-green-600"
                             @click="addDish(cate.id, dish.id)">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
                                 class=" fill-white active:fill-green-600">
@@ -39,7 +39,7 @@
         <div class="col-start-4 col-span-5 self-center text-center font-bold text-4xl text-primary">
             Bàn {{ id }}
         </div>
-        <div class="col-start-4 col-span-5 row-start-2 row-span-full px-4 overflow-auto">
+        <div class="col-start-4 col-span-5 row-start-2 row-span-8 px-4 overflow-auto">
             <div v-for="(dishes, index) in tableDish"
                 class="h-32 mb-2 bg-primary shadow-md rounded-lg flex flex-col text-white">
                 <div class="flex items-center justify-between">
@@ -74,12 +74,17 @@
                 </div>
             </div>
         </div>
+        <div class="col-start-5 col-span-3 row-start-10 flex items-center justify-center">
+            <button class="btn btn-primary my-1 w-full text-white" @click="confirm()">
+                Xác Nhận Thêm Món
+            </button>
+        </div>
         <div class="col-start-9 col-span-4 flex flex-col justify-end font-bold text-primary text-xl gap-2">
-            <p class="pl-3">Đơn hàng ({{ tableDish.length }} món)</p>
+            <p class="pl-3">Đơn hàng đã xác nhận ({{ tableBill.length }} món)</p>
             <hr class=" w-3/4 ">
         </div>
         <div class="col-start-9 col-span-4 row-start-2 row-span-8 mt-4 px-3 font-medium text-lg overflow-auto">
-            <div v-for="dishes in tableDish" class="flex mb-2 border-b border-primary">
+            <div v-for="dishes in tableBill" class="flex mb-2 border-b border-primary">
                 <p class=" w-4/6">{{ dishes.category + " " + dishes.name }}</p>
                 <p class="pr-3">x{{ dishes.quantity }}</p>
                 <p class="font-bold">{{ formatPrice(dishes.price) }}</p>
@@ -91,12 +96,12 @@
                 <p>{{ formatPrice(total) }}VNĐ</p>
             </div>
             <button class="btn btn-primary text-white font-bold text-xl mt-4 disabled:bg-secondary"
-                :disabled="total === 0" onclick="my_modal_1.showModal()">
+                :disabled="total === 0" @click="pay()">
                 Thanh Toán
             </button>
         </div>
     </div>
-    <dialog id="my_modal_1" class="modal">
+    <dialog id="pay" class="modal">
         <form class="modal-box">
             <h3 class="font-bold text-lg">Chọn phương thức và xác nhận thanh toán</h3>
             <p class="py-4">
@@ -110,6 +115,20 @@
                     <p class="font-bold">Chuyển Khoản</p>
                 </div>
             </div>
+            </p>
+            <div class="modal-action border-t border-black pt-4 mt-0">
+                <button class="btn btn-primary text-white">Xác Nhận</button>
+                <form method="dialog">
+                    <button class="btn btn-error text-white">Close</button>
+                </form>
+            </div>
+        </form>
+    </dialog>
+    <dialog id="confirm" class="modal">
+        <form class="modal-box">
+            <h3 class="font-bold text-lg">Xác nhận thêm món</h3>
+            <p class="py-4">
+                Bạn có chắc chắn muốn thêm món này vào đơn hàng?
             </p>
             <div class="modal-action border-t border-black pt-4 mt-0">
                 <button class="btn btn-primary text-white">Xác Nhận</button>
@@ -194,47 +213,62 @@ const menu = ref([
         ]
     },
 ]);
+const tableBill = ref([
+    {
+        id: 1,
+        name: "Nướng mỡ hành / 6 con",
+        price: 50000,
+        quantity: 1,
+        categoryId: 1,
+        category: "Hàu"
+    }
+]);
+
+if (tableBill.value.length > 0) {
+    total.value = tableBill.value.reduce((acc, dish) => {
+        return acc + dish.price * dish.quantity;
+    }, 0);
+}
+
+function confirm() {
+    const dialog = document.getElementById("confirm");
+    dialog.showModal();
+}
+
+function pay() {
+    const dialog = document.getElementById("pay");
+    dialog.showModal();
+}
 
 function addDish(category, dish) {
     const dishDuplicate = tableDish.value.find((d) => d.id === dish);
     if (dishDuplicate) {
         dishDuplicate.quantity++;
-        calculateTotal();
         return;
     }
     const selectedCategory = menu.value.find((cate) => cate.id === category);
     if (selectedCategory) {
         const selectedDish = selectedCategory.dishes.find((d) => d.id === dish);
         if (selectedDish) {
-            const dishWithQuantity = { ...selectedDish, category: selectedCategory.dishCategory, quantity: 1 };
+            const dishWithQuantity = { ...selectedDish, quantity: 1, categoryId: selectedCategory.id, category: selectedCategory.dishCategory };
             tableDish.value.push(dishWithQuantity);
             console.log(tableDish.value);
         }
     }
-    calculateTotal();
 }
 
 function increaseQuantity(index) {
     tableDish.value[index].quantity++;
-    calculateTotal();
 }
 
 function decreaseQuantity(index) {
     if (tableDish.value[index].quantity > 1) {
         tableDish.value[index].quantity--;
     }
-    calculateTotal();
 }
 
 function deleteDish(id) {
     tableDish.value = tableDish.value.filter((dish) => dish.id !== id);
-    calculateTotal();
-}
-
-function calculateTotal() {
-    total.value = tableDish.value.reduce((acc, dish) => {
-        return acc + dish.price * dish.quantity;
-    }, 0);
 }
 
 function formatPrice(price) {

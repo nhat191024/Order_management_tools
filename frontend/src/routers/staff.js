@@ -4,31 +4,30 @@ const staff = [
         component: () => import("../layouts/staff.vue"),
         children: [
             {
-                path: "/",
-                component: () => import("../layouts/staff.vue"),
-                children: [
-                    {
-                        path: "/staff/login",
-                        name: "staff_login",
-                        component: () => import("../pages/staffs/index.vue"),
-                    },
-                    {
-                        path: "staff/checkout",
-                        name: "staff_checkout",
-                        component: () => import("../pages/staffs/billCheckout.vue"),
-                    },
-                    {
-                        path: "/kitchen/selectTable",
-                        name: "kitchen_select_Table",
-                        component: () => import("../pages/staffs/selectTable.vue"),
-                    },
-                    {
-                        path: "/kitchen/selectKitchen",
-                        name: "kitchen_select_kitchen",
-                        component: () => import("../pages/staffs/selectKitchen.vue"),
-                    },
-                ]
-            }
+                path: "/staff/login",
+                name: "login",
+                component: () => import("../pages/staffs/index.vue"),
+            },
+            {
+                path: "/staff/table",
+                name: "table selection",
+                component: () => import("../pages/staffs/selectTable.vue"),
+            },
+            {
+                path: "staff/checkout",
+                name: "staff_checkout",
+                component: () => import("../pages/staffs/billCheckout.vue"),
+            },
+            {
+                path: "/staff/table/:id",
+                name: "table detail",
+                component: () => import("../pages/staffs/tableDetail.vue"),
+            },
+            {
+                path: "/kitchen/select",
+                name: "kitchen selection",
+                component: () => import("../pages/staffs/selectKitchen.vue"),
+            },
         ]
     }
 ]

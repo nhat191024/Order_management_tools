@@ -18,10 +18,11 @@ export default {
   daisyui: {
     themes: [
       {
-        orange: {
-          'primary': '#FF7A00',
-          'secondary': '#FFA14A',
-        }
+        light: {
+          ...require("daisyui/src/theming/themes")["light"],
+          primary: "#FF7A00",
+          secondary: "#FFA14A",
+        },
       }
     ]
   }

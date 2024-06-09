@@ -1,14 +1,8 @@
 const customer = [
     {
-        path: "/",
-        component: () => import("../layouts/customer.vue"),
-        children: [
-            {
-                path: "/",
-                name: "order",
-                component: () => import("../pages/customers/index.vue"),
-            },
-        ]
+        path: "/order/:id",
+        name: "order",
+        component: () => import("../pages/customers/index.vue"),
     },
     {
         path: "/payment",
@@ -16,4 +10,6 @@ const customer = [
         component: () => import("../pages/customers/pay.vue"),
     }
 ]
+
+
 export default customer;

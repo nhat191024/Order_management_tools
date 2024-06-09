@@ -108,7 +108,7 @@
                         class="w-full h-24 grid grid-rows-4 grid-cols-12 text-lg font-light my-5 px-4">
                         <img src="../../assets/demo.jpg" alt="demo"
                             class=" row-span-full col-span-3 w-full h-full rounded-lg">
-                        <p class="col-start-4 col-span-full row-span-1 pl-3">{{ dish.dishId }}</p>
+                        <p class="col-start-4 col-span-full row-span-1 pl-3">{{ dish.dishName }}</p>
                         <p class="col-start-4 col-span-full pl-3 text-sm text-gray-500 ">{{
                             cookingMethodName(dish.dishId, dish.cookingMethod) }}</p>
                         <input class="pl-3 row-start-3 col-start-4 col-span-full outline-none" placeholder="Ghi chú"

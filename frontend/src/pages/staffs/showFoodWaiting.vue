@@ -27,7 +27,6 @@
         v-for="(item, index) in items"
         :key="index"
         class="flex flex-col items-center p-4 m-2 text-center text-white bg-primary rounded-lg shadow-lg w-64 cursor-pointer"
-        @click="removeItem(index)"
       >
         <template v-if="item.visible">
           <div class="text-lg font-bold">{{ item.title }}</div>
@@ -38,6 +37,7 @@
             <div class="text-xl font-bold">{{ item.table }}</div>
             <div
               class="flex items-center justify-center w-10 h-10 p-2 bg-white rounded-full"
+              @click="removeItem(index)"
             >
               <img src="./../../assets/check.svg" alt="Check Icon" />
             </div>

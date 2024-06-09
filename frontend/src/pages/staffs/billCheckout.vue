@@ -1,8 +1,78 @@
+<template>
+    <div class="grid grid-cols-12 grid-rows-12 gap-5 h-screen w-screen">
+        <div class="col-span-6 row-span-12 grid">
+            <div class="p-4 h-0">
+                <button class="items-center bg-white drop-shadow-2x text-black inline-flex">
+                    <div class="bg-primary w-10 h-10 m-2 drop-shadow-2xl rounded-xl p-1">
+                        <img src="./../../assets/left-long-solid.svg" alt="My SVG Icon" class="">
+                    </div>
+                    <span class="text-xl drop-shadow">Trở về</span>
+                </button>
+            </div>
+            <div class="bg-white rounded-xl drop-shadow-2xl p-5 row-start-2 ml-16">
+                <h1 class="font-semibold text-2xl text-center">PHIẾU THANH TOÁN</h1>
+                <div class="m-4 flex justify-between items-center ">
+                    <h1 class="text-sm">
+                        Khu: {{ billData.areaName }}
+                        <br>Bàn: {{ billData.tableName }}
+                    </h1>
+                    <h1 class="text-sm">
+                        Giờ vào: {{ billData.time_join }}
+                        <br>Giờ ra: {{ billData.time_leave }}
+                    </h1>
+                </div>
+                <div class="overflow-scroll min-h-64 max-h-80 border-t border-black">
+                    <table class="table overflow-auto">
+                        <thead>
+                            <tr class="table-row">
+                                <th>Tên Món</th>
+                                <th>Số lượng</th>
+                                <th>Đơn Giá</th>
+                                <th>Thành Tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="i in billData.items" :key="i.name">
+                                <td>{{ i.name }}</td>
+                                <td>{{ i.quantity }}</td>
+                                <td>{{ i.price }}</td>
+                                <td>{{ i.price * i.quantity }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mx-7 flex justify-between items-center border-t border-black">
+                    <h1 class="text-center translate-y-4 text-xl font-semibold">Tổng cộng:</h1>
+                    <h1 class="text-center translate-y-4 text-xl font-semibold">{{ billData.total(billData.items) }} VND
+                    </h1>
+                </div>
+            </div>
+            <div class="flex justify-center items-center">
+                <button class="btn btn-primary text-white shadow-md w-1/2 ml-16 text-xl">In Hoá Đơn</button>
+            </div>
+        </div>
+        <div class="flex justify-center items-center col-span-6 row-span-12 z-0">
+            <div>
+                <!-- chỗ này để hiển thị ảnh QR -->
+                <img class="w-full" src="./../../assets/qr.png" style="z-index: 0;">
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    
+    data() {
+    },
+    
+    methods: {
+    }
+}
+</script>
 <script setup>
-import Bill from "./../../components/staffs/bill.vue";
 
 const billData = {
-
     // Thông tin phụ của hoá đơn
     tableName: "Bàn 1",
     areaName: "Khu 1",
@@ -25,48 +95,16 @@ const billData = {
             quantity: 3,
             price: 10000
         },
+        {
+            name: "Oc xao",
+            quantity: 3,
+            price: 10000
+        },
+        {
+            name: "Oc xao",
+            quantity: 3,
+            price: 10000
+        },
     ]
 };
-</script>
-
-<template>
-    <div class="grid grid-cols-12 grid-rows-12 gap-5 h-screen w-screen">
-        <div class="col-span-6 row-span-12 grid">
-            <div class="p-4 h-0">
-                <button class="items-center bg-white drop-shadow-2x text-black inline-flex">
-                    <div class="bg-primary w-10 h-10 m-2 drop-shadow-2xl rounded-xl p-1">
-                        <img src="./../../assets/left-long-solid.svg" alt="My SVG Icon" class="">
-                    </div>
-                    <span class="text-xl drop-shadow">Trở về</span>
-                </button>
-            </div>
-            <Bill v-bind:billData="billData" class="row-start-2 ml-16"> </Bill style="z-index: 4;">
-            <div class="flex justify-center items-center">
-                <button class="btn btn-primary text-white shadow-md w-1/2 ml-16 text-xl">In Hoá Đơn</button>
-            </div>
-        </div>
-        <div class="flex justify-center items-center col-span-6 row-span-12 z-0">
-            <div>
-                <!-- chỗ này để hiển thị ảnh QR -->
-                <img class="w-full" src="./../../assets/qr.png" style="z-index: 0;">
-
-            </div>
-        </div>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            testVar: 'test',
-        }
-    },
-
-    methods: {
-        test() {
-            console.log("test")
-        }
-    }
-}
 </script>

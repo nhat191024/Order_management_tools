@@ -60,18 +60,7 @@
     </div>
 </template>
 
-<script>
-export default {
-    
-    data() {
-    },
-    
-    methods: {
-    }
-}
-</script>
 <script setup>
-
 const billData = {
     // Thông tin phụ của hoá đơn
     tableName: "Bàn 1",

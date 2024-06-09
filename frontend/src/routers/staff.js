@@ -23,6 +23,11 @@ const staff = [
                 name: "kitchen selection",
                 component: () => import("../pages/staffs/selectKitchen.vue"),
             },
+            {
+                path: "staff/checkout",
+                name: "staff_checkout",
+                component: () => import("../pages/staffs/billCheckout.vue"),
+            },
         ]
     }
 ]

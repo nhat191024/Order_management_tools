@@ -14,11 +14,6 @@ const staff = [
                 component: () => import("../pages/staffs/selectTable.vue"),
             },
             {
-                path: "staff/checkout",
-                name: "staff_checkout",
-                component: () => import("../pages/staffs/billCheckout.vue"),
-            },
-            {
                 path: "/staff/table/:id",
                 name: "table detail",
                 component: () => import("../pages/staffs/tableDetail.vue"),
@@ -27,6 +22,11 @@ const staff = [
                 path: "/kitchen/select",
                 name: "kitchen selection",
                 component: () => import("../pages/staffs/selectKitchen.vue"),
+            },
+            {
+                path: "staff/checkout",
+                name: "staff_checkout",
+                component: () => import("../pages/staffs/billCheckout.vue"),
             },
         ]
     }

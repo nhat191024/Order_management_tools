@@ -11,9 +11,9 @@ const customer = [
         ]
     },
     {
-        path: "/payment",
-        name: "payment",
-        component: () => import("../pages/customers/pay.vue"),
+        path: "/orderConfirm",
+        name: "orderConfirm",
+        component: () => import("../pages/customers/orderConfirm.vue"),
     }
 ]
 

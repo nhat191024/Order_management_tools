@@ -1,23 +1,23 @@
 <template>
   <div class="h-screen w-screen overflow-scroll">
     <div class="fixed w-full bg-white shadow-md">
-      <div class="flex items-center p-4">
+      <div class="flex items-center p-2">
         <div class="flex items-center justify-center col-span-2">
           <button class="flex items-center text-black bg-white drop-shadow-2x">
             <div
-              class="flex items-center justify-center w-10 h-10 m-2 bg-primary rounded-xl drop-shadow-2xl p-1"
+              class="flex items-center justify-center w-8 h-8 m-1 bg-primary rounded-xl drop-shadow-2xl p-1"
             >
               <img src="./../../assets/left-long-solid.svg" alt="My SVG Icon" />
             </div>
-            <span class="text-xl drop-shadow">Trở về</span>
+            <span class="text-lg drop-shadow">Trở về</span>
           </button>
         </div>
-        <h1 class="flex-grow text-5xl font-bold text-center text-black">
+        <h1 class="flex-grow text-3xl font-bold text-center text-black">
           Bếp xào
         </h1>
-        <div class="w-20"></div>
+        <div class="w-16"></div>
       </div>
-      <hr class="mt-3" />
+      <hr class="mt-2" />
     </div>
 
     <div
@@ -27,7 +27,7 @@
         v-for="(item, index) in items"
         :key="index"
         class="flex flex-col items-center p-4 m-2 text-center text-white bg-primary rounded-lg shadow-lg w-64 cursor-pointer"
-        @click="toggleItem(index)"
+        @click="removeItem(index)"
       >
         <template v-if="item.visible">
           <div class="text-lg font-bold">{{ item.title }}</div>
@@ -42,11 +42,6 @@
               <img src="./../../assets/check.svg" alt="Check Icon" />
             </div>
           </div>
-        </template>
-        <template v-else>
-          <div class="text-lg font-bold">Thẻ mới</div>
-          <div class="w-full my-2 border-t border-white"></div>
-          <div class="text-lg">Nội dung mới</div>
         </template>
       </div>
     </div>
@@ -143,7 +138,7 @@ const items = ref([
   },
 ]);
 
-const toggleItem = (index) => {
-  items.value[index].visible = !items.value[index].visible;
+const removeItem = (index) => {
+  items.value.splice(index, 1);
 };
 </script>

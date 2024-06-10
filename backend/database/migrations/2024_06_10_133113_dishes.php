@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('dishes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->unsignedBigInteger('food_id');
+            $table->unsignedBigInteger('id_cooking_method');
+            $table->integer('price');
             $table->string('image');
-            $table->tinyInteger('status')->default(1);
-            $table->text('note')->nullable();
             $table->timestamps();
+
+            $table->foreign('food_id')->references('id')->on('foods');
+            $table->foreign('id_cooking_method')->references('id')->on('cooking_methods');
         });
     }
 

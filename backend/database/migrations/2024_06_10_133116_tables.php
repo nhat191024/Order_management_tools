@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('tables', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('image');
-            $table->tinyInteger('status')->default(1);
             $table->text('note')->nullable();
+            $table->tinyInteger('status')->default(0);
+            $table->unsignedBigInteger('id_branch');
             $table->timestamps();
+
+            $table->foreign('id_branch')->references('id')->on('branches');
         });
     }
 

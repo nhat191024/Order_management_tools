@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('dishes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('food_id');
-            $table->unsignedBigInteger('id_cooking_method');
+            $table->unsignedBigInteger('cooking_method_id');
             $table->integer('price');
-            $table->string('image');
+            $table->integer('additional_price');
+            $table->string('image')->nullable();
             $table->timestamps();
 
             $table->foreign('food_id')->references('id')->on('foods');
-            $table->foreign('id_cooking_method')->references('id')->on('cooking_methods');
+            $table->foreign('cooking_method_id')->references('id')->on('cooking_methods');
         });
     }
 

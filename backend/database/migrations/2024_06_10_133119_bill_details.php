@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('dish_id');
             $table->integer('quantity');
             $table->string('price');
+            $table->string('note')->nullable();
             $table->timestamps();
 
             $table->foreign('bill_id')->references('id')->on('bills');

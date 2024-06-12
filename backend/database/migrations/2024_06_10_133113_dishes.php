@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('cooking_method_id');
             $table->integer('price');
             $table->integer('additional_price');
-            $table->string('image')->nullable();
             $table->timestamps();
 
             $table->foreign('food_id')->references('id')->on('foods');

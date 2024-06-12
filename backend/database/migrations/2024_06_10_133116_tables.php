@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->text('note')->nullable();
             $table->tinyInteger('status')->default(0);
-            $table->unsignedBigInteger('id_branch');
+            $table->unsignedBigInteger('branch_id');
             $table->timestamps();
 
-            $table->foreign('id_branch')->references('id')->on('branches');
+            $table->foreign('branch_id')->references('id')->on('branches');
         });
     }
 

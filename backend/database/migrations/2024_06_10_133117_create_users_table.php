@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_branch');
+            $table->unsignedBigInteger('branch_id');
             $table->string('username');
             $table->string('password');
             $table->tinyInteger('role');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('id_branch')->references('id')->on('branches');
+            $table->foreign('branch_id')->references('id')->on('branches');
         });
     }
 

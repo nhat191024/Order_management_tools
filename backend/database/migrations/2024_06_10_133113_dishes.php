@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('cooking_method_id');
             $table->integer('price');
             $table->integer('additional_price');
+            $table->text('note')->nullable();
             $table->timestamps();
 
             $table->foreign('food_id')->references('id')->on('foods');
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('dishes');
     }
 };

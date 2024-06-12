@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class dish extends Model
+class Dish extends Model
 {
     protected $table = 'dishes';
 
@@ -14,7 +14,8 @@ class dish extends Model
         'id_cooking_method',
         'price',
         'additional_price',
-        'image'
+        'image',
+        'note'
     ];
 
     public function food()

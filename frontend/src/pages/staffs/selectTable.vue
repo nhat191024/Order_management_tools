@@ -9,7 +9,7 @@
             </button>
         </div>
         <div class="col-span-5 flex gap-3 items-center overflow-auto">
-            <button v-for="area in areaList" @click="test" :class="mainColor"
+            <button v-for="area in areaList" @click="" :class="mainColor"
                 class="py-2 px-8 drop-shadow-2x rounded-md shadow-xl text-white font-extrabold">
                 {{ (areaList.indexOf(area) + 1) }}
             </button>

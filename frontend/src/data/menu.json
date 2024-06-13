@@ -1,0 +1,772 @@
+[
+    {
+        "id": 1,
+        "dishCategory": "Ốc",
+        "dishes": [
+            {
+                "id": 1,
+                "name": "Ốc con",
+                "note": "",
+                "price": 30000,
+                "cookingMethods": [
+                    {
+                        "id": 2,
+                        "name": "Luộc lá chanh",
+                        "price": 0
+                    },
+                    {
+                        "id": 3,
+                        "name": "Luộc Mắm",
+                        "price": 0
+                    },
+                    {
+                        "id": 4,
+                        "name": "Xào dừa",
+                        "price": 0
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "Ốc mít",
+                "note": "",
+                "price": 90000,
+                "cookingMethods": [
+                    {
+                        "id": 1,
+                        "name": "Hấp mẻ",
+                        "price": 0
+                    },
+                    {
+                        "id": 2,
+                        "name": "Luộc lá chanh",
+                        "price": 0
+                    },
+                    {
+                        "id": 3,
+                        "name": "Luộc Mắm",
+                        "price": 0
+                    },
+                    {
+                        "id": 4,
+                        "name": "Xào dừa",
+                        "price": 0
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "Ốc ráo",
+                "note": "",
+                "price": 35000,
+                "cookingMethods": [
+                    {
+                        "id": 2,
+                        "name": "Luộc lá chanh",
+                        "price": 0
+                    },
+                    {
+                        "id": 3,
+                        "name": "Luộc Mắm",
+                        "price": 0
+                    },
+                    {
+                        "id": 4,
+                        "name": "Xào dừa",
+                        "price": 0
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "name": "Ốc hương xào trứng muối",
+                "note": "",
+                "price": 180000,
+                "cookingMethods": null
+            },
+            {
+                "id": 5,
+                "name": "Ốc lẫn",
+                "note": "",
+                "price": 60000,
+                "cookingMethods": [
+                    {
+                        "id": 1,
+                        "name": "Hấp mẻ",
+                        "price": 0
+                    },
+                    {
+                        "id": 2,
+                        "name": "Luộc lá chanh",
+                        "price": 0
+                    },
+                    {
+                        "id": 3,
+                        "name": "Luộc Mắm",
+                        "price": 0
+                    },
+                    {
+                        "id": 4,
+                        "name": "Xào dừa",
+                        "price": 0
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "name": "Ốc đỏ môi",
+                "note": "",
+                "price": 70000,
+                "cookingMethods": [
+                    {
+                        "id": 2,
+                        "name": "Luộc lá chanh",
+                        "price": 0
+                    },
+                    {
+                        "id": 4,
+                        "name": "Xào dừa",
+                        "price": 0
+                    },
+                    {
+                        "id": 5,
+                        "name": "Rang muối",
+                        "price": 0
+                    }
+                ]
+            },
+            {
+                "id": 7,
+                "name": "Ốc mút giấy",
+                "note": "",
+                "price": 60000,
+                "cookingMethods": [
+                    {
+                        "id": 2,
+                        "name": "Luộc lá chanh",
+                        "price": 0
+                    },
+                    {
+                        "id": 3,
+                        "name": "Luộc Mắm",
+                        "price": 0
+                    },
+                    {
+                        "id": 4,
+                        "name": "Xào dừa",
+                        "price": 0
+                    }
+                ]
+            },
+            {
+                "id": 8,
+                "name": "Ốc ngố",
+                "note": "",
+                "price": 40000,
+                "cookingMethods": [
+                    {
+                        "id": 3,
+                        "name": "Luộc Mắm",
+                        "price": 0
+                    },
+                    {
+                        "id": 4,
+                        "name": "Xào dừa",
+                        "price": 0
+                    }
+                ]
+            },
+            {
+                "id": 9,
+                "name": "Ốc hương",
+                "note": "",
+                "price": 180000,
+                "cookingMethods": [
+                    {
+                        "id": 6,
+                        "name": "Hấp xả",
+                        "price": 0
+                    },
+                    {
+                        "id": 7,
+                        "name": "Nướng",
+                        "price": 0
+                    },
+                    {
+                        "id": 8,
+                        "name": "Xào trứng muối",
+                        "price": 0
+                    }
+                ]
+            },
+            {
+                "id": 10,
+                "name": "Ốc mút len",
+                "note": "",
+                "price": 120000,
+                "cookingMethods": [
+                    {
+                        "id": 3,
+                        "name": "Luộc Mắm",
+                        "price": 0
+                    },
+                    {
+                        "id": 4,
+                        "name": "Xào dừa",
+                        "price": 0
+                    },
+                    {
+                        "id": 9,
+                        "name": "Xào ngô",
+                        "price": 0
+                    }
+                ]
+            },
+            {
+                "id": 11,
+                "name": "Ốc đĩa",
+                "note": "Size lớn",
+                "price": 180000,
+                "cookingMethods": [
+                    {
+                        "id": 3,
+                        "name": "Luộc Mắm",
+                        "price": 0
+                    },
+                    {
+                        "id": 4,
+                        "name": "Xào dừa",
+                        "price": 0
+                    },
+                    {
+                        "id": 5,
+                        "name": "Rang muối",
+                        "price": 0
+                    }
+                ]
+            },
+            {
+                "id": 12,
+                "name": "Ốc đĩa",
+                "note": "Size nhỏ",
+                "price": 150000,
+                "cookingMethods": [
+                    {
+                        "id": 1,
+                        "name": "Hấp mẻ",
+                        "price": 0
+                    },
+                    {
+                        "id": 2,
+                        "name": "Luộc lá chanh",
+                        "price": 0
+                    },
+                    {
+                        "id": 3,
+                        "name": "Luộc Mắm",
+                        "price": 0
+                    },
+                    {
+                        "id": 4,
+                        "name": "Xào dừa",
+                        "price": 0
+                    }
+                ]
+            },
+            {
+                "id": 13,
+                "name": "Cà la",
+                "note": "",
+                "price": 120000,
+                "cookingMethods": [
+                    {
+                        "id": 3,
+                        "name": "Luộc Mắm",
+                        "price": 0
+                    },
+                    {
+                        "id": 5,
+                        "name": "Rang muối",
+                        "price": 0
+                    },
+                    {
+                        "id": 7,
+                        "name": "Nướng",
+                        "price": 0
+                    },
+                    {
+                        "id": 8,
+                        "name": "Xào trứng muối",
+                        "price": 0
+                    },
+                    {
+                        "id": 9,
+                        "name": "Xào Ngô",
+                        "price": 0
+                    },
+                    {
+                        "id": 10,
+                        "name": "Xào bơ tỏi",
+                        "price": 0
+                    }
+                ]
+            },
+            {
+                "id": 14,
+                "name": "Ốc Bông",
+                "note": "",
+                "price": 180000,
+                "cookingMethods": [
+                    {
+                        "id": 3,
+                        "name": "Luộc Mắm",
+                        "price": 0
+                    },
+                    {
+                        "id": 4,
+                        "name": "Xào dừa",
+                        "price": 0
+                    },
+                    {
+                        "id": 5,
+                        "name": "Rang muối",
+                        "price": 0
+                    },
+                    {
+                        "id": 10,
+                        "name": "Xào bơ tỏi",
+                        "price": 0
+                    }
+                ]
+            },
+            {
+                "id": 15,
+                "name": "Ốc sư tử nướng",
+                "note": "",
+                "price": 120000,
+                "cookingMethods": null
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "dishCategory": "Sò - Ngao - Hàu",
+        "dishes": [
+            {
+                "id": 16,
+                "name": "Hàu nướng",
+                "note": "",
+                "price": 60000,
+                "cookingMethods": null
+            },
+            {
+                "id": 17,
+                "name": "Ngao hấp kiểu thái",
+                "note": "",
+                "price": 70000,
+                "cookingMethods": null
+            },
+            {
+                "id": 18,
+                "name": "Sò mít nướng",
+                "note": "",
+                "price": 70000,
+                "cookingMethods": [
+                    {
+                        "id": 2,
+                        "name": "Luộc lá chanh",
+                        "price": 0
+                    },
+                    {
+                        "id": 3,
+                        "name": "Luộc Mắm",
+                        "price": 0
+                    },
+                    {
+                        "id": 4,
+                        "name": "Xào dừa",
+                        "price": 0
+                    },
+                    {
+                        "id": 7,
+                        "name": "Nướng",
+                        "price": 0
+                    }
+                ]
+            },
+            {
+                "id": 19,
+                "name": "Sò gạo",
+                "note": "",
+                "price": 80000,
+                "cookingMethods": [
+                    {
+                        "id": 2,
+                        "name": "Luộc lá chanh",
+                        "price": 0
+                    },
+                    {
+                        "id": 3,
+                        "name": "Luộc Mắm",
+                        "price": 0
+                    },
+                    {
+                        "id": 4,
+                        "name": "Xào dừa",
+                        "price": 0
+                    },
+                    {
+                        "id": 7,
+                        "name": "Nướng",
+                        "price": 0
+                    }
+                ]
+            },
+            {
+                "id": 20,
+                "name": "Sò lông",
+                "note": "",
+                "price": 70000,
+                "cookingMethods": [
+                    {
+                        "id": 2,
+                        "name": "Luộc lá chanh",
+                        "price": 0
+                    },
+                    {
+                        "id": 3,
+                        "name": "Luộc Mắm",
+                        "price": 0
+                    },
+                    {
+                        "id": 4,
+                        "name": "Xào dừa",
+                        "price": 0
+                    },
+                    {
+                        "id": 7,
+                        "name": "Nướng",
+                        "price": 0
+                    }
+                ]
+            },
+            {
+                "id": 21,
+                "name": "Móng tay xào rau húng",
+                "note": "",
+                "price": 120000,
+                "cookingMethods": null
+            },
+            {
+                "id": 22,
+                "name": "Sò Huyết",
+                "note": "",
+                "price": 180000,
+                "cookingMethods": [
+                    {
+                        "id": 2,
+                        "name": "Luộc lá chanh",
+                        "price": 0
+                    },
+                    {
+                        "id": 3,
+                        "name": "Luộc Mắm",
+                        "price": 0
+                    },
+                    {
+                        "id": 4,
+                        "name": "Xào dừa",
+                        "price": 0
+                    },
+                    {
+                        "id": 7,
+                        "name": "Nướng",
+                        "price": 0
+                    }
+                ]
+            },
+            {
+                "id": 23,
+                "name": "Ngao trắng",
+                "note": "",
+                "price": 70000,
+                "cookingMethods": [
+                    {
+                        "id": 3,
+                        "name": "Luộc Mắm",
+                        "price": 0
+                    },
+                    {
+                        "id": 7,
+                        "name": "Nướng",
+                        "price": 0
+                    }
+                ]
+            },
+            {
+                "id": 24,
+                "name": "Thưng hấp thái chua cay",
+                "note": "",
+                "price": 120000,
+                "cookingMethods": null
+            },
+            {
+                "id": 25,
+                "name": "Sò dưa",
+                "note": "",
+                "price": 70000,
+                "cookingMethods": [
+                    {
+                        "id": 2,
+                        "name": "Luộc lá chanh",
+                        "price": 0
+                    },
+                    {
+                        "id": 3,
+                        "name": "Luộc Mắm",
+                        "price": 0
+                    },
+                    {
+                        "id": 4,
+                        "name": "Xào dừa",
+                        "price": 0
+                    },
+                    {
+                        "id": 7,
+                        "name": "Nướng",
+                        "price": 0
+                    }
+                ]
+            },
+            {
+                "id": 26,
+                "name": "Thưng nướng",
+                "note": "",
+                "price": 120000,
+                "cookingMethods": null
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "dishCategory": "Ăn Vặt",
+        "dishes": [
+            {
+                "id": 27,
+                "name": "Cút lộn xào me",
+                "note": "",
+                "price": 50000,
+                "cookingMethods": null
+            },
+            {
+                "id": 28,
+                "name": "Ném rán Hà Nội",
+                "note": "Đĩa nhỏ",
+                "price": 40000,
+                "cookingMethods": null
+            },
+            {
+                "id": 29,
+                "name": "Ném rán Hà Nội",
+                "note": "Đĩa to",
+                "price": 70000,
+                "cookingMethods": null
+            },
+            {
+                "id": 30,
+                "name": "Xoài dầm",
+                "note": "",
+                "price": 25000,
+                "cookingMethods": null
+            },
+            {
+                "id": 31,
+                "name": "Bánh mì",
+                "note": "3  cái bánh mì cóc",
+                "price": 19000,
+                "cookingMethods": null
+            },
+            {
+                "id": 32,
+                "name": "Củ đậu",
+                "note": "",
+                "price": 25000,
+                "cookingMethods": null
+            },
+            {
+                "id": 33,
+                "name": "Cú lộn luộc",
+                "note": "",
+                "price": 50000,
+                "cookingMethods": null
+            },
+            {
+                "id": 34,
+                "name": "Càng cù kỳ",
+                "note": "",
+                "price": 150000,
+                "cookingMethods": null
+            },
+            {
+                "id": 35,
+                "name": "Bề bề rang me",
+                "note": "",
+                "price": 165000,
+                "cookingMethods":null
+            },
+            {
+                "id": 36,
+                "name": "Cá bóng nướng",
+                "note": "",
+                "price": 60000,
+                "cookingMethods":null
+            },
+            {
+                "id": 37,
+                "name": "Cá chỉ vàng nướng",
+                "note": "",
+                "price": 60000,
+                "cookingMethods":null
+            },
+            {
+                "id": 38,
+                "name": "Ngô chiên bơ",
+                "note": "",
+                "price": 45000,
+                "cookingMethods":null
+            },
+            {
+                "id": 39,
+                "name": "Chân gà sả tắc",
+                "note": "",
+                "price": 70000,
+                "cookingMethods":null
+            },
+            {
+                "id": 40,
+                "name": "Khoai môn lệ phố",
+                "note": "Đĩa nhỏ",
+                "price": 30000,
+                "cookingMethods":null
+            },
+            {
+                "id": 41,
+                "name": "Khoai lang kén",
+                "note": "",
+                "price": 30000,
+                "cookingMethods":null
+            },
+            {
+                "id": 42,
+                "name": "Chân gà chiên mắm",
+                "note": "",
+                "price": 120000,
+                "cookingMethods":null
+            },
+            {
+                "id": 43,
+                "name": "Khoai tây chiên",
+                "note": "",
+                "price": 30000,
+                "cookingMethods":null
+            },
+            {
+                "id": 44,
+                "name": "Phô mai que",
+                "note": "",
+                "price": 40000,
+                "cookingMethods":null
+            },
+            {
+                "id": 45,
+                "name": "Mực nướng",
+                "note": "",
+                "price": 24000,
+                "cookingMethods":null
+            },
+            {
+                "id": 46,
+                "name": "Cá viên chiên",
+                "note": "",
+                "price": 30000,
+                "cookingMethods":null
+            },
+            {
+                "id": 47,
+                "name": "Chả mực xoắn",
+                "note": "",
+                "price": 40000,
+                "cookingMethods":null
+            },
+            {
+                "id": 48,
+                "name": "Nem xù viên thập cẩm",
+                "note": "Nem xù mix cá bò tôm viên",
+                "price": 70000,
+                "cookingMethods":null
+            },
+            {
+                "id": 49,
+                "name": "Tôm viên chiên",
+                "note": "",
+                "price": 30000,
+                "cookingMethods":null
+            },
+            {
+                "id": 50,
+                "name": "Bò viên chiên",
+                "note": "",
+                "price": 30000,
+                "cookingMethods":null
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "dishCategory": "Đồ uống",
+        "dishes": [
+            {
+                "id": 51,
+                "name": "Nước nhân trần",
+                "note": "",
+                "price": 5000,
+                "cookingMethods":null
+            },
+            {
+                "id": 52,
+                "name": "Trà tắc",
+                "note": "",
+                "price": 12000,
+                "cookingMethods":null
+            },
+            {
+                "id": 53,
+                "name": "Bia 333",
+                "note": "1 lon",
+                "price": 18000,
+                "cookingMethods":null
+            },
+            {
+                "id": 54,
+                "name": "Coca lon",
+                "note": "",
+                "price": 12000,
+                "cookingMethods":null
+            },
+            {
+                "id": 55,
+                "name": "Trà tắc thạch cá",
+                "note": "",
+                "price": 18000,
+                "cookingMethods":null
+            },
+            {
+                "id": 56,
+                "name": "Nước cam ép",
+                "note": "",
+                "price": 25000,
+                "cookingMethods":null
+            }
+        ]
+    }
+]

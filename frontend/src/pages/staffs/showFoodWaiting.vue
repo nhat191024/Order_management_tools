@@ -32,16 +32,18 @@
           <div class="text-lg font-bold">{{ item.title }}</div>
           <div class="w-full my-2 border-t border-white"></div>
           <div class="text-lg">{{ item.description }}</div>
-          <div class="w-full my-2 border-t border-white"></div>
+
           <div class="flex items-center justify-between w-full space-x-2">
-            <div class="text-xl font-bold">{{ item.table }}</div>
+            <div class="w-full my-2 border-t border-white"></div>
+
             <div
-              class="flex items-center justify-center w-10 h-10 p-2 bg-white rounded-full"
+              class="flex items-center justify-center w-16 h-14 p-2 bg-white rounded-full"
               @click="removeItem(index)"
             >
               <img src="./../../assets/check.svg" alt="Check Icon" />
             </div>
           </div>
+          <div class="text-xl font-bold">{{ item.table }}</div>
         </template>
       </div>
     </div>

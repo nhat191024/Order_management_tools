@@ -26,300 +26,350 @@
             "id": 1,
             "category_id": 1,
             "name": "Ốc con",
+            "price": 30000,
             "image": "demo.jpg"
         },
         {
             "id": 2,
             "category_id": 1,
             "name": "Ốc mít",
+            "price": 90000,
             "image": "demo.jpg"
         },
         {
             "id": 3,
             "category_id": 1,
             "name": "Ốc ráo",
+            "price": 35000,
             "image": "demo.jpg"
         },
         {
             "id": 4,
             "category_id": 1,
             "name": "Ốc hương",
+            "price": 180000,
             "image": "demo.jpg"
         },
         {
             "id": 5,
             "category_id": 1,
             "name": "Ốc lẫn",
+            "price": 60000,
             "image": "demo.jpg"
         },
         {
             "id": 6,
             "category_id": 1,
             "name": "Ốc đỏ môi",
+            "price": 70000,
             "image": "demo.jpg"
         },
         {
             "id": 7,
             "category_id": 1,
             "name": "Ốc mút giấy",
+            "price": 60000,
             "image": "demo.jpg"
         },
         {
             "id": 8,
             "category_id": 1,
             "name": "Ốc ngố",
+            "price": 40000,
             "image": "demo.jpg"
         },
         {
             "id": 9,
             "category_id": 1,
             "name": "Ốc mút len",
+            "price": 120000,
             "image": "demo.jpg"
         },
         {
             "id": 10,
             "category_id": 1,
             "name": "Ốc đĩa",
+            "price": 180000,
             "image": "demo.jpg"
         },
         {
             "id": 11,
             "category_id": 1,
             "name": "Cà la",
+            "price": 120000,
             "image": "demo.jpg"
         },
         {
             "id": 12,
             "category_id": 1,
             "name": "Ốc Bông",
+            "price": 180000,
             "image": "demo.jpg"
         },
         {
             "id": 13,
             "category_id": 1,
             "name": "Ốc sư tử",
+            "price": 120000,
             "image": "demo.jpg"
         },
         {
             "id": 14,
             "category_id": 2,
             "name": "Hàu",
+            "price": 60000,
             "image": "demo.jpg"
         },
         {
             "id": 15,
             "category_id": 2,
             "name": "Ngao",
+            "price": 70000,
             "image": "demo.jpg"
         },
         {
             "id": 16,
             "category_id": 2,
             "name": "Sò mít",
+            "price": 70000,
             "image": "demo.jpg"
         },
         {
             "id": 17,
             "category_id": 2,
             "name": "Sò gạo",
+            "price": 80000,
             "image": "demo.jpg"
         },
         {
             "id": 18,
             "category_id": 2,
             "name": "Sò lông",
+            "price": 70000,
             "image": "demo.jpg"
         },
         {
             "id": 19,
             "category_id": 2,
             "name": "Móng tay",
+            "price": 120000,
             "image": "demo.jpg"
         },
         {
             "id": 20,
             "category_id": 2,
             "name": "Sò Huyết",
+            "price": 180000,
             "image": "demo.jpg"
         },
         {
             "id": 21,
             "category_id": 2,
             "name": "Ngao trắng",
+            "price": 70000,
             "image": "demo.jpg"
         },
         {
             "id": 22,
             "category_id": 2,
             "name": "Thưng",
+            "price": 120000,
             "image": "demo.jpg"
         },
         {
             "id": 23,
             "category_id": 2,
             "name": "Sò dưa",
+            "price": 70000,
             "image": "demo.jpg"
         },
         {
             "id": 24,
             "category_id": 3,
             "name": "Cút lộn",
+            "price": 50000,
             "image": "demo.jpg"
         },
         {
             "id": 25,
             "category_id": 2,
             "name": "Nem Hà Nội",
+            "price": 40000,
             "image": "demo.jpg"
         },
         {
             "id": 26,
             "category_id": 2,
             "name": "Xoài",
+            "price": 25000,
             "image": "demo.jpg"
         },
         {
             "id": 27,
             "category_id": 2,
             "name": "Bánh mì",
+            "price": 19000,
             "image": "demo.jpg"
         },
         {
             "id": 28,
             "category_id": 2,
             "name": "Củ đậu",
+            "price": 25000,
             "image": "demo.jpg"
         },
         {
             "id": 29,
             "category_id": 2,
             "name": "Càng cù kỳ",
+            "price": 150000,
             "image": "demo.jpg"
         },
         {
             "id": 30,
             "category_id": 2,
             "name": "Bề bề",
+            "price": 165000,
             "image": "demo.jpg"
         },
         {
             "id": 31,
             "category_id": 2,
             "name": "Cá bóng",
+            "price": 60000,
             "image": "demo.jpg"
         },
         {
             "id": 32,
             "category_id": 2,
             "name": "Cá chỉ vàng",
+            "price": 60000,
             "image": "demo.jpg"
         },
         {
             "id": 33,
             "category_id": 2,
             "name": "Ngô",
+            "price": 45000,
             "image": "demo.jpg"
         },
         {
             "id": 34,
             "category_id": 2,
             "name": "Chân gà",
+            "price": 70000,
             "image": "demo.jpg"
         },
         {
             "id": 35,
             "category_id": 2,
             "name": "Khoai môn lệ phố",
+            "price": 30000,
             "image": "demo.jpg"
         },
         {
             "id": 36,
             "category_id": 2,
             "name": "Khoai lang kén",
+            "price": 30000,
             "image": "demo.jpg"
         },
         {
             "id": 37,
             "category_id": 2,
             "name": "Khoai tây",
+            "price": 30000,
             "image": "demo.jpg"
         },
         {
             "id": 38,
             "category_id": 2,
             "name": "Phô mai que",
+            "price": 40000,
             "image": "demo.jpg"
         },
         {
             "id": 39,
             "category_id": 2,
             "name": "Mực",
+            "price": 240000,
             "image": "demo.jpg"
         },
         {
             "id": 40,
             "category_id": 2,
             "name": "Cá viên",
+            "price": 30000,
             "image": "demo.jpg"
         },
         {
             "id": 41,
             "category_id": 2,
             "name": "Chả mực xoắn",
+            "price": 40000,
             "image": "demo.jpg"
         },
         {
             "id": 42,
             "category_id": 2,
             "name": "Nem xù viên thập cẩm",
+            "price": 70000,
             "image": "demo.jpg"
         },
         {
             "id": 43,
             "category_id": 2,
             "name": "Tôm viên",
+            "price": 30000,
             "image": "demo.jpg"
         },
         {
             "id": 44,
             "category_id": 2,
             "name": "Bò viên",
+            "price": 30000,
             "image": "demo.jpg"
         },
         {
             "id": 45,
             "category_id": 1,
             "name": "Nước nhân trần",
+            "price": 5000,
             "image": "demo.jpg"
         },
         {
             "id": 46,
             "category_id": 1,
             "name": "Trà tắc",
+            "price": 12000,
             "image": "demo.jpg"
         },
         {
             "id": 47,
             "category_id": 1,
             "name": "Bia 333",
+            "price": 18000,
             "image": "demo.jpg"
         },
         {
             "id": 48,
             "category_id": 1,
             "name": "Coca cola",
+            "price": 12000,
             "image": "demo.jpg"
         },
         {
             "id": 49,
             "category_id": 1,
             "name": "Trà tắc thạch cá",
+            "price": 18000,
             "image": "demo.jpg"
         },
         {
             "id": 50,
             "category_id": 1,
             "name": "Cam ép",
+            "price": 25000,
             "image": "demo.jpg"
         }
     ],
@@ -426,7 +476,6 @@
             "id": 1,
             "food_id": 1,
             "cooking_method_id": 2,
-            "price": 30000,
             "additional_price": 0,
             "note": ""
         },
@@ -434,7 +483,6 @@
             "id": 2,
             "food_id": 1,
             "cooking_method_id": 3,
-            "price": 30000,
             "additional_price": 0,
             "note": ""
         },
@@ -442,7 +490,6 @@
             "id": 3,
             "food_id": 1,
             "cooking_method_id": 4,
-            "price": 30000,
             "additional_price": 0,
             "note": ""
         },
@@ -450,7 +497,6 @@
             "id": 4,
             "food_id": 2,
             "cooking_method_id": 1,
-            "price": 90000,
             "additional_price": 0,
             "note": ""
         },
@@ -458,7 +504,6 @@
             "id": 5,
             "food_id": 2,
             "cooking_method_id": 2,
-            "price": 90000,
             "additional_price": 0,
             "note": ""
         },
@@ -466,7 +511,6 @@
             "id": 6,
             "food_id": 2,
             "cooking_method_id": 3,
-            "price": 90000,
             "additional_price": 0,
             "note": ""
         },
@@ -474,7 +518,6 @@
             "id": 7,
             "food_id": 2,
             "cooking_method_id": 4,
-            "price": 90000,
             "additional_price": 0,
             "note": ""
         },
@@ -482,7 +525,6 @@
             "id": 8,
             "food_id": 3,
             "cooking_method_id": 2,
-            "price": 35000,
             "additional_price": 0,
             "note": ""
         },
@@ -490,7 +532,6 @@
             "id": 9,
             "food_id": 3,
             "cooking_method_id": 3,
-            "price": 35000,
             "additional_price": 0,
             "note": ""
         },
@@ -498,7 +539,6 @@
             "id": 10,
             "food_id": 3,
             "cooking_method_id": 4,
-            "price": 35000,
             "additional_price": 0,
             "note": ""
         },
@@ -506,7 +546,6 @@
             "id": 11,
             "food_id": 4,
             "cooking_method_id": 8,
-            "price": 180000,
             "additional_price": 0,
             "note": ""
         },
@@ -514,7 +553,6 @@
             "id": 12,
             "food_id": 5,
             "cooking_method_id": 1,
-            "price": 60000,
             "additional_price": 0,
             "note": ""
         },
@@ -522,7 +560,6 @@
             "id": 13,
             "food_id": 5,
             "cooking_method_id": 2,
-            "price": 60000,
             "additional_price": 0,
             "note": ""
         },
@@ -530,7 +567,6 @@
             "id": 14,
             "food_id": 5,
             "cooking_method_id": 3,
-            "price": 60000,
             "additional_price": 0,
             "note": ""
         },
@@ -538,7 +574,6 @@
             "id": 15,
             "food_id": 5,
             "cooking_method_id": 4,
-            "price": 60000,
             "additional_price": 0,
             "note": ""
         },
@@ -546,7 +581,6 @@
             "id": 16,
             "food_id": 6,
             "cooking_method_id": 2,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -554,7 +588,6 @@
             "id": 17,
             "food_id": 6,
             "cooking_method_id": 4,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -562,7 +595,6 @@
             "id": 18,
             "food_id": 6,
             "cooking_method_id": 5,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -570,7 +602,6 @@
             "id": 19,
             "food_id": 7,
             "cooking_method_id": 2,
-            "price": 60000,
             "additional_price": 0,
             "note": ""
         },
@@ -578,7 +609,6 @@
             "id": 20,
             "food_id": 7,
             "cooking_method_id": 3,
-            "price": 60000,
             "additional_price": 0,
             "note": ""
         },
@@ -586,7 +616,6 @@
             "id": 21,
             "food_id": 7,
             "cooking_method_id": 4,
-            "price": 60000,
             "additional_price": 0,
             "note": ""
         },
@@ -594,7 +623,6 @@
             "id": 22,
             "food_id": 8,
             "cooking_method_id": 3,
-            "price": 40000,
             "additional_price": 0,
             "note": ""
         },
@@ -602,7 +630,6 @@
             "id": 23,
             "food_id": 8,
             "cooking_method_id": 4,
-            "price": 40000,
             "additional_price": 0,
             "note": ""
         },
@@ -610,7 +637,6 @@
             "id": 24,
             "food_id": 4,
             "cooking_method_id": 6,
-            "price": 180000,
             "additional_price": 0,
             "note": ""
         },
@@ -618,7 +644,6 @@
             "id": 25,
             "food_id": 4,
             "cooking_method_id": 7,
-            "price": 180000,
             "additional_price": 0,
             "note": ""
         },
@@ -626,7 +651,6 @@
             "id": 26,
             "food_id": 4,
             "cooking_method_id": 8,
-            "price": 180000,
             "additional_price": 0,
             "note": ""
         },
@@ -634,7 +658,6 @@
             "id": 27,
             "food_id": 9,
             "cooking_method_id": 3,
-            "price": 120000,
             "additional_price": 0,
             "note": ""
         },
@@ -642,7 +665,6 @@
             "id": 28,
             "food_id": 9,
             "cooking_method_id": 4,
-            "price": 120000,
             "additional_price": 0,
             "note": ""
         },
@@ -650,7 +672,6 @@
             "id": 29,
             "food_id": 9,
             "cooking_method_id": 9,
-            "price": 120000,
             "additional_price": 0,
             "note": ""
         },
@@ -658,55 +679,48 @@
             "id": 30,
             "food_id": 10,
             "cooking_method_id": 3,
-            "price": 180000,
             "additional_price": 0,
-            "note": "Size lớn"
+            "note": ""
         },
         {
             "id": 31,
             "food_id": 10,
             "cooking_method_id": 4,
-            "price": 180000,
             "additional_price": 0,
-            "note": "Size lớn"
+            "note": ""
         },
         {
             "id": 32,
             "food_id": 10,
             "cooking_method_id": 5,
-            "price": 180000,
             "additional_price": 0,
-            "note": "Size lớn"
+            "note": ""
         },
         {
             "id": 33,
             "food_id": 10,
             "cooking_method_id": 1,
-            "price": 150000,
             "additional_price": 0,
-            "note": "Size nhỏ"
+            "note": ""
         },
         {
             "id": 34,
             "food_id": 10,
             "cooking_method_id": 2,
-            "price": 150000,
             "additional_price": 0,
-            "note": "Size nhỏ"
+            "note": ""
         },
         {
             "id": 35,
             "food_id": 10,
             "cooking_method_id": 3,
-            "price": 150000,
             "additional_price": 0,
-            "note": "Size nhỏ"
+            "note": ""
         },
         {
             "id": 36,
             "food_id": 10,
             "cooking_method_id": 4,
-            "price": 150000,
             "additional_price": 0,
             "note": ""
         },
@@ -714,7 +728,6 @@
             "id": 37,
             "food_id": 11,
             "cooking_method_id": 3,
-            "price": 120000,
             "additional_price": 0,
             "note": ""
         },
@@ -722,7 +735,6 @@
             "id": 38,
             "food_id": 11,
             "cooking_method_id": 5,
-            "price": 120000,
             "additional_price": 0,
             "note": ""
         },
@@ -730,7 +742,6 @@
             "id": 39,
             "food_id": 11,
             "cooking_method_id": 7,
-            "price": 120000,
             "additional_price": 0,
             "note": ""
         },
@@ -738,7 +749,6 @@
             "id": 40,
             "food_id": 11,
             "cooking_method_id": 8,
-            "price": 120000,
             "additional_price": 0,
             "note": ""
         },
@@ -746,7 +756,6 @@
             "id": 41,
             "food_id": 11,
             "cooking_method_id": 9,
-            "price": 120000,
             "additional_price": 0,
             "note": ""
         },
@@ -754,7 +763,6 @@
             "id": 42,
             "food_id": 11,
             "cooking_method_id": 10,
-            "price": 120000,
             "additional_price": 0,
             "note": ""
         },
@@ -762,7 +770,6 @@
             "id": 43,
             "food_id": 12,
             "cooking_method_id": 3,
-            "price": 180000,
             "additional_price": 0,
             "note": ""
         },
@@ -770,7 +777,6 @@
             "id": 44,
             "food_id": 12,
             "cooking_method_id": 4,
-            "price": 180000,
             "additional_price": 0,
             "note": ""
         },
@@ -778,7 +784,6 @@
             "id": 45,
             "food_id": 12,
             "cooking_method_id": 5,
-            "price": 180000,
             "additional_price": 0,
             "note": ""
         },
@@ -786,7 +791,6 @@
             "id": 46,
             "food_id": 12,
             "cooking_method_id": 10,
-            "price": 180000,
             "additional_price": 0,
             "note": ""
         },
@@ -794,7 +798,6 @@
             "id": 47,
             "food_id": 13,
             "cooking_method_id": 7,
-            "price": 120000,
             "additional_price": 0,
             "note": ""
         },
@@ -802,7 +805,6 @@
             "id": 48,
             "food_id": 14,
             "cooking_method_id": 7,
-            "price": 60000,
             "additional_price": 0,
             "note": ""
         },
@@ -810,7 +812,6 @@
             "id": 49,
             "food_id": 15,
             "cooking_method_id": 11,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -818,7 +819,6 @@
             "id": 50,
             "food_id": 16,
             "cooking_method_id": 2,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -826,7 +826,6 @@
             "id": 51,
             "food_id": 16,
             "cooking_method_id": 3,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -834,7 +833,6 @@
             "id": 52,
             "food_id": 16,
             "cooking_method_id": 4,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -842,7 +840,6 @@
             "id": 53,
             "food_id": 16,
             "cooking_method_id": 7,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -850,7 +847,6 @@
             "id": 54,
             "food_id": 17,
             "cooking_method_id": 2,
-            "price": 80000,
             "additional_price": 0,
             "note": ""
         },
@@ -858,7 +854,6 @@
             "id": 55,
             "food_id": 17,
             "cooking_method_id": 3,
-            "price": 80000,
             "additional_price": 0,
             "note": ""
         },
@@ -866,7 +861,6 @@
             "id": 56,
             "food_id": 17,
             "cooking_method_id": 4,
-            "price": 80000,
             "additional_price": 0,
             "note": ""
         },
@@ -874,7 +868,6 @@
             "id": 57,
             "food_id": 17,
             "cooking_method_id": 7,
-            "price": 80000,
             "additional_price": 0,
             "note": ""
         },
@@ -882,7 +875,6 @@
             "id": 58,
             "food_id": 18,
             "cooking_method_id": 2,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -890,7 +882,6 @@
             "id": 59,
             "food_id": 18,
             "cooking_method_id": 3,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -898,7 +889,6 @@
             "id": 60,
             "food_id": 18,
             "cooking_method_id": 4,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -906,7 +896,6 @@
             "id": 61,
             "food_id": 18,
             "cooking_method_id": 7,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -914,7 +903,6 @@
             "id": 62,
             "food_id": 19,
             "cooking_method_id": 12,
-            "price": 120000,
             "additional_price": 0,
             "note": ""
         },
@@ -922,7 +910,6 @@
             "id": 63,
             "food_id": 20,
             "cooking_method_id": 2,
-            "price": 180000,
             "additional_price": 0,
             "note": ""
         },
@@ -930,7 +917,6 @@
             "id": 64,
             "food_id": 20,
             "cooking_method_id": 3,
-            "price": 180000,
             "additional_price": 0,
             "note": ""
         },
@@ -938,7 +924,6 @@
             "id": 65,
             "food_id": 20,
             "cooking_method_id": 4,
-            "price": 180000,
             "additional_price": 0,
             "note": ""
         },
@@ -946,7 +931,6 @@
             "id": 66,
             "food_id": 20,
             "cooking_method_id": 7,
-            "price": 180000,
             "additional_price": 0,
             "note": ""
         },
@@ -954,7 +938,6 @@
             "id": 67,
             "food_id": 21,
             "cooking_method_id": 3,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -962,7 +945,6 @@
             "id": 68,
             "food_id": 21,
             "cooking_method_id": 7,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -970,7 +952,6 @@
             "id": 69,
             "food_id": 22,
             "cooking_method_id": 13,
-            "price": 120000,
             "additional_price": 0,
             "note": ""
         },
@@ -978,7 +959,6 @@
             "id": 70,
             "food_id": 23,
             "cooking_method_id": 2,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -986,7 +966,6 @@
             "id": 71,
             "food_id": 23,
             "cooking_method_id": 3,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -994,7 +973,6 @@
             "id": 72,
             "food_id": 23,
             "cooking_method_id": 4,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -1002,7 +980,6 @@
             "id": 73,
             "food_id": 23,
             "cooking_method_id": 7,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -1010,7 +987,6 @@
             "id": 74,
             "food_id": 22,
             "cooking_method_id": 7,
-            "price": 120000,
             "additional_price": 0,
             "note": ""
         },
@@ -1018,7 +994,6 @@
             "id": 75,
             "food_id": 24,
             "cooking_method_id": 21,
-            "price": 50000,
             "additional_price": 0,
             "note": ""
         },
@@ -1026,23 +1001,20 @@
             "id": 76,
             "food_id": 25,
             "cooking_method_id": 14,
-            "price": 40000,
             "additional_price": 0,
-            "note": "Đĩa nhỏ"
+            "note": ""
         },
         {
             "id": 77,
             "food_id": 25,
             "cooking_method_id": 14,
-            "price": 70000,
             "additional_price": 0,
-            "note": "Đĩa to"
+            "note": ""
         },
         {
             "id": 78,
             "food_id": 26,
             "cooking_method_id": 15,
-            "price": 25000,
             "additional_price": 0,
             "note": ""
         },
@@ -1050,15 +1022,13 @@
             "id": 79,
             "food_id": 27,
             "cooking_method_id": 22,
-            "price": 19000,
             "additional_price": 0,
-            "note": "3 cái bánh mì cóc"
+            "note": ""
         },
         {
             "id": 80,
             "food_id": 28,
             "cooking_method_id": 22,
-            "price": 25000,
             "additional_price": 0,
             "note": ""
         },
@@ -1066,7 +1036,6 @@
             "id": 81,
             "food_id": 24,
             "cooking_method_id": 23,
-            "price": 50000,
             "additional_price": 0,
             "note": ""
         },
@@ -1074,7 +1043,6 @@
             "id": 82,
             "food_id": 29,
             "cooking_method_id": 22,
-            "price": 150000,
             "additional_price": 0,
             "note": ""
         },
@@ -1082,7 +1050,6 @@
             "id": 83,
             "food_id": 30,
             "cooking_method_id": 24,
-            "price": 165000,
             "additional_price": 0,
             "note": ""
         },
@@ -1090,7 +1057,6 @@
             "id": 84,
             "food_id": 31,
             "cooking_method_id": 7,
-            "price": 60000,
             "additional_price": 0,
             "note": ""
         },
@@ -1098,7 +1064,6 @@
             "id": 85,
             "food_id": 32,
             "cooking_method_id": 7,
-            "price": 60000,
             "additional_price": 0,
             "note": ""
         },
@@ -1106,7 +1071,6 @@
             "id": 86,
             "food_id": 33,
             "cooking_method_id": 16,
-            "price": 45000,
             "additional_price": 0,
             "note": ""
         },
@@ -1114,7 +1078,6 @@
             "id": 87,
             "food_id": 34,
             "cooking_method_id": 17,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -1122,23 +1085,20 @@
             "id": 88,
             "food_id": 35,
             "cooking_method_id": 19,
-            "price": 30000,
             "additional_price": 0,
-            "note": "Đĩa nhỏ"
+            "note": ""
         },
         {
             "id": 89,
             "food_id": 36,
             "cooking_method_id": 19,
-            "price": 30000,
             "additional_price": 0,
-            "note": "Đĩa nhỏ"
+            "note": ""
         },
         {
             "id": 90,
             "food_id": 34,
             "cooking_method_id": 18,
-            "price": 120000,
             "additional_price": 0,
             "note": ""
         },
@@ -1146,7 +1106,6 @@
             "id": 91,
             "food_id": 37,
             "cooking_method_id": 19,
-            "price": 30000,
             "additional_price": 0,
             "note": ""
         },
@@ -1154,7 +1113,6 @@
             "id": 92,
             "food_id": 38,
             "cooking_method_id": 19,
-            "price": 40000,
             "additional_price": 0,
             "note": ""
         },
@@ -1162,7 +1120,6 @@
             "id": 93,
             "food_id": 39,
             "cooking_method_id": 7,
-            "price": 240000,
             "additional_price": 0,
             "note": ""
         },
@@ -1170,7 +1127,6 @@
             "id": 94,
             "food_id": 40,
             "cooking_method_id": 19,
-            "price": 30000,
             "additional_price": 0,
             "note": ""
         },
@@ -1178,7 +1134,6 @@
             "id": 95,
             "food_id": 41,
             "cooking_method_id": 19,
-            "price": 40000,
             "additional_price": 0,
             "note": ""
         },
@@ -1186,7 +1141,6 @@
             "id": 96,
             "food_id": 42,
             "cooking_method_id": 19,
-            "price": 70000,
             "additional_price": 0,
             "note": ""
         },
@@ -1194,7 +1148,6 @@
             "id": 97,
             "food_id": 43,
             "cooking_method_id": 19,
-            "price": 30000,
             "additional_price": 0,
             "note": ""
         },
@@ -1202,15 +1155,13 @@
             "id": 98,
             "food_id": 44,
             "cooking_method_id": 19,
-            "price": 30000,
             "additional_price": 0,
             "note": ""
         },
         {
             "id": 45,
-            "food_id": 44,
+            "food_id": 45,
             "cooking_method_id": 20,
-            "price": 5000,
             "additional_price": 0,
             "note": ""
         },
@@ -1218,7 +1169,6 @@
             "id": 100,
             "food_id": 46,
             "cooking_method_id": 20,
-            "price": 12000,
             "additional_price": 0,
             "note": ""
         },
@@ -1226,7 +1176,6 @@
             "id": 101,
             "food_id": 47,
             "cooking_method_id": 20,
-            "price": 18000,
             "additional_price": 0,
             "note": ""
         },
@@ -1234,7 +1183,6 @@
             "id": 102,
             "food_id": 48,
             "cooking_method_id": 20,
-            "price": 12000,
             "additional_price": 0,
             "note": ""
         },
@@ -1242,15 +1190,13 @@
             "id": 103,
             "food_id": 49,
             "cooking_method_id": 20,
-            "price": 18000,
             "additional_price": 0,
             "note": ""
         },
         {
             "id": 104,
-            "food_id": 49,
+            "food_id": 50,
             "cooking_method_id": 20,
-            "price": 25000,
             "additional_price": 0,
             "note": ""
         }

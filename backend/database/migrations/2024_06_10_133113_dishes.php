@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('food_id');
             $table->unsignedBigInteger('cooking_method_id');
-            $table->integer('price');
             $table->integer('additional_price');
             $table->text('note')->nullable();
             $table->timestamps();

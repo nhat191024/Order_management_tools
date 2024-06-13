@@ -17,7 +17,7 @@ class BillController extends Controller
 
     public function show($id){
         $bill = Bill::where('id', '=', '1');
-        $bill = $bill->with('table','billDetail','billDetail.dish')->get();
+        $bill = $bill->with('table','billDetail','billDetail.dish', 'billDetail.dish.food')->get();
         return new BillCollection($bill);
     }
 

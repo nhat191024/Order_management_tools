@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BillController;
 
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\TableDetailManagerController;
@@ -23,3 +24,11 @@ Route::group(['prefix' => 'staff', 'namespace' => 'App\Http\Controllers\Api', 'm
     Route::get('/currentOrder', [TableDetailManagerController::class, 'currentOrder']);
     Route::post('/order', [TableDetailManagerController::class, 'order']);
 });
+
+Route::group(['namespace' => 'App\Http\Controllers'], function () {
+    Route::get('bills', ['uses' => 'BillController@index']);
+    Route::get('bills/{id}', ['uses' => 'BillController@show']);
+
+
+});
+

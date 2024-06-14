@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('password');
             $table->tinyInteger('role');
             $table->tinyInteger('status')->default(1);
-            $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('branch_id')->references('id')->on('branches');

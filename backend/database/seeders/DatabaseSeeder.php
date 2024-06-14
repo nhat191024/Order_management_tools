@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
             Food::create([
                 "category_id" => $row['category_id'],
                 "name" => $row['name'],
+                "price" => $row['price'],
                 "image" => $row['image'],
             ]);
         }
@@ -53,7 +54,6 @@ class DatabaseSeeder extends Seeder
             Dish::create([
                 "food_id" => $row['food_id'],
                 "cooking_method_id" => $row['cooking_method_id'],
-                "price" => $row['price'],
                 "additional_price" => $row['additional_price'],
                 "note" => $row['note'],
             ]);
@@ -88,7 +88,6 @@ class DatabaseSeeder extends Seeder
                 "username" => $row['username'],
                 "password" => $row['password'],
                 "role" => $row['role'],
-                "remember_token" => $row['remember_token'],
             ]);
         }
 

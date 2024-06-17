@@ -14,6 +14,10 @@ class CookingMethodResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            "Cooking_method_id" => $this->id,
+            "Cooking_method_name" => $this->name,
+            "Cooking_method_note" => $this->note,
+        ];
     }
 }

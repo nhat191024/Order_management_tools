@@ -192,182 +192,182 @@
         },
         {
             "id": 25,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Nem Hà Nội",
             "price": 40000,
             "image": "demo.jpg"
         },
         {
             "id": 26,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Xoài",
             "price": 25000,
             "image": "demo.jpg"
         },
         {
             "id": 27,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Bánh mì",
             "price": 19000,
             "image": "demo.jpg"
         },
         {
             "id": 28,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Củ đậu",
             "price": 25000,
             "image": "demo.jpg"
         },
         {
             "id": 29,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Càng cù kỳ",
             "price": 150000,
             "image": "demo.jpg"
         },
         {
             "id": 30,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Bề bề",
             "price": 165000,
             "image": "demo.jpg"
         },
         {
             "id": 31,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Cá bóng",
             "price": 60000,
             "image": "demo.jpg"
         },
         {
             "id": 32,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Cá chỉ vàng",
             "price": 60000,
             "image": "demo.jpg"
         },
         {
             "id": 33,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Ngô",
             "price": 45000,
             "image": "demo.jpg"
         },
         {
             "id": 34,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Chân gà",
             "price": 70000,
             "image": "demo.jpg"
         },
         {
             "id": 35,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Khoai môn lệ phố",
             "price": 30000,
             "image": "demo.jpg"
         },
         {
             "id": 36,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Khoai lang kén",
             "price": 30000,
             "image": "demo.jpg"
         },
         {
             "id": 37,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Khoai tây",
             "price": 30000,
             "image": "demo.jpg"
         },
         {
             "id": 38,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Phô mai que",
             "price": 40000,
             "image": "demo.jpg"
         },
         {
             "id": 39,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Mực",
             "price": 240000,
             "image": "demo.jpg"
         },
         {
             "id": 40,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Cá viên",
             "price": 30000,
             "image": "demo.jpg"
         },
         {
             "id": 41,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Chả mực xoắn",
             "price": 40000,
             "image": "demo.jpg"
         },
         {
             "id": 42,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Nem xù viên thập cẩm",
             "price": 70000,
             "image": "demo.jpg"
         },
         {
             "id": 43,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Tôm viên",
             "price": 30000,
             "image": "demo.jpg"
         },
         {
             "id": 44,
-            "category_id": 2,
+            "category_id": 3,
             "name": "Bò viên",
             "price": 30000,
             "image": "demo.jpg"
         },
         {
             "id": 45,
-            "category_id": 1,
+            "category_id": 4,
             "name": "Nước nhân trần",
             "price": 5000,
             "image": "demo.jpg"
         },
         {
             "id": 46,
-            "category_id": 1,
+            "category_id": 4,
             "name": "Trà tắc",
             "price": 12000,
             "image": "demo.jpg"
         },
         {
             "id": 47,
-            "category_id": 1,
+            "category_id": 4,
             "name": "Bia 333",
             "price": 18000,
             "image": "demo.jpg"
         },
         {
             "id": 48,
-            "category_id": 1,
+            "category_id": 4,
             "name": "Coca cola",
             "price": 12000,
             "image": "demo.jpg"
         },
         {
             "id": 49,
-            "category_id": 1,
+            "category_id": 4,
             "name": "Trà tắc thạch cá",
             "price": 18000,
             "image": "demo.jpg"
         },
         {
             "id": 50,
-            "category_id": 1,
+            "category_id": 4,
             "name": "Cam ép",
             "price": 25000,
             "image": "demo.jpg"

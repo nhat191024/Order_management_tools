@@ -14,6 +14,13 @@ class FoodResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            "Food_id" => $this->id,
+            "Food_name" => $this->name,
+            "Food_image" => $this->image,
+            "Food_price" => $this->price,
+            "Food_status" => $this->status,
+            "Dishes" => new DishCollection($this->dish),
+        ];
     }
 }

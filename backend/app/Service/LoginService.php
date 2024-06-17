@@ -5,7 +5,7 @@ namespace App\Service;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\UserLoginResource;
 
-class UserService
+class LoginService
 {
     function loginAuth($username, $password)
     {

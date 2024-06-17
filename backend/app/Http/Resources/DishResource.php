@@ -14,6 +14,11 @@ class DishResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            "Dish_id" => $this->id,
+            "Dish_additional_price" => $this->additional_price,
+            "Dish_note" => $this->note,
+            "Dish_cooking_method" => new CookingMethodResource($this->cookingMethod),
+        ];
     }
 }

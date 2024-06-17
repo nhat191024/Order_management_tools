@@ -88,7 +88,6 @@ class DatabaseSeeder extends Seeder
                 "username" => $row['username'],
                 "password" => $row['password'],
                 "role" => $row['role'],
-                "remember_token" => $row['remember_token'],
             ]);
         }
 

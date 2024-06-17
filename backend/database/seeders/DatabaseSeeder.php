@@ -16,6 +16,7 @@ use App\Models\BillDetail;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -86,7 +87,7 @@ class DatabaseSeeder extends Seeder
             User::create([
                 "branch_id" => $row['branch_id'],
                 "username" => $row['username'],
-                "password" => $row['password'],
+                "password" => Hash::make($row['password']),
                 "role" => $row['role'],
             ]);
         }

@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\TableDetailManagerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +17,7 @@ use App\Http\Controllers\Api\UserController;
 */
 
 Route::post('/login', [UserController::class, 'login']);
+
+Route::group(['prefix' => 'staff', 'namespace' => 'App\Http\Controllers\Api', 'middleware' => ['auth:sanctum', 'ability:staff']], function () {
+    Route::get('/menu', [TableDetailManagerController::class, 'getMenu']);
+});

@@ -14,6 +14,14 @@ class BillResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'Bill_id' => $this->id,
+            'Bill_table' => new TableResource($this->whenLoaded('table')),
+            'Bill_total' => $this->total,
+            'Bill_pay_status' => $this->pay_status,
+            'Bill_time_in' => $this->time_in,
+            'Bill_time_out' => $this->time_out,
+            'Bill_detail' => new BillDetailCollection($this->whenLoaded('billDetail')),
+        ];
     }
 }

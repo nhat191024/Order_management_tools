@@ -10,6 +10,8 @@ use App\Models\Category;
 use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\BillCollection;
 
+use App\Http\Requests\StoreStaffOrderRequest;
+
 use App\Service\TableDetailManagerService;
 
 class TableDetailManagerController extends Controller
@@ -30,8 +32,11 @@ class TableDetailManagerController extends Controller
         return new BillCollection($bill);
     }
 
-    function order()
+    function order(StoreStaffOrderRequest $request)
     {
+        $service = new TableDetailManagerService();
+        $order = $service->addDishToTableBill($request);
+        return $order;
     }
 
     function checkOut()

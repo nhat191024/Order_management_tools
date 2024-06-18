@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\TableDetailManagerController;
+use App\Http\Controllers\Api\StaffTableListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +23,6 @@ Route::group(['prefix' => 'staff', 'namespace' => 'App\Http\Controllers\Api', 'm
     Route::get('/menu', [TableDetailManagerController::class, 'menu']);
     Route::get('/currentOrder', [TableDetailManagerController::class, 'currentOrder']);
     Route::post('/order', [TableDetailManagerController::class, 'order']);
+
+    Route::get('/tableList/{user_id}',[StaffTableListController::class,'tableList']);
 });

@@ -14,6 +14,11 @@ class tableResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'Table_id' => $this->id,
+            'Table_number' => $this->table_number,
+            'Table_status' => $this->status,
+            'Table_branch' => new BranchResource($this->whenLoaded('branch')),
+        ];
     }
 }

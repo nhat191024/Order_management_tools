@@ -1686,12 +1686,14 @@
         {
             "id": 1,
             "tables_number": 1,
-            "branch_id": 1
+            "branch_id": 1,
+            "status": 1
         },
         {
             "id": 2,
             "tables_number": 2,
-            "branch_id": 1
+            "branch_id": 1,
+            "status": 1
         },
         {
             "id": 3,

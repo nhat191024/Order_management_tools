@@ -21,4 +21,5 @@ Route::post('/login', [UserController::class, 'login']);
 Route::group(['prefix' => 'staff', 'namespace' => 'App\Http\Controllers\Api', 'middleware' => ['auth:sanctum', 'ability:staff']], function () {
     Route::get('/menu', [TableDetailManagerController::class, 'menu']);
     Route::get('/bill', [TableDetailManagerController::class, 'bill']);
+    Route::post('/order', [TableDetailManagerController::class, 'order']);
 });

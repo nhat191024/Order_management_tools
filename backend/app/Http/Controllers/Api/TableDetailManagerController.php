@@ -24,7 +24,7 @@ class TableDetailManagerController extends Controller
         return new CategoryCollection($menu);
     }
 
-    function bill()
+    function currentOrder()
     {
         $service = new TableDetailManagerService();
         $bill = $service->getTableCurrentBill();

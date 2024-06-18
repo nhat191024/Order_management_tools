@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Service\BillCheckoutService;
 use App\Http\Resources\BillCollection;
 use App\Http\Resources\BillResource;
-use App\Service\BillCheckoutService;
 
 use Illuminate\Http\Request;
 

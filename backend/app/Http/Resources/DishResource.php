@@ -18,7 +18,8 @@ class DishResource extends JsonResource
             "Dish_id" => $this->id,
             "Dish_additional_price" => $this->additional_price,
             "Dish_note" => $this->note,
-            "Dish_cooking_method" => new CookingMethodResource($this->cookingMethod),
+            "Dish_food" => new FoodResource($this->whenLoaded('food')),
+            "Dish_cooking_method" => new CookingMethodResource($this->whenLoaded('cookingMethod')),
         ];
     }
 }

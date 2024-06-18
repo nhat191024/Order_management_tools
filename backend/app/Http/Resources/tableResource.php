@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class FoodResource extends JsonResource
+class tableResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,12 +15,10 @@ class FoodResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "Food_id" => $this->id,
-            "Food_name" => $this->name,
-            "Food_image" => $this->image,
-            "Food_price" => $this->price,
-            "Food_status" => $this->status,
-            "Dishes" => new DishCollection($this->whenLoaded('dish')),
+            'Table_id' => $this->id,
+            'Table_number' => $this->table_number,
+            'Table_status' => $this->status,
+            'Table_branch' => new BranchResource($this->whenLoaded('branch')),
         ];
     }
 }

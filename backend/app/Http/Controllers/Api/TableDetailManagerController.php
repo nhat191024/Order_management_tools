@@ -7,17 +7,34 @@ use Illuminate\Http\Request;
 
 use App\Models\Category;
 
-use App\Http\Resources\MenuCollection;
+use App\Http\Resources\CategoryCollection;
+use App\Http\Resources\BillCollection;
 
 use App\Service\TableDetailManagerService;
 
 class TableDetailManagerController extends Controller
 {
-    function getMenu()
+    function menu()
     {
-        $tableDetailManagerService = new TableDetailManagerService();
-        $menu = $tableDetailManagerService->getMenu();
+        $service = new TableDetailManagerService();
+        $menu = $service->getMenu();
 
-        return new MenuCollection($menu);
+        return new CategoryCollection($menu);
+    }
+
+    function bill()
+    {
+        $service = new TableDetailManagerService();
+        $bill = $service->getTableCurrentBill();
+
+        return new BillCollection($bill);
+    }
+
+    function order()
+    {
+    }
+
+    function checkOut()
+    {
     }
 }

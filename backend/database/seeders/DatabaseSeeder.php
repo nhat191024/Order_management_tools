@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($dataArray['tables'] as $row) {
             Table::create([
-                "tables_number" => $row['tables_number'],
+                "table_number" => $row['tables_number'],
                 "branch_id" => $row['branch_id'],
             ]);
         }

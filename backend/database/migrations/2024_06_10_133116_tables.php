@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tables', function (Blueprint $table) {
             $table->id();
-            $table->string('tables_number');
+            $table->string('table_number');
             $table->text('note')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->unsignedBigInteger('branch_id');

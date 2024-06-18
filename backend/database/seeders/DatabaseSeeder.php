@@ -80,6 +80,7 @@ class DatabaseSeeder extends Seeder
             Table::create([
                 "table_number" => $row['tables_number'],
                 "branch_id" => $row['branch_id'],
+                "status" => isset($row['status']) ? $row['status'] : 0,
             ]);
         }
 

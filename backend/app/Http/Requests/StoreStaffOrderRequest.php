@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreKitchenRequest extends FormRequest
+class StoreStaffOrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class StoreKitchenRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'table_id' => 'required|integer|exists:tables,id',
+            'user_id' => 'required|integer|exists:users,id',
+            'dishes' => 'required|array',
+            'dishes.*.dish_id' => 'required|integer|exists:dishes,id',
+            'dishes.*.quantity' => 'required|integer|min:1',
+            'dishes.*.note' => 'nullable|string'
         ];
     }
 }

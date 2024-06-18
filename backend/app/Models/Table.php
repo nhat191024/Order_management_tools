@@ -9,7 +9,7 @@ class Table extends Model
     protected $table = 'tables';
 
     protected $fillable = [
-        'name',
+        'table_number',
         'status',
         'note',
         'branch_id'
@@ -18,5 +18,10 @@ class Table extends Model
     public function branch()
     {
         return $this->belongsTo(Branch::class);
+    }
+
+    public function bill()
+    {
+        return $this->hasOne(Bill::class);
     }
 }

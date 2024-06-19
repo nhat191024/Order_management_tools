@@ -43,8 +43,8 @@
                 </div>
                 <div class="mx-7 flex justify-between items-center border-t border-black">
                     <h1 class="text-center translate-y-4 text-xl font-semibold">Tổng cộng:</h1>
-                    <!-- <h1 class="text-center translate-y-4 text-xl font-semibold">{{ billData.value.total(billData.value.items) }} VND
-                    </h1> -->
+                    <h1 class="text-center translate-y-4 text-xl font-semibold">{{ billData.total }} VND
+                    </h1>
                 </div>
             </div>
             <div class="flex justify-center items-center">
@@ -67,13 +67,14 @@ import axios from 'axios';
 const route = useRoute();
 const id = Number(route.params.id);
 
+// =======  ĐOẠN CODE DƯỚI NÀY ĐỂ LẤY / SAVE TOKEN VÀO LOCAL STORAGE ========
 // const response = await axios.post('http://127.0.0.1:8000/api/login', {
 //     username: 'staff',
 //     password: 'staff',
 // });
-
 // localStorage.setItem('bearerToken', response.data.data.token);
 // console.log(response.data.data.token);
+// ==========================================================================
 
 const bearerToken = localStorage.getItem('bearerToken');
 console.log(bearerToken);
@@ -90,15 +91,21 @@ const fetchBill = async () => {
     try {
         const response = await api.get(`staff/billCheckout/${id}`);
         const data = await response.data;
-        console.log('Bill data:', data);
         console.log('Table number:' + data.data[0].Bill_table.Table_number);
-
+        
         billData.value.items = data.data[0].Bill_detail.map(item => ({
-
+            
             name: item.BillDetail_Dish.Dish_name,
             quantity: item.BillDetail_quantity,
             price: item.BillDetail_price,
+            total: 2,
         }));
+        billData.value.tableName = data.data[0].Bill_table.Table_number;
+        billData.value.areaName = data.data[0].Bill_table.Area_name;
+        billData.value.time_join = data.data[0].Bill_time_in;
+        billData.value.time_leave = data.data[0].Bill_time_out;
+        billData.value.total = data.data[0].Bill_total;
+        console.log('Bill data:', billData.value);
 
     } catch (error) {
         console.error('Error fetching bill:', error);

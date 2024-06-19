@@ -32,7 +32,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="i in billData.items">
+                            <tr v-for="i in billData.items" :key="i.name">
                                 <td>{{ i.name }}</td>
                                 <td>{{ i.quantity }}</td>
                                 <td>{{ i.price }}</td>

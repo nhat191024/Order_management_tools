@@ -16,7 +16,7 @@ class BillCheckoutService
     public function getBill($id)
     {
         $bill = Bill::where('id','=',$id);
-        $bill = $bill->with('table','billDetail','billDetail.dish')->get();
+        $bill = $bill->with('table','billDetail','billDetail.dish','billDetail.dish.food','billDetail.dish.cookingMethod')->get();
         return new BillCollection($bill);
     }
 }

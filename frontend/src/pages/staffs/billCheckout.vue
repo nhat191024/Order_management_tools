@@ -32,7 +32,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="i in billData.items" :key="i.name">
+                            <tr v-for="i in billData.items">
                                 <td>{{ i.name }}</td>
                                 <td>{{ i.quantity }}</td>
                                 <td>{{ i.price }}</td>
@@ -43,8 +43,8 @@
                 </div>
                 <div class="mx-7 flex justify-between items-center border-t border-black">
                     <h1 class="text-center translate-y-4 text-xl font-semibold">Tổng cộng:</h1>
-                    <h1 class="text-center translate-y-4 text-xl font-semibold">{{ billData.total }} VND
-                    </h1>
+                    <!-- <h1 class="text-center translate-y-4 text-xl font-semibold">{{ billData.value.total(billData.value.items) }} VND
+                    </h1> -->
                 </div>
             </div>
             <div class="flex justify-center items-center">
@@ -67,14 +67,14 @@ import axios from 'axios';
 const route = useRoute();
 const id = Number(route.params.id);
 
-// =======  ĐOẠN CODE DƯỚI NÀY ĐỂ LẤY / SAVE TOKEN VÀO LOCAL STORAGE ========
 // const response = await axios.post('http://127.0.0.1:8000/api/login', {
 //     username: 'staff',
 //     password: 'staff',
 // });
+
 // localStorage.setItem('bearerToken', response.data.data.token);
+
 // console.log(response.data.data.token);
-// ==========================================================================
 
 const bearerToken = localStorage.getItem('bearerToken');
 console.log(bearerToken);
@@ -91,21 +91,65 @@ const fetchBill = async () => {
     try {
         const response = await api.get(`staff/billCheckout/${id}`);
         const data = await response.data;
+        console.log('Bill data:', data);
+        //     "data": [
+        //     {
+        //         "Bill_id": 1,
+        //         "Bill_table": {
+        //             "Table_id": 1,
+        //             "Table_number": "1",
+        //             "Table_status": 1
+        //         },
+        //         "Bill_total": 0,
+        //         "Bill_pay_status": 0,
+        //         "Bill_time_in": "2019-11-11 08:00:00",
+        //         "Bill_time_out": null,
+        //         "Bill_detail": [
+        //             {
+        //                 "BillDetail_id": 1,
+        //                 "BillDetail_quantity": 1,
+        //                 "BillDetail_price": "30000",
+        //                 "BillDetail_note": null,
+        //                 "BillDetail_Dish": {
+        //                     "Dish_id": 1,
+        //                     "Dish_additional_price": 0,
+        //                     "Dish_note": ""
+        //                 }
+        //             },
+        //             {
+        //                 "BillDetail_id": 2,
+        //                 "BillDetail_quantity": 1,
+        //                 "BillDetail_price": "30000",
+        //                 "BillDetail_note": null,
+        //                 "BillDetail_Dish": {
+        //                     "Dish_id": 2,
+        //                     "Dish_additional_price": 0,
+        //                     "Dish_note": ""
+        //                 }
+        //             },
+        //             {
+        //                 "BillDetail_id": 3,
+        //                 "BillDetail_quantity": 1,
+        //                 "BillDetail_price": "30000",
+        //                 "BillDetail_note": null,
+        //                 "BillDetail_Dish": {
+        //                     "Dish_id": 3,
+        //                     "Dish_additional_price": 0,
+        //                     "Dish_note": ""
+        //                 }
+        //             }
+        //         ]
+        //     }
+        // ]
+        // billData.tableName = data.data[0].Bill_table.Table_number;
         console.log('Table number:' + data.data[0].Bill_table.Table_number);
-        
+
         billData.value.items = data.data[0].Bill_detail.map(item => ({
-            
+
             name: item.BillDetail_Dish.Dish_name,
             quantity: item.BillDetail_quantity,
             price: item.BillDetail_price,
-            total: 2,
         }));
-        billData.value.tableName = data.data[0].Bill_table.Table_number;
-        billData.value.areaName = data.data[0].Bill_table.Area_name;
-        billData.value.time_join = data.data[0].Bill_time_in;
-        billData.value.time_leave = data.data[0].Bill_time_out;
-        billData.value.total = data.data[0].Bill_total;
-        console.log('Bill data:', billData.value);
 
     } catch (error) {
         console.error('Error fetching bill:', error);
@@ -120,6 +164,43 @@ const billData = ref({
     total: 0,
     items: []
 });
+
+// const billData = [{
+
+// Thông tin phụ của hoá đơn
+// tableName: '',
+// areaName: "Khu 1",
+// time_join: "01/01/24 16:31",
+// time_leave: "01/01/24 18:04",
+
+// // Tính toán tổng tiền...
+// total: items => {
+//     let total = 0
+//     items.forEach(i => {
+//         total += i.price * i.quantity;
+//     })
+//     return total
+// },
+
+// // Danh sách các món đã đặt trên hoá đơn 
+// items: [
+//     {
+//         name: "Oc xao",
+//         quantity: 3,
+//         price: 10000
+//     },
+//     {
+//         name: "Oc xao",
+//         quantity: 3,
+//         price: 10000
+//     },
+//     {
+//         name: "Oc xao",
+//         quantity: 3,
+//         price: 10000
+//     },
+// ]
+// }];
 
 fetchBill();
 </script>

@@ -36,7 +36,7 @@
                                 <td>{{ i.name }}</td>
                                 <td>{{ i.quantity }}</td>
                                 <td>{{ i.price }}</td>
-                                <td>{{ i.price * i.quantity }}</td>
+                                <td>{{ i.total }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -67,14 +67,14 @@ import axios from 'axios';
 const route = useRoute();
 const id = Number(route.params.id);
 
-// =======  ĐOẠN CODE DƯỚI NÀY ĐỂ LẤY / SAVE TOKEN VÀO LOCAL STORAGE ========
+// Create POST request (login) and save tokens into local storage
+
 // const response = await axios.post('http://127.0.0.1:8000/api/login', {
 //     username: 'staff',
 //     password: 'staff',
 // });
 // localStorage.setItem('bearerToken', response.data.data.token);
 // console.log(response.data.data.token);
-// ==========================================================================
 
 const bearerToken = localStorage.getItem('bearerToken');
 console.log(bearerToken);
@@ -92,19 +92,18 @@ const fetchBill = async () => {
         const response = await api.get(`staff/billCheckout/${id}`);
         const data = await response.data;
         console.log('Table number:' + data.data[0].Bill_table.Table_number);
-        
         billData.value.items = data.data[0].Bill_detail.map(item => ({
-            
-            name: item.BillDetail_Dish.Dish_name,
+            name: item.BillDetail_Dish.Dish_food.Food_name + ' - ' + item.BillDetail_Dish.Dish_cooking_method.Cooking_method_name,
             quantity: item.BillDetail_quantity,
-            price: item.BillDetail_price,
-            total: 2,
+            price: item.BillDetail_Dish.Dish_food.Food_price,
+            total: item.BillDetail_price,
         }));
         billData.value.tableName = data.data[0].Bill_table.Table_number;
-        billData.value.areaName = data.data[0].Bill_table.Area_name;
+        billData.value.areaName = data.data[0].Bill_user.User_branch.Branch_name;
         billData.value.time_join = data.data[0].Bill_time_in;
         billData.value.time_leave = data.data[0].Bill_time_out;
         billData.value.total = data.data[0].Bill_total;
+
         console.log('Bill data:', billData.value);
 
     } catch (error) {

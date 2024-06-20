@@ -15,7 +15,7 @@ class Branch extends Model
 
     public function kitchen()
     {
-        return $this->hasMany(kitchen::class);
+        return $this->hasMany(Kitchen::class);
     }
 
     public function user()

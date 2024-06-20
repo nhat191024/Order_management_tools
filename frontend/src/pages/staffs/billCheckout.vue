@@ -62,7 +62,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRoute } from "vue-router";
 const route = useRoute()
 const id = route.params.id;
@@ -74,42 +74,20 @@ const time_leave = ref("");
 const total = ref("");
 const items = ref([]);
 
-// import data from "../../data/bill.json"
+import { api } from '../../api/api.js';
 
-import { fetchBill } from '../../api/billCheckout.js';
+var billData = ref([]);
 
-var data = ref(fetchBill(id));
-
-console.log(data.value.data);
-
-
-
-// const [bills] = bill;
-
-// console.log(bills);
-
-// bill.forEach()
-
-// console.log(bill.value);
-
-// data.forEach((item) => {
-    // console.log(item);
-    // areaName.value = item.Bill_user.User_branch.Branch_name;
-    // tableName.value = item.Bill_table.Table_number;
-    // time_in.value = item.Bill_time_in;
-    // time_leave.value = item.Bill_time_out;
-    // total.value = item.Bill_total;
-    // // console.log(item);
-    // item.Bill_detail.forEach((i) => {
-    //     // console.log(i);
-    //     items.value.push(i);
-    // })
-// });
-
-
-
-
-
-
+onMounted(async () => {
+    await api.get(`staff/billCheckout/${id}`).then(res => {
+        billData.value = res.data.data;
+        areaName.value = billData.value[0].Bill_user.User_branch.Branch_name;
+        tableName.value = billData.value[0].Bill_table.Table_number;
+        time_in.value = billData.value[0].Bill_time_in;
+        time_leave.value = billData.value[0].Bill_time_out;
+        total.value = billData.value[0].Bill_total;
+        items.value = billData.value[0].Bill_detail;
+    });
+})
 
 </script>

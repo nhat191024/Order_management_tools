@@ -2,6 +2,7 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\BillCheckoutController;
 
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\TableDetailManagerController;
@@ -24,6 +25,7 @@ Route::group(['prefix' => 'staff', 'namespace' => 'App\Http\Controllers\Api'], f
     Route::get('/menu', [TableDetailManagerController::class, 'menu']);
     Route::get('/currentOrder', [TableDetailManagerController::class, 'currentOrder']);
     Route::post('/order', [TableDetailManagerController::class, 'order']);
+    Route::get('/billCheckout/{id}',[BillCheckoutController::class,'show']);
 });
 
 Route::get('/menu', [CustomerController::class, 'menu']);

@@ -17,6 +17,7 @@ class BillResource extends JsonResource
         return [
             'Bill_id' => $this->id,
             'Bill_table' => new TableResource($this->whenLoaded('table')),
+            'Bill_user' => new UserResource($this->whenLoaded('user')),
             'Bill_total' => $this->total,
             'Bill_pay_status' => $this->pay_status,
             'Bill_time_in' => $this->time_in,

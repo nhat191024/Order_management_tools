@@ -1,9 +1,11 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\TableDetailManagerController;
+use App\Http\Controllers\Api\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +25,5 @@ Route::group(['prefix' => 'staff', 'namespace' => 'App\Http\Controllers\Api'], f
     Route::get('/currentOrder', [TableDetailManagerController::class, 'currentOrder']);
     Route::post('/order', [TableDetailManagerController::class, 'order']);
 });
+
+Route::get('/menu', [CustomerController::class, 'menu']);

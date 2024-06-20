@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Api\CustomerController;
+
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\TableDetailManagerController;
+use App\Http\Controllers\Api\CustomerController;
 
 /*
 |--------------------------------------------------------------------------

@@ -1,13 +1,13 @@
 <template>
     <div class="grid grid-cols-12 grid-rows-12 gap-5 h-screen w-screen">
-        <div class="col-span-6 row-span-12 grid">
+        <div class="col-span-6 row-span-12 grid z-10">
             <div class="p-4 h-0">
-                <button class="items-center bg-white drop-shadow-2x text-black inline-flex">
+                <RouterLink class="items-center bg-white drop-shadow-2x text-black inline-flex" to="/staff/table">
                     <div class="bg-primary w-10 h-10 m-2 drop-shadow-2xl rounded-xl p-1">
                         <img src="./../../assets/left-long-solid.svg" alt="My SVG Icon" class="">
                     </div>
                     <span class="text-xl drop-shadow">Trở về</span>
-                </button>
+                </RouterLink>
             </div>
             <div class="bg-white rounded-xl drop-shadow-2xl p-5 row-start-2 ml-16">
                 <h1 class="font-semibold text-2xl text-center">PHIẾU THANH TOÁN</h1>
@@ -55,7 +55,7 @@
         <div class="flex justify-center items-center col-span-6 row-span-12 z-0">
             <div>
                 <!-- chỗ này để hiển thị ảnh QR -->
-                <img class="w-full" src="./../../assets/qr.png" style="z-index: 0;">
+                <img class="w-full z-0" src="./../../assets/qr.png">
             </div>
         </div>
     </div>

@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\BillCheckoutController;
 
@@ -26,6 +25,7 @@ Route::group(['prefix' => 'staff', 'namespace' => 'App\Http\Controllers\Api'], f
     Route::get('/currentOrder', [TableDetailManagerController::class, 'currentOrder']);
     Route::post('/order', [TableDetailManagerController::class, 'order']);
     Route::get('/billCheckout/{id}',[BillCheckoutController::class,'show']);
+    Route::get('/tableList/{user_id}',[StaffTableListController::class,'tableList']);
 });
 
 Route::get('/menu', [CustomerController::class, 'menu']);

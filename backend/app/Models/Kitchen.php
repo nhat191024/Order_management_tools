@@ -12,7 +12,6 @@ class Kitchen extends Model
     protected $fillable = [
         'name',
         'image',
-        'id_cooking_method',
         'branch_id'
     ];
 
@@ -23,6 +22,8 @@ class Kitchen extends Model
 
     public function cookingMethod()
     {
-        return $this->belongsTo(CookingMethod::class);
+        return $this->belongsToMany(Kitchen_cooking_method::class);
     }
+
+
 }

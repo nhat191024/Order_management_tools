@@ -1223,462 +1223,72 @@
             "id": 1,
             "name": "Hấp - Luộc",
             "image": "demo.jpg",
-            "cooking_method_id": 1,
             "branch_id": 1
         },
         {
             "id": 2,
             "name": "Hấp - Luộc",
             "image": "demo.jpg",
-            "cooking_method_id": 2,
-            "branch_id": 1
+            "branch_id": 2
         },
         {
             "id": 3,
             "name": "Hấp - Luộc",
             "image": "demo.jpg",
-            "cooking_method_id": 3,
-            "branch_id": 1
+            "branch_id": 3
         },
         {
             "id": 4,
-            "name": "Hấp - Luộc",
+            "name": "Xào - Chiên - Rán - Rang",
             "image": "demo.jpg",
-            "cooking_method_id": 6,
             "branch_id": 1
         },
         {
             "id": 5,
-            "name": "Hấp - Luộc",
+            "name": "Xào - Chiên - Rán - Rang",
             "image": "demo.jpg",
-            "cooking_method_id": 11,
-            "branch_id": 1
+            "branch_id": 2
         },
         {
             "id": 6,
-            "name": "Hấp - Luộc",
+            "name": "Xào - Chiên - Rán - Rang",
             "image": "demo.jpg",
-            "cooking_method_id": 13,
-            "branch_id": 1
+            "branch_id": 3
         },
         {
             "id": 7,
-            "name": "Hấp - Luộc",
+            "name": "Nướng",
             "image": "demo.jpg",
-            "cooking_method_id": 23,
             "branch_id": 1
         },
         {
             "id": 8,
-            "name": "Hấp - Luộc",
+            "name": "Nướng",
             "image": "demo.jpg",
-            "cooking_method_id": 1,
             "branch_id": 2
         },
         {
             "id": 9,
-            "name": "Hấp - Luộc",
+            "name": "Nướng",
             "image": "demo.jpg",
-            "cooking_method_id": 2,
-            "branch_id": 2
+            "branch_id": 3
         },
         {
             "id": 10,
-            "name": "Hấp - Luộc",
+            "name": "Ăn vặt",
             "image": "demo.jpg",
-            "cooking_method_id": 3,
-            "branch_id": 2
+            "branch_id": 1
         },
         {
             "id": 11,
-            "name": "Hấp - Luộc",
+            "name": "Ăn vặt",
             "image": "demo.jpg",
-            "cooking_method_id": 6,
             "branch_id": 2
         },
         {
             "id": 12,
-            "name": "Hấp - Luộc",
-            "image": "demo.jpg",
-            "cooking_method_id": 11,
-            "branch_id": 2
-        },
-        {
-            "id": 13,
-            "name": "Hấp - Luộc",
-            "image": "demo.jpg",
-            "cooking_method_id": 13,
-            "branch_id": 2
-        },
-        {
-            "id": 14,
-            "name": "Hấp - Luộc",
-            "image": "demo.jpg",
-            "cooking_method_id": 23,
-            "branch_id": 2
-        },
-        {
-            "id": 15,
-            "name": "Hấp - Luộc",
-            "image": "demo.jpg",
-            "cooking_method_id": 1,
-            "branch_id": 3
-        },
-        {
-            "id": 16,
-            "name": "Hấp - Luộc",
-            "image": "demo.jpg",
-            "cooking_method_id": 2,
-            "branch_id": 3
-        },
-        {
-            "id": 17,
-            "name": "Hấp - Luộc",
-            "image": "demo.jpg",
-            "cooking_method_id": 3,
-            "branch_id": 3
-        },
-        {
-            "id": 18,
-            "name": "Hấp - Luộc",
-            "image": "demo.jpg",
-            "cooking_method_id": 6,
-            "branch_id": 3
-        },
-        {
-            "id": 19,
-            "name": "Hấp - Luộc",
-            "image": "demo.jpg",
-            "cooking_method_id": 11,
-            "branch_id": 3
-        },
-        {
-            "id": 20,
-            "name": "Hấp - Luộc",
-            "image": "demo.jpg",
-            "cooking_method_id": 13,
-            "branch_id": 3
-        },
-        {
-            "id": 21,
-            "name": "Hấp - Luộc",
-            "image": "demo.jpg",
-            "cooking_method_id": 23,
-            "branch_id": 3
-        },
-        {
-            "id": 22,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 4,
-            "branch_id": 1
-        },
-        {
-            "id": 23,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 5,
-            "branch_id": 1
-        },
-        {
-            "id": 24,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 8,
-            "branch_id": 1
-        },
-        {
-            "id": 25,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 9,
-            "branch_id": 1
-        },
-        {
-            "id": 26,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 10,
-            "branch_id": 1
-        },
-        {
-            "id": 27,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 12,
-            "branch_id": 1
-        },
-        {
-            "id": 28,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 14,
-            "branch_id": 1
-        },
-        {
-            "id": 29,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 16,
-            "branch_id": 1
-        },
-        {
-            "id": 30,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 19,
-            "branch_id": 1
-        },
-        {
-            "id": 31,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 24,
-            "branch_id": 1
-        },
-        {
-            "id": 32,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 4,
-            "branch_id": 2
-        },
-        {
-            "id": 33,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 5,
-            "branch_id": 2
-        },
-        {
-            "id": 34,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 8,
-            "branch_id": 2
-        },
-        {
-            "id": 35,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 9,
-            "branch_id": 2
-        },
-        {
-            "id": 36,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 10,
-            "branch_id": 2
-        },
-        {
-            "id": 37,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 12,
-            "branch_id": 2
-        },
-        {
-            "id": 38,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 14,
-            "branch_id": 2
-        },
-        {
-            "id": 39,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 16,
-            "branch_id": 2
-        },
-        {
-            "id": 40,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 19,
-            "branch_id": 2
-        },
-        {
-            "id": 41,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 24,
-            "branch_id": 2
-        },
-        {
-            "id": 42,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 4,
-            "branch_id": 3
-        },
-        {
-            "id": 43,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 5,
-            "branch_id": 3
-        },
-        {
-            "id": 44,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 8,
-            "branch_id": 3
-        },
-        {
-            "id": 45,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 9,
-            "branch_id": 3
-        },
-        {
-            "id": 46,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 10,
-            "branch_id": 3
-        },
-        {
-            "id": 47,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 12,
-            "branch_id": 3
-        },
-        {
-            "id": 48,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 14,
-            "branch_id": 3
-        },
-        {
-            "id": 49,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 16,
-            "branch_id": 3
-        },
-        {
-            "id": 50,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 19,
-            "branch_id": 3
-        },
-        {
-            "id": 51,
-            "name": "Xào - Chiên - Rán - Rang",
-            "image": "demo.jpg",
-            "cooking_method_id": 24,
-            "branch_id": 3
-        },
-        {
-            "id": 52,
-            "name": "Nướng",
-            "image": "demo.jpg",
-            "cooking_method_id": 7,
-            "branch_id": 1
-        },
-        {
-            "id": 52,
-            "name": "Nướng",
-            "image": "demo.jpg",
-            "cooking_method_id": 7,
-            "branch_id": 2
-        },
-        {
-            "id": 54,
-            "name": "Nướng",
-            "image": "demo.jpg",
-            "cooking_method_id": 7,
-            "branch_id": 3
-        },
-        {
-            "id": 55,
             "name": "Ăn vặt",
             "image": "demo.jpg",
-            "cooking_method_id": 15,
-            "branch_id": 1
-        },
-        {
-            "id": 56,
-            "name": "Ăn vặt",
-            "image": "demo.jpg",
-            "cooking_method_id": 17,
-            "branch_id": 1
-        },
-        {
-            "id": 57,
-            "name": "Ăn vặt",
-            "image": "demo.jpg",
-            "cooking_method_id": 20,
-            "branch_id": 1
-        },
-        {
-            "id": 58,
-            "name": "Ăn vặt",
-            "image": "demo.jpg",
-            "cooking_method_id": 22,
-            "branch_id": 1
-        },
-        {
-            "id": 59,
-            "name": "Ăn vặt",
-            "image": "demo.jpg",
-            "cooking_method_id": 15,
-            "branch_id": 2
-        },
-        {
-            "id": 60,
-            "name": "Ăn vặt",
-            "image": "demo.jpg",
-            "cooking_method_id": 17,
-            "branch_id": 2
-        },
-        {
-            "id": 61,
-            "name": "Ăn vặt",
-            "image": "demo.jpg",
-            "cooking_method_id": 20,
-            "branch_id": 2
-        },
-        {
-            "id": 62,
-            "name": "Ăn vặt",
-            "image": "demo.jpg",
-            "cooking_method_id": 22,
-            "branch_id": 2
-        },
-        {
-            "id": 62,
-            "name": "Ăn vặt",
-            "image": "demo.jpg",
-            "cooking_method_id": 15,
-            "branch_id": 3
-        },
-        {
-            "id": 63,
-            "name": "Ăn vặt",
-            "image": "demo.jpg",
-            "cooking_method_id": 17,
-            "branch_id": 3
-        },
-        {
-            "id": 64,
-            "name": "Ăn vặt",
-            "image": "demo.jpg",
-            "cooking_method_id": 20,
-            "branch_id": 3
-        },
-        {
-            "id": 65,
-            "name": "Ăn vặt",
-            "image": "demo.jpg",
-            "cooking_method_id": 22,
             "branch_id": 3
         }
     ],
@@ -1975,6 +1585,272 @@
             "dish_id": 6,
             "quantity": 1,
             "price": 90000
+        }
+    ],
+    "kitchen_cooking_method": [
+        {
+            "kitchen_id": 1,
+            "cooking_method_id": 1
+        },
+        {
+            "kitchen_id": 1,
+            "cooking_method_id": 2
+        },
+        {
+            "kitchen_id": 1,
+            "cooking_method_id": 3
+        },
+        {
+            "kitchen_id": 1,
+            "cooking_method_id": 6
+        },
+        {
+            "kitchen_id": 1,
+            "cooking_method_id": 11
+        },
+        {
+            "kitchen_id": 1,
+            "cooking_method_id": 13
+        },
+        {
+            "kitchen_id": 1,
+            "cooking_method_id": 23
+        },
+        {
+            "kitchen_id": 2,
+            "cooking_method_id": 1
+        },
+        {
+            "kitchen_id": 2,
+            "cooking_method_id": 2
+        },
+        {
+            "kitchen_id": 2,
+            "cooking_method_id": 3
+        },
+        {
+            "kitchen_id": 2,
+            "cooking_method_id": 6
+        },
+        {
+            "kitchen_id": 2,
+            "cooking_method_id": 11
+        },
+        {
+            "kitchen_id": 2,
+            "cooking_method_id": 13
+        },
+        {
+            "kitchen_id": 2,
+            "cooking_method_id": 23
+        },
+        {
+            "kitchen_id": 3,
+            "cooking_method_id": 1
+        },
+        {
+            "kitchen_id": 3,
+            "cooking_method_id": 2
+        },
+        {
+            "kitchen_id": 3,
+            "cooking_method_id": 3
+        },
+        {
+            "kitchen_id": 3,
+            "cooking_method_id": 6
+        },
+        {
+            "kitchen_id": 3,
+            "cooking_method_id": 11
+        },
+        {
+            "kitchen_id": 3,
+            "cooking_method_id": 13
+        },
+        {
+            "kitchen_id": 3,
+            "cooking_method_id": 23
+        },
+        {
+            "kitchen_id": 4,
+            "cooking_method_id": 4
+        },
+        {
+            "kitchen_id": 4,
+            "cooking_method_id": 5
+        },
+        {
+            "kitchen_id": 4,
+            "cooking_method_id": 8
+        },
+        {
+            "kitchen_id": 4,
+            "cooking_method_id": 9
+        },
+        {
+            "kitchen_id": 4,
+            "cooking_method_id": 10
+        },
+        {
+            "kitchen_id": 4,
+            "cooking_method_id": 12
+        },
+        {
+            "kitchen_id": 4,
+            "cooking_method_id": 14
+        },
+        {
+            "kitchen_id": 4,
+            "cooking_method_id": 16
+        },
+        {
+            "kitchen_id": 4,
+            "cooking_method_id": 19
+        },
+        {
+            "kitchen_id": 4,
+            "cooking_method_id": 24
+        },
+        {
+            "kitchen_id": 5,
+            "cooking_method_id": 4
+        },
+        {
+            "kitchen_id": 5,
+            "cooking_method_id": 5
+        },
+        {
+            "kitchen_id": 5,
+            "cooking_method_id": 8
+        },
+        {
+            "kitchen_id": 5,
+            "cooking_method_id": 9
+        },
+        {
+            "kitchen_id": 5,
+            "cooking_method_id": 10
+        },
+        {
+            "kitchen_id": 5,
+            "cooking_method_id": 12
+        },
+        {
+            "kitchen_id": 5,
+            "cooking_method_id": 14
+        },
+        {
+            "kitchen_id": 5,
+            "cooking_method_id": 16
+        },
+        {
+            "kitchen_id": 5,
+            "cooking_method_id": 19
+        },
+        {
+            "kitchen_id": 5,
+            "cooking_method_id": 24
+        },
+        {
+            "kitchen_id": 6,
+            "cooking_method_id": 4
+        },
+        {
+            "kitchen_id": 6,
+            "cooking_method_id": 5
+        },
+        {
+            "kitchen_id": 6,
+            "cooking_method_id": 8
+        },
+        {
+            "kitchen_id": 6,
+            "cooking_method_id": 9
+        },
+        {
+            "kitchen_id": 6,
+            "cooking_method_id": 10
+        },
+        {
+            "kitchen_id": 6,
+            "cooking_method_id": 12
+        },
+        {
+            "kitchen_id": 6,
+            "cooking_method_id": 14
+        },
+        {
+            "kitchen_id": 6,
+            "cooking_method_id": 16
+        },
+        {
+            "kitchen_id": 6,
+            "cooking_method_id": 19
+        },
+        {
+            "kitchen_id": 6,
+            "cooking_method_id": 24
+        },
+        {
+            "kitchen_id": 7,
+            "cooking_method_id": 7
+        },
+        {
+            "kitchen_id": 8,
+            "cooking_method_id": 7
+        },
+        {
+            "kitchen_id": 9,
+            "cooking_method_id": 7
+        },
+        {
+            "kitchen_id": 10,
+            "cooking_method_id": 15
+        },
+        {
+            "kitchen_id": 10,
+            "cooking_method_id": 17
+        },
+        {
+            "kitchen_id": 10,
+            "cooking_method_id": 20
+        },
+        {
+            "kitchen_id": 10,
+            "cooking_method_id": 22
+        },
+        {
+            "kitchen_id": 11,
+            "cooking_method_id": 15
+        },
+        {
+            "kitchen_id": 11,
+            "cooking_method_id": 17
+        },
+        {
+            "kitchen_id": 11,
+            "cooking_method_id": 20
+        },
+        {
+            "kitchen_id": 11,
+            "cooking_method_id": 22
+        },
+        {
+            "kitchen_id": 12,
+            "cooking_method_id": 15
+        },
+        {
+            "kitchen_id": 12,
+            "cooking_method_id": 17
+        },
+        {
+            "kitchen_id": 12,
+            "cooking_method_id": 20
+        },
+        {
+            "kitchen_id": 12,
+            "cooking_method_id": 22
         }
     ]
 }

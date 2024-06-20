@@ -21,6 +21,6 @@ class CookingMethod extends Model
 
     public function kitchen()
     {
-        return $this->hasMany(Kitchen::class);
+        return $this->hasMany(Kitchen_cooking_method::class);
     }
 }

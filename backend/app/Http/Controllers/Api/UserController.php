@@ -16,4 +16,10 @@ class UserController extends Controller
         $respond = $userService->loginAuth($request->username, $request->password);
         return $respond;
     }
+
+    public function logout(Request $request){
+        $userService = new LoginService();
+        $respond = $userService->logout($request);
+        return $respond;
+    }
 }

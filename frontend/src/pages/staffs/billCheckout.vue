@@ -13,12 +13,12 @@
                 <h1 class="font-semibold text-2xl text-center">PHIẾU THANH TOÁN</h1>
                 <div class="m-4 flex justify-between items-center ">
                     <h1 class="text-sm">
-                        Khu: {{ billData.areaName }}
-                        <br>Bàn: {{ billData.tableName }}
+                        Khu: {{ areaName }}
+                        <br>Bàn: {{ tableName }}
                     </h1>
                     <h1 class="text-sm">
-                        Giờ vào: {{ billData.time_join }}
-                        <br>Giờ ra: {{ billData.time_leave }}
+                        Giờ vào: {{ time_in }}
+                        <br>Giờ ra: {{ time_leave }}
                     </h1>
                 </div>
                 <div class="overflow-scroll min-h-64 max-h-80 border-t border-black">
@@ -32,18 +32,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="i in billData.items" :key="i.name">
-                                <td>{{ i.name }}</td>
-                                <td>{{ i.quantity }}</td>
-                                <td>{{ i.price }}</td>
-                                <td>{{ i.total }}</td>
+                            <tr v-for="i in items">
+                                <td> {{ i.BillDetail_Dish.Dish_food.Food_name + ' ' +
+                                    i.BillDetail_Dish.Dish_cooking_method.Cooking_method_name }} </td>
+                                <td>{{ i.BillDetail_quantity }}</td>
+                                <td> {{ i.BillDetail_Dish.Dish_food.Food_price }} </td>
+                                <td>{{ i.BillDetail_price }}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="mx-7 flex justify-between items-center border-t border-black">
                     <h1 class="text-center translate-y-4 text-xl font-semibold">Tổng cộng:</h1>
-                    <h1 class="text-center translate-y-4 text-xl font-semibold">{{ billData.total }} VND
+                    <h1 class="text-center translate-y-4 text-xl font-semibold">{{ total }} VND
                     </h1>
                 </div>
             </div>
@@ -63,62 +64,52 @@
 <script setup>
 import { ref } from 'vue';
 import { useRoute } from "vue-router";
-import axios from 'axios';
-const route = useRoute();
-const id = Number(route.params.id);
+const route = useRoute()
+const id = route.params.id;
 
-// Create POST request (login) and save tokens into local storage
+const areaName = ref("");
+const tableName = ref("");
+const time_in = ref("");
+const time_leave = ref("");
+const total = ref("");
+const items = ref([]);
 
-// const response = await axios.post('http://127.0.0.1:8000/api/login', {
-//     username: 'staff',
-//     password: 'staff',
+// import data from "../../data/bill.json"
+
+import { fetchBill } from '../../api/billCheckout.js';
+
+var data = ref(fetchBill(id));
+
+console.log(data.value.data);
+
+
+
+// const [bills] = bill;
+
+// console.log(bills);
+
+// bill.forEach()
+
+// console.log(bill.value);
+
+// data.forEach((item) => {
+    // console.log(item);
+    // areaName.value = item.Bill_user.User_branch.Branch_name;
+    // tableName.value = item.Bill_table.Table_number;
+    // time_in.value = item.Bill_time_in;
+    // time_leave.value = item.Bill_time_out;
+    // total.value = item.Bill_total;
+    // // console.log(item);
+    // item.Bill_detail.forEach((i) => {
+    //     // console.log(i);
+    //     items.value.push(i);
+    // })
 // });
-// localStorage.setItem('bearerToken', response.data.data.token);
-// console.log(response.data.data.token);
 
-const bearerToken = localStorage.getItem('bearerToken');
-console.log(bearerToken);
-const api = axios.create({
-    baseURL: 'http://127.0.0.1:8000/api/',
-    headers: {
-        Authorization: `Bearer ${bearerToken}`,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-    },
-});
 
-const fetchBill = async () => {
-    try {
-        const response = await api.get(`staff/billCheckout/${id}`);
-        const data = await response.data;
-        console.log('Table number:' + data.data[0].Bill_table.Table_number);
-        billData.value.items = data.data[0].Bill_detail.map(item => ({
-            name: item.BillDetail_Dish.Dish_food.Food_name + ' - ' + item.BillDetail_Dish.Dish_cooking_method.Cooking_method_name,
-            quantity: item.BillDetail_quantity,
-            price: item.BillDetail_Dish.Dish_food.Food_price,
-            total: item.BillDetail_price,
-        }));
-        billData.value.tableName = data.data[0].Bill_table.Table_number;
-        billData.value.areaName = data.data[0].Bill_user.User_branch.Branch_name;
-        billData.value.time_join = data.data[0].Bill_time_in;
-        billData.value.time_leave = data.data[0].Bill_time_out;
-        billData.value.total = data.data[0].Bill_total;
 
-        console.log('Bill data:', billData.value);
 
-    } catch (error) {
-        console.error('Error fetching bill:', error);
-    }
-};
 
-const billData = ref({
-    tableName: '',
-    areaName: '',
-    time_join: '',
-    time_leave: '',
-    total: 0,
-    items: []
-});
 
-fetchBill();
+
 </script>

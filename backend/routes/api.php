@@ -19,9 +19,10 @@ use App\Http\Controllers\Api\KitchenController;
 
 Route::post('/login', [UserController::class, 'login']);
 
-Route::group(['prefix' => 'staff', 'namespace' => 'App\Http\Controllers\Api', 'middleware' => ['auth:sanctum', 'ability:staff']], function () {
+Route::group(['prefix' => 'staff', 'namespace' => 'App\Http\Controllers\Api'], function () {
     Route::get('/menu', [TableDetailManagerController::class, 'menu']);
     Route::get('/bill', [TableDetailManagerController::class, 'bill']);
     Route::get('/kitchensSelect/{branch_id}', [KitchenController::class, 'getKitchensByBranch']);
+    Route::get('/currentOrder', [TableDetailManagerController::class, 'currentOrder']);
     Route::post('/order', [TableDetailManagerController::class, 'order']);
 });

@@ -18,7 +18,7 @@ class UserLoginResource extends JsonResource
             'message' => 'Login Success',
             'token' => $this->token,
             'id' => $this->id,
-            'branch id' => $this->branch_id,
+            'branch_id' => $this->branch_id,
             'role' => $this->role,
         ];
     }

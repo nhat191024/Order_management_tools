@@ -15,12 +15,8 @@
                     <h1 class="text-sm">
                         Khu: {{ areaName }}
                         <br>Bàn: {{ tableName }}
-                        Khu: {{ areaName }}
-                        <br>Bàn: {{ tableName }}
                     </h1>
                     <h1 class="text-sm">
-                        Giờ vào: {{ time_in }}
-                        <br>Giờ ra: {{ time_leave }}
                         Giờ vào: {{ time_in }}
                         <br>Giờ ra: {{ time_leave }}
                     </h1>
@@ -48,7 +44,6 @@
                 </div>
                 <div class="mx-7 flex justify-between items-center border-t border-black">
                     <h1 class="text-center translate-y-4 text-xl font-semibold">Tổng cộng:</h1>
-                    <h1 class="text-center translate-y-4 text-xl font-semibold">{{ total }} VND
                     <h1 class="text-center translate-y-4 text-xl font-semibold">{{ total }} VND
                     </h1>
                 </div>

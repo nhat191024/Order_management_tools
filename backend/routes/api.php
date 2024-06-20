@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\TableDetailManagerController;
 use App\Http\Controllers\Api\KitchenController;
 use App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\Api\StaffTableListController;
 
 /*
 |--------------------------------------------------------------------------

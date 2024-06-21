@@ -9,30 +9,37 @@
             </RouterLink>
         </div>
         <div class="col-span-3 row-start-2 row-span-full border-r border-black overflow-auto">
-            <div v-for="cate in menu"
+            <div v-for="item in menu"
                 class="w-full collapse collapse-arrow bg-primary rounded-none border-b border-black text-white">
                 <input type="radio" name="my-accordion-2 " />
                 <div class="collapse-title text-lg font-medium shadow-md">
-                    {{ cate.dishCategory }}
+                    {{ item.Category_name }}
                 </div>
                 <div class="collapse-content bg-secondary p-0 m-0">
-                    <div v-for="dish in cate.dishes" :key="dish.id"
-                        class="w-full h-fit p-4 font-medium text-lg flex items-center justify-between border-b border-white ">
-                        <div>
-                            <p class="w-[95%]">{{ dish.name }}</p>
-                            <p>{{ formatPrice(dish.price) }} VNĐ</p>
+                    <template v-for="food in item.Foods  ">
+                        <div v-for="dish in food.Dishes"
+                            class="w-full h-fit p-4 font-medium text-lg flex items-center justify-between border-b border-white ">
+                            <div>
+                                <p>
+                                    <span>{{ food.Food_name + " " }}</span>
+                                    <span
+                                        :class="dish.Dish_cooking_method.Cooking_method_name == 'nước' ? 'hidden' : ''">
+                                        {{dish.Dish_cooking_method.Cooking_method_name }}
+                                    </span>
+                                </p>
+                            </div>
+                            <button
+                                class="w-6 h-6 flex justify-center transition-all transform linear duration-300 active:scale-90 active:fill-green-600"
+                                @click="addDish(item.Category_id, food.Food_id, dish.Dish_id)">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                    class=" fill-white active:fill-green-600">
+                                    <!-- Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                                    <path
+                                        d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+                                </svg>
+                            </button>
                         </div>
-                        <button
-                            class="w-6 h-6 flex justify-center transition-all transform linear duration-300 active:scale-90 active:fill-green-600"
-                            @click="addDish(cate.id, dish.id)">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
-                                class=" fill-white active:fill-green-600">
-                                <!-- Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-                                <path
-                                    d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
-                            </svg>
-                        </button>
-                    </div>
+                    </template>
                 </div>
             </div>
         </div>
@@ -46,8 +53,8 @@
                     <div class="flex gap-2">
                         <img src="../../assets/demo.jpg" alt="demo" class="ml-3 mt-3 w-16 h-16 rounded-lg" />
                         <div class="flex flex-col justify-center mt-2">
-                            <p class="font-extrabold w-52">{{ dishes.category + " " + dishes.name }}</p>
-                            <p>Giá: {{ formatPrice(dishes.price) }} VNĐ</p>
+                            <p class="font-extrabold w-52">{{ dishes.dish_name }}</p>
+                            <p>Giá: {{ formatPrice(dishes.dish_price) }} VNĐ</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-3 mr-2">
@@ -56,14 +63,14 @@
                                 @click="decreaseQuantity(index)">
                                 <img src="../../assets/minus.svg" alt="minus" class=" w-4">
                             </button>
-                            <p class="text-center text-primary ">{{ dishes.quantity }}</p>
+                            <p class="text-center text-primary ">{{ dishes.dish_quantity }}</p>
                             <button class="transition-all transform linear duration-300 active:scale-150"
                                 @click="increaseQuantity(index)">
                                 <img src="../../assets/plus.svg" alt="plus" class="w-4">
                             </button>
                         </div>
                         <button class="grow-0 w-6 transition-all transform linear duration-300 active:scale-125"
-                            @click="deleteDish(dishes.id)">
+                            @click="deleteDish(dishes.dish_id)">
                             <img src="../../assets/trash.svg" alt="" class="w-full">
                         </button>
                     </div>
@@ -140,79 +147,15 @@
     </dialog>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { RouterLink, useRoute } from "vue-router";
-
+import { formatPrice } from "../../api/functions";
+import { getMenu } from "../../api/tableDetail";
 const route = useRoute();
 const id = route.params.id;
 const total = ref(0);
 const tableDish = ref([]);
-const menu = ref([
-    {
-        id: 1,
-        dishCategory: "Hàu",
-        dishes: [
-            {
-                id: 1,
-                name: "Nướng mỡ hành / 6 con",
-                price: 50000
-            },
-            {
-                id: 2,
-                name: "Nướng mỡ hành / 8 con",
-                price: 80000
-            }
-        ]
-    },
-    {
-        id: 2,
-        dishCategory: "Ốc hương",
-        dishes: [
-            {
-                id: 3,
-                name: "Xào Trứng Muối",
-                price: 160000
-            },
-            {
-                id: 4,
-                name: "Nướng",
-                price: 160000
-            },
-            {
-                id: 5,
-                name: "Hấp xả",
-                price: 80000
-            }
-        ]
-    },
-    {
-        id: 3,
-        dishCategory: "Càng cù kỳ",
-        dishes: [
-            {
-                id: 6,
-                name: "Sốt me",
-                price: 150000
-            }
-        ]
-    },
-    {
-        id: 4,
-        dishCategory: "Ốc đĩa",
-        dishes: [
-            {
-                id: 7,
-                name: "Luộc mắm",
-                price: 130000
-            },
-            {
-                id: 8,
-                name: "Xào dừa",
-                price: 150000
-            }
-        ]
-    },
-]);
+const menu = ref([]);
 const tableBill = ref([
     {
         id: 1,
@@ -223,6 +166,22 @@ const tableBill = ref([
         category: "Hàu"
     }
 ]);
+
+onMounted(async () => {
+    getMenu(id).then((res) => {
+        menu.value = res;
+        // console.log(menu.value);
+        const selectedCategory = menu.value.find((cate) => cate.Category_id === 1);
+        const selectedFood = selectedCategory.Foods.find((food) => food.Food_id === 1);
+        const selectedDish = selectedFood.Dishes.find((dish) => dish.Dish_id === 1);
+        // console.log(selectedCategory);
+        // console.log(selectedFood);
+        // console.log(selectedDish);
+    });
+
+
+});
+
 
 if (tableBill.value.length > 0) {
     total.value = tableBill.value.reduce((acc, dish) => {
@@ -240,38 +199,39 @@ function pay() {
     dialog.showModal();
 }
 
-function addDish(category, dish) {
-    const dishDuplicate = tableDish.value.find((d) => d.id === dish);
+async function addDish(category, food, dish) {
+    const dishDuplicate = tableDish.value.find((d) => d.dish_id === dish);
     if (dishDuplicate) {
-        dishDuplicate.quantity++;
+        dishDuplicate.dish_quantity++;
         return;
     }
-    const selectedCategory = menu.value.find((cate) => cate.id === category);
+    const selectedCategory = menu.value.find((cate) => cate.Category_id === category);
     if (selectedCategory) {
-        const selectedDish = selectedCategory.dishes.find((d) => d.id === dish);
-        if (selectedDish) {
-            const dishWithQuantity = { ...selectedDish, quantity: 1, categoryId: selectedCategory.id, category: selectedCategory.dishCategory };
-            tableDish.value.push(dishWithQuantity);
-            console.log(tableDish.value);
+        const selectedFood = selectedCategory.Foods.find((item) => item.Food_id === food);
+        const selectedDish = selectedFood.Dishes.find((item) => item.Dish_id === dish);
+        if (selectedDish && selectedCategory) {
+            const dish = {
+                dish_name: selectedFood.Food_name + " " + selectedDish.Dish_cooking_method.Cooking_method_name,
+                dish_price: selectedFood.Food_price + selectedDish.Dish_additional_price,
+                dish_quantity: 1,
+                dish_id: selectedDish.Dish_id,
+            }
+            tableDish.value.push(dish);
         }
     }
 }
 
 function increaseQuantity(index) {
-    tableDish.value[index].quantity++;
+    tableDish.value[index].dish_quantity++;
 }
 
 function decreaseQuantity(index) {
-    if (tableDish.value[index].quantity > 1) {
-        tableDish.value[index].quantity--;
+    if (tableDish.value[index].dish_quantity > 1) {
+        tableDish.value[index].dish_quantity--;
     }
 }
 
 function deleteDish(id) {
-    tableDish.value = tableDish.value.filter((dish) => dish.id !== id);
-}
-
-function formatPrice(price) {
-    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    tableDish.value = tableDish.value.filter((dish) => dish.dish_id !== id);
 }
 </script>

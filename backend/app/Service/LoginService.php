@@ -24,11 +24,11 @@ class LoginService
                 return new UserLoginResource($user);
                 break;
             case 2:
-                $user->token = $user->createToken('staff-token', ['staff'])->plainTextToken;
+                $user->token = $user->createToken('staff-token', ['staff'], now()->addDay())->plainTextToken;
                 return new UserLoginResource($user);
                 break;
             case 3:
-                $user->token = $user->createToken('kitchen-token', ['kitchen'])->plainTextToken;
+                $user->token = $user->createToken('kitchen-token', ['kitchen'], now()->addDay())->plainTextToken;
                 return new UserLoginResource($user);
         }
     }

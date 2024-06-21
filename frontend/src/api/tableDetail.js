@@ -5,3 +5,9 @@ export async function getMenu() {
         return res.data.data;
     });
 }
+
+export async function getTableCurrentBill() {
+    return await api.get(`/staff/currentOrder`).then((res) => {
+        return res.data.data;
+    });
+}

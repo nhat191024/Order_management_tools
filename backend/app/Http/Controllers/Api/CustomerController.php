@@ -7,7 +7,7 @@ use App\Http\Resources\CategoryCollection;
 use App\Service\CustomerService;
 use Illuminate\Http\Request;
 use App\Http\Resources\BillCollection;
-
+use App\Http\Requests\OrderConfirmRequest;
 class CustomerController extends Controller
 {
     function menu()
@@ -17,9 +17,9 @@ class CustomerController extends Controller
 
         return new CategoryCollection($menu);
     }
-    function orderConfirm($requset){
+    function orderConfirm(OrderConfirmRequest $request){
         $service = new CustomerService();
-        $bill = $service->getOrderConfirm($requset);
-        return new BillCollection($bill);
+        $bill = $service->getOrderConfirm($request);
+        return $bill;
     }
 }

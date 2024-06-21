@@ -2,19 +2,19 @@
     <div class="grid grid-cols-12 grid-rows-12 gap-5 h-screen w-screen">
         <div class="col-span-6 row-span-12 grid z-10">
             <div class="p-4 h-0">
-                <RouterLink class="items-center bg-white drop-shadow-2x text-black inline-flex" to="/staff/table">
+                <RouterLink class="items-center bg-white drop-shadow-2x text-black inline-flex" :to="`/staff/table/${id}`">
                     <div class="bg-primary w-10 h-10 m-2 drop-shadow-2xl rounded-xl p-1">
                         <img src="./../../assets/left-long-solid.svg" alt="My SVG Icon" class="">
                     </div>
                     <span class="text-xl drop-shadow">Trở về</span>
                 </RouterLink>
             </div>
-            <div class="bg-white rounded-xl drop-shadow-2xl p-5 row-start-2 ml-16">
+            <div class="bg-white rounded-xl drop-shadow-2xl py-5 px-3 row-start-2 ml-16">
                 <h1 class="font-semibold text-2xl text-center">PHIẾU THANH TOÁN</h1>
                 <div class="m-4 flex justify-between items-center ">
                     <h1 class="text-sm">
-                        Khu: {{ areaName }}
-                        <br>Bàn: {{ tableName }}
+                        Khu: {{ area }}
+                        <br>Bàn: {{ table }}
                     </h1>
                     <h1 class="text-sm">
                         Giờ vào: {{ time_in }}
@@ -32,12 +32,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="i in items">
-                                <td> {{ i.BillDetail_Dish.Dish_food.Food_name + ' ' +
-                                    i.BillDetail_Dish.Dish_cooking_method.Cooking_method_name }} </td>
-                                <td>{{ i.BillDetail_quantity }}</td>
-                                <td> {{ i.BillDetail_Dish.Dish_food.Food_price }} </td>
-                                <td>{{ i.BillDetail_price }}</td>
+                            <tr v-for="item in billItems">
+                                <td>
+                                    {{ `${item.BillDetail_Dish.Dish_food.Food_name}
+                                    ${item.BillDetail_Dish.Dish_cooking_method.Cooking_method_name}` }}
+                                </td>
+                                <td class="text-center">{{ formatPrice(item.BillDetail_quantity) }}</td>
+                                <td class="text-center">{{ formatPrice(item.BillDetail_Dish.Dish_food.Food_price) }}
+                                </td>
+                                <td class="text-center">{{ formatPrice(item.BillDetail_price) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -63,30 +66,26 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { useRoute } from "vue-router";
+import { useRoute, RouterLink } from "vue-router";
+import { getBillData } from '../../api/checkout';
+import { formatDateTime, formatPrice } from '../../api/functions';
 const route = useRoute()
 const id = route.params.id;
 
-const areaName = ref("");
-const tableName = ref("");
+const area = ref("");
+const table = ref("");
 const time_in = ref("");
-const time_leave = ref("");
+const time_leave = ref(formatDateTime(new Date()));
 const total = ref("");
-const items = ref([]);
-
-import { api } from '../../api/api.js';
-
-var billData = ref([]);
+const billItems = ref([]);
 
 onMounted(async () => {
-    await api.get(`staff/billCheckout/${id}`).then(res => {
-        billData.value = res.data.data;
-        areaName.value = billData.value[0].Bill_user.User_branch.Branch_name;
-        tableName.value = billData.value[0].Bill_table.Table_number;
-        time_in.value = billData.value[0].Bill_time_in;
-        time_leave.value = billData.value[0].Bill_time_out;
-        total.value = billData.value[0].Bill_total;
-        items.value = billData.value[0].Bill_detail;
+    getBillData(id).then(res => {
+        area.value = res.Bill_table.Table_branch.Branch_name;
+        table.value = res.Bill_table.Table_number;
+        time_in.value = res.Bill_time_in;
+        total.value = formatPrice(res.Bill_total);
+        billItems.value = res.Bill_detail;
     });
 })
 

@@ -16,22 +16,23 @@ class TableDetailManagerService
         return $menu;
     }
 
-    public function getTableCurrentBill()
+    public function getTableCurrentBill($id)
     {
-        $bills = Bill::where('id', ">", "0");
-        $bills = $bills->with('billDetail', 'billDetail.dish', 'billDetail.dish.food', 'billDetail.dish.cookingMethod', 'table', 'table.branch')->get();
-
+        $table = Table::where('id', "=", $id);
+        $table = $table->with('bill', 'bill.billDetail', 'bill.billDetail.dish', 'bill.billDetail.dish.food', 'bill.billDetail.dish.cookingMethod')->get();
         // Calculate total price of each bill
-        foreach ($bills as $bill) {
+        foreach ($table as $t) {
+            $bill = $t->bill;
+            $billDetails = $bill->billDetail;
             $total = 0;
             // Calculate total price of each dish in the bill
-            foreach ($bill->billDetail as $billDetail) {
-                $billDetail->price = $billDetail->dish->food->price + $billDetail->dish->additional_price;
-                $total += $billDetail->price * $billDetail->quantity;
+            foreach ($billDetails as $billDetail) {
+                $billDetail->price = ($billDetail->dish->food->price + $billDetail->dish->additional_price) * $billDetail->quantity;
+                $total += $billDetail->price;
             }
             $bill->total = $total;
         }
-        return $bills;
+        return $table;
     }
 
     public function addDishToTableBill($request)

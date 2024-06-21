@@ -57,8 +57,7 @@
         </div>
         <div class="flex justify-center items-center col-span-6 row-span-12 z-0">
             <div>
-                <!-- chỗ này để hiển thị ảnh QR -->
-                <img class="w-full z-0" src="./../../assets/qr.png">
+                <img class="w-full max-h-screen z-0" src="./../../assets/qr.png">
             </div>
         </div>
     </div>

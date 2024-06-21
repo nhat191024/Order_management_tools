@@ -1,6 +1,6 @@
 import axios from 'axios';
-
-const token = document.cookie.split(';').find(cookie => cookie.includes('Token')).split('=')[1];
+import { getCookie } from './functions';
+const token = getCookie('Token');
 
 export const api = axios.create({
     baseURL: 'http://127.0.0.1:8000/api/',

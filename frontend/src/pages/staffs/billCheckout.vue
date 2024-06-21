@@ -1,24 +1,24 @@
 <template>
     <div class="grid grid-cols-12 grid-rows-12 gap-5 h-screen w-screen">
-        <div class="col-span-6 row-span-12 grid">
+        <div class="col-span-6 row-span-12 grid z-10">
             <div class="p-4 h-0">
-                <button class="items-center bg-white drop-shadow-2x text-black inline-flex">
+                <RouterLink class="items-center bg-white drop-shadow-2x text-black inline-flex" to="/staff/table">
                     <div class="bg-primary w-10 h-10 m-2 drop-shadow-2xl rounded-xl p-1">
                         <img src="./../../assets/left-long-solid.svg" alt="My SVG Icon" class="">
                     </div>
                     <span class="text-xl drop-shadow">Trở về</span>
-                </button>
+                </RouterLink>
             </div>
             <div class="bg-white rounded-xl drop-shadow-2xl p-5 row-start-2 ml-16">
                 <h1 class="font-semibold text-2xl text-center">PHIẾU THANH TOÁN</h1>
                 <div class="m-4 flex justify-between items-center ">
                     <h1 class="text-sm">
-                        Khu: {{ billData.areaName }}
-                        <br>Bàn: {{ billData.tableName }}
+                        Khu: {{ areaName }}
+                        <br>Bàn: {{ tableName }}
                     </h1>
                     <h1 class="text-sm">
-                        Giờ vào: {{ billData.time_join }}
-                        <br>Giờ ra: {{ billData.time_leave }}
+                        Giờ vào: {{ time_in }}
+                        <br>Giờ ra: {{ time_leave }}
                     </h1>
                 </div>
                 <div class="overflow-scroll min-h-64 max-h-80 border-t border-black">
@@ -32,18 +32,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="i in billData.items" :key="i.name">
-                                <td>{{ i.name }}</td>
-                                <td>{{ i.quantity }}</td>
-                                <td>{{ i.price }}</td>
-                                <td>{{ i.price * i.quantity }}</td>
+                            <tr v-for="i in items">
+                                <td> {{ i.BillDetail_Dish.Dish_food.Food_name + ' ' +
+                                    i.BillDetail_Dish.Dish_cooking_method.Cooking_method_name }} </td>
+                                <td>{{ i.BillDetail_quantity }}</td>
+                                <td> {{ i.BillDetail_Dish.Dish_food.Food_price }} </td>
+                                <td>{{ i.BillDetail_price }}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="mx-7 flex justify-between items-center border-t border-black">
                     <h1 class="text-center translate-y-4 text-xl font-semibold">Tổng cộng:</h1>
-                    <h1 class="text-center translate-y-4 text-xl font-semibold">{{ billData.total(billData.items) }} VND
+                    <h1 class="text-center translate-y-4 text-xl font-semibold">{{ total }} VND
                     </h1>
                 </div>
             </div>
@@ -54,46 +55,39 @@
         <div class="flex justify-center items-center col-span-6 row-span-12 z-0">
             <div>
                 <!-- chỗ này để hiển thị ảnh QR -->
-                <img class="w-full" src="./../../assets/qr.png" style="z-index: 0;">
+                <img class="w-full z-0" src="./../../assets/qr.png">
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-const billData = {
-    // Thông tin phụ của hoá đơn
-    tableName: "Bàn 1",
-    areaName: "Khu 1",
-    time_join: "01/01/24 16:31",
-    time_leave: "01/01/24 18:04",
+import { onMounted, ref } from 'vue';
+import { useRoute } from "vue-router";
+const route = useRoute()
+const id = route.params.id;
 
-    // Tính toán tổng tiền...
-    total: items => {
-        let total = 0
-        items.forEach(i => {
-            total += i.price * i.quantity;
-        })
-        return total
-    },
+const areaName = ref("");
+const tableName = ref("");
+const time_in = ref("");
+const time_leave = ref("");
+const total = ref("");
+const items = ref([]);
 
-    // Danh sách các món đã đặt trên hoá đơn 
-    items: [
-        {
-            name: "Oc xao",
-            quantity: 3,
-            price: 10000
-        },
-        {
-            name: "Oc xao",
-            quantity: 3,
-            price: 10000
-        },
-        {
-            name: "Oc xao",
-            quantity: 3,
-            price: 10000
-        },
-    ]
-};
+import { api } from '../../api/api.js';
+
+var billData = ref([]);
+
+onMounted(async () => {
+    await api.get(`staff/billCheckout/${id}`).then(res => {
+        billData.value = res.data.data;
+        areaName.value = billData.value[0].Bill_user.User_branch.Branch_name;
+        tableName.value = billData.value[0].Bill_table.Table_number;
+        time_in.value = billData.value[0].Bill_time_in;
+        time_leave.value = billData.value[0].Bill_time_out;
+        total.value = billData.value[0].Bill_total;
+        items.value = billData.value[0].Bill_detail;
+    });
+})
+
 </script>

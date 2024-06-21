@@ -28,6 +28,11 @@ const staff = [
         name: "waiting food",
         component: () => import("../pages/staffs/showFoodWaiting.vue"),
       },
+      {
+        path: "/staff/checkout/:id",
+        name: "bill checkout",
+        component: () => import("../pages/staffs/billCheckout.vue"),
+      },
     ],
   },
 ];

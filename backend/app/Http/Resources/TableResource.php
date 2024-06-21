@@ -22,3 +22,4 @@ class TableResource extends JsonResource
         ];
     }
 }
+

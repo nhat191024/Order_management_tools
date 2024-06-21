@@ -15,11 +15,18 @@ class CheckoutService
 
     public function getBill($id)
     {
-        $bill = Bill::where('id','=',$id);
-        $bill = $bill->with('table','user.branch'
-        ,'billDetail','billDetail.dish','billDetail.dish.food'
-        ,'billDetail.dish.cookingMethod'
-        )->get();
-        return new BillCollection($bill);
+        $bills = Bill::where('id', '=', $id);
+        $bills = $bills->with('billDetail', 'billDetail.dish', 'billDetail.dish.food', 'billDetail.dish.cookingMethod', 'table', 'table.branch')->get();
+        // Calculate total price of each bill
+        foreach ($bills as $bill) {
+            $total = 0;
+            // Calculate total price of each dish in the bill
+            foreach ($bill->billDetail as $billDetail) {
+                $billDetail->price = $billDetail->dish->food->price + $billDetail->dish->additional_price;
+                $total += $billDetail->price * $billDetail->quantity;
+            }
+            $bill->total = $total;
+        }
+        return new BillCollection($bills);
     }
 }

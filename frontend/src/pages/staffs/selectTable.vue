@@ -1,17 +1,24 @@
 <template>
     <div class="grid grid-cols-12 grid-rows-8 gap-5 h-screen w-screen ">
-        <div class="col-span-2 flex items-center justify-center ">
-            <RouterLink class="items-center bg-white drop-shadow-2x text-black inline-flex" to="/staff/login">
-                <div class="bg-primary w-10 h-10 m-2 drop-shadow-2xl rounded-xl p-1">
-                    <img src="./../../assets/left-long-solid.svg" alt="My SVG Icon" class="">
+        <div class="col-span-3 flex items-center justify-center">
+            <!-- <div class="items-center bg-white drop-shadow-2x text-black inline-flex"> -->
+
+                <img class="bg-white w-16 h-16 mr-2 rounded-full border shadow-lg" src="../../assets/logo.jpg"></img>
+                <span class="text-xl drop-shadow-sm font-bold text-black">{{ username }}</span>
+                <RouterLink to="/staff/login">
+
+                    <!-- <div class="">
+                        <img src="./../../assets/left-long-solid.svg" alt="My SVG Icon" class="">
                 </div>
-                <span class="text-xl drop-shadow">Trở về</span>
-            </RouterLink>
+                <span class="text-xl drop-shadow">Trở về</span> -->
+
+                </RouterLink>
+            <!-- </div> -->
         </div>
-        <div class="col-span-5 flex gap-3 items-center overflow-auto">
-            
+        <div class="col-span-4 flex gap-3 items-center overflow-auto">
+
         </div>
-        <div class="col-start-8 col-span-4 flex">
+        <div class="col-start-8 col-span-4 flex justify-center">
             <div class="w-full h-full flex items-center justify-center">
                 <div :class="disabled" class="w-8 h-8 mr-2 rounded-full drop-shadow-sm"></div>
                 <span class="text-xl drop-shadow-sm font-bold text-black">Bàn trống</span>
@@ -39,9 +46,11 @@ import { RouterLink } from 'vue-router';
 import { getTableData } from '../../api/table';
 
 const tableList = ref([]);
+const username = ref('admin');
+const userId = localStorage.getItem('user_id');
 
 onMounted(async () => {
-    getTableData(1).then((res) => {
+    getTableData(userId).then((res) => {
         res.forEach((table) => {
             tableList.value.push({
                 tableName: table.Table_number,

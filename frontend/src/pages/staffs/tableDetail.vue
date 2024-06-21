@@ -24,7 +24,7 @@
                                     <span>{{ food.Food_name + " " }}</span>
                                     <span
                                         :class="dish.Dish_cooking_method.Cooking_method_name == 'nước' ? 'hidden' : ''">
-                                        {{dish.Dish_cooking_method.Cooking_method_name }}
+                                        {{ dish.Dish_cooking_method.Cooking_method_name }}
                                     </span>
                                 </p>
                             </div>
@@ -91,9 +91,12 @@
             <hr class=" w-3/4 ">
         </div>
         <div class="col-start-9 col-span-4 row-start-2 row-span-8 mt-4 px-3 font-medium text-lg overflow-auto">
-            <div v-for="dishes in tableBill" class="flex mb-2 border-b border-primary">
-                <p class=" w-4/6">{{ dishes.category + " " + dishes.name }}</p>
-                <p class="pr-3">x{{ dishes.quantity }}</p>
+            <div v-for="(dishes, index) in tableBill" class="flex mb-2 border-b border-primary">
+                <p class=" w-4/6">
+                    <span>{{ dishes.Bill_detail[index].BillDetail_Dish.Dish_food.Food_name + " "}}</span>
+                    <span>{{ dishes.Bill_detail[index].BillDetail_Dish.Dish_cooking_method.Cooking_method_name }}</span>
+                </p>
+                <p class="pr-3">x{{ dishes.Bill_detail[index].BillDetail_quantity }}</p>
                 <p class="font-bold">{{ formatPrice(dishes.price) }}</p>
             </div>
         </div>
@@ -150,44 +153,27 @@
 import { ref, onMounted } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 import { formatPrice } from "../../api/functions";
-import { getMenu } from "../../api/tableDetail";
+import { getMenu, getTableCurrentBill } from "../../api/tableDetail";
 const route = useRoute();
 const id = route.params.id;
 const total = ref(0);
 const tableDish = ref([]);
 const menu = ref([]);
-const tableBill = ref([
-    {
-        id: 1,
-        name: "Nướng mỡ hành / 6 con",
-        price: 50000,
-        quantity: 1,
-        categoryId: 1,
-        category: "Hàu"
-    }
-]);
+const tableBill = ref([]);
 
 onMounted(async () => {
     getMenu(id).then((res) => {
         menu.value = res;
-        // console.log(menu.value);
-        const selectedCategory = menu.value.find((cate) => cate.Category_id === 1);
-        const selectedFood = selectedCategory.Foods.find((food) => food.Food_id === 1);
-        const selectedDish = selectedFood.Dishes.find((dish) => dish.Dish_id === 1);
-        // console.log(selectedCategory);
-        // console.log(selectedFood);
-        // console.log(selectedDish);
     });
-
-
+    getTableCurrentBill().then((res) => {
+        tableBill.value = res;
+        if (tableBill.value.length > 0) {
+            total.value = tableBill.value.reduce((acc, dish) => {
+                return acc + dish.Bill_total;
+            }, 0);
+        }
+    });
 });
-
-
-if (tableBill.value.length > 0) {
-    total.value = tableBill.value.reduce((acc, dish) => {
-        return acc + dish.price * dish.quantity;
-    }, 0);
-}
 
 function confirm() {
     const dialog = document.getElementById("confirm");

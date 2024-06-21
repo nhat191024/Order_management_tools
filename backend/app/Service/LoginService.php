@@ -20,16 +20,25 @@ class LoginService
 
         switch ($user->role) {
             case 1:
-                $user->token = $user->createToken('admin-token', ['admin'])->plainTextToken;
+                $user->token = $user->createToken('admin-token', ['admin'], now()->addDay())->plainTextToken;
                 return new UserLoginResource($user);
                 break;
             case 2:
-                $user->token = $user->createToken('staff-token', ['staff'])->plainTextToken;
+                $user->token = $user->createToken('staff-token', ['staff'], now()->addDay())->plainTextToken;
                 return new UserLoginResource($user);
                 break;
             case 3:
-                $user->token = $user->createToken('kitchen-token', ['kitchen'])->plainTextToken;
+                $user->token = $user->createToken('kitchen-token', ['kitchen'], now()->addDay())->plainTextToken;
                 return new UserLoginResource($user);
         }
+    }
+
+    function logout($request)
+    {
+        $request->user()->tokens()->delete();
+
+        return response([
+            'message' => 'logout success'
+        ], 201);
     }
 }

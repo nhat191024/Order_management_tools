@@ -9,11 +9,17 @@
                 :rules="usernameRule" />
             <ErrorMessage class="col-span-full row-start-4 self-end mb-1 place-self-center font-bold text-white"
                 name="username" />
+            <p :class="{ 'hidden': auth === 'none' }"
+                class="col-span-full row-start-4 self-end mb-1 place-self-center font-bold text-white">
+                Đăng nhập thất bại sai tên đăng nhập hoặc mật khẩu</p>
             <Field type="password" name="password" placeholder="Mật Khẩu"
                 class="row-start-5 col-span-full  h-[60%] rounded-2xl text-center bg-white drop-shadow-2xl"
                 :rules="passwordRule" />
             <ErrorMessage class="col-span-full row-start-5 self-end mb-1 place-self-center text-white font-bold"
                 name="password" />
+            <p :class="{ 'hidden': auth === 'none' }" class=" col-span-full row-start-5 self-end mb-1 place-self-center
+                text-white font-bold">
+                Đăng nhập thất bại sai tên đăng nhập hoặc mật khẩu</p>
             <button type="submit"
                 class="btn btn-secondary border-0 drop-shadow-lg text-white row-start-6 row-span-2 col-span-3 self-center">
                 Đăng Nhập
@@ -23,16 +29,30 @@
 </template>
 
 <script setup>
+import { loginHandle } from '../../api/login';
+import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import * as yup from 'yup';
 
-const usernameRule = yup.string().required('Tên Đăng Nhập là bắt buộc');
-const passwordRule = yup.string().required('Mật khẩu là bắt buộc').min(6, 'Mật khẩu phải có ít nhất 6 ký tự');
+const router = useRouter();
 
+const usernameRule = yup.string().required('Tên Đăng Nhập là bắt buộc');
+const passwordRule = yup.string().required('Mật khẩu là bắt buộc').min(4, 'Mật khẩu phải có ít nhất 4 ký tự');
 const auth = ref('none');
 
-function onSubmit(values) {
-
+async function onSubmit(values) {
+    await loginHandle(values.username, values.password)
+        .then(res => {
+            if (res.message === 'success') {
+                auth.value = 'none';
+                if (res.role === 2)
+                    router.push('/staff/table');
+                else
+                    router.push('/kitchen/select');
+            } else {
+                auth.value = 'fail';
+            }
+        })
 }
 </script>

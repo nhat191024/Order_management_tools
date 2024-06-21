@@ -16,7 +16,7 @@ class CustomerService
         return $menu;
     }
     public function getOrderConfirm($request){
-        $table = Table::where('id',$request->tableid)->first();
+        $table = Table::where('id',$request->table_id)->first();
         // create variable
         $updatedEntities= 0;
         $createdEntities= 0;
@@ -63,10 +63,9 @@ class CustomerService
                 ]);
                 $createdEntities++;
             }
-
         }
         return[
-            'updated' => $createdEntities,
+            'updated' => $updatedEntities,
             'created' => $createdEntities,
         ];
     }

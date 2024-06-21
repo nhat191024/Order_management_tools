@@ -35,7 +35,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { RouterLink, useRoute } from 'vue-router';
+import { RouterLink } from 'vue-router';
 import { getTableData } from '../../api/table';
 
 const tableList = ref([]);

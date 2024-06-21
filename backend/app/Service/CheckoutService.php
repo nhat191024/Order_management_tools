@@ -6,7 +6,7 @@ use App\Http\Resources\BillCollection;
 use App\Models\Bill;
 
 
-class BillCheckoutService
+class CheckoutService
 {
     public function getAllBill()
     {

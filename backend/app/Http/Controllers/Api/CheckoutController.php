@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Service\BillCheckoutService;
+use App\Service\CheckoutService;
 use App\Http\Resources\BillCollection;
 use App\Http\Resources\BillResource;
 
 use Illuminate\Http\Request;
 
-class BillCheckoutController extends Controller
+class CheckoutController extends Controller
 {
     private $service;
 
     public function __construct(){
-        $this -> service = new BillCheckoutService();
+        $this -> service = new CheckoutService();
     }
 
     public function index()

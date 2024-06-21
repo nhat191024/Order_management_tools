@@ -30,22 +30,26 @@
 
 <script setup>
 import { loginHandle } from '../../api/login';
+import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import * as yup from 'yup';
 
+const router = useRouter();
+
 const usernameRule = yup.string().required('Tên Đăng Nhập là bắt buộc');
 const passwordRule = yup.string().required('Mật khẩu là bắt buộc').min(4, 'Mật khẩu phải có ít nhất 4 ký tự');
-const auth = ref('jdd');
+const auth = ref('none');
 
 async function onSubmit(values) {
-    let username = values.username;
-    let password = values.password;
-
-    await loginHandle(username, password)
+    await loginHandle(values.username, values.password)
         .then(res => {
-            if(res.data === 'success') {
+            if (res.message === 'success') {
                 auth.value = 'none';
+                if (res.role === 2)
+                    router.push('/staff/table');
+                else
+                    router.push('/kitchen/select');
             } else {
                 auth.value = 'fail';
             }

@@ -21,6 +21,7 @@ use App\Http\Controllers\Api\StaffTableListController;
 */
 
 Route::post('/login', [UserController::class, 'login']);
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
 
 Route::group(['prefix' => 'staff', 'namespace' => 'App\Http\Controllers\Api'], function () {
     Route::get('/menu', [TableDetailManagerController::class, 'menu']);

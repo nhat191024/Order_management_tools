@@ -30,8 +30,8 @@ const staff = [
       },
       {
         path: "/staff/checkout/:id",
-        name: "bill checkout",
-        component: () => import("../pages/staffs/billCheckout.vue"),
+        name: "checkout",
+        component: () => import("../pages/staffs/checkout.vue"),
       },
     ],
   },

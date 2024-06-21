@@ -77,7 +77,8 @@
                 </div>
                 <div class="flex items-center pl-2">
                     <p class="shrink-0 font-bold">Ghi chú:</p>
-                    <input class="bg-primary rounded-b-lg mt-1 w-full h-fit px-2 pb-2 focus:outline-none">
+                    <input v-model="dishes.dish_note"
+                        class="bg-primary rounded-b-lg mt-1 w-full h-fit px-2 pb-2 focus:outline-none">
                 </div>
             </div>
         </div>
@@ -87,21 +88,25 @@
             </button>
         </div>
         <div class="col-start-9 col-span-4 flex flex-col justify-end font-bold text-primary text-xl gap-2">
-            <p class="pl-3">Đơn hàng đã xác nhận ({{ tableBill.length }} món)</p>
+            <p class="pl-3">Đơn hàng đã xác nhận ({{ dishLength }} món)</p>
             <hr class=" w-3/4 ">
         </div>
-        <div class="col-start-9 col-span-4 row-start-2 row-span-8 mt-4 px-3 font-medium text-lg overflow-auto">
-            <div v-for="(dishes, index) in tableBill" class="flex mb-2 border-b border-primary">
-                <p class=" w-4/6">
-                    <span>{{ dishes.Bill_detail[index].BillDetail_Dish.Dish_food.Food_name + " "}}</span>
-                    <span>{{ dishes.Bill_detail[index].BillDetail_Dish.Dish_cooking_method.Cooking_method_name }}</span>
+        <div class="col-start-9 col-span-4 row-start-2 row-span-7 mt-4 px-3 font-medium text-lg overflow-auto">
+            <div v-for="(dishes, index) in tableBill.Bill_detail"
+                class="flex justify-between mb-2 border-b border-primary">
+                <p class=" w-3/5">
+                    <span>{{ dishes.BillDetail_Dish.Dish_food.Food_name + " " }}</span>
+                    <span
+                        :class="dishes.BillDetail_Dish.Dish_cooking_method.Cooking_method_name == 'nước' ? 'hidden' : ''">
+                        {{ dishes.BillDetail_Dish.Dish_cooking_method.Cooking_method_name }}
+                    </span>
                 </p>
-                <p class="pr-3">x{{ dishes.Bill_detail[index].BillDetail_quantity }}</p>
-                <p class="font-bold">{{ formatPrice(dishes.price) }}</p>
+                <p class="w-[5%] text-start">x{{ dishes.BillDetail_quantity }}</p>
+                <p class="w-[25%] font-bold text-end">{{ formatPrice(dishes.BillDetail_price) }} đ</p>
             </div>
         </div>
-        <div class="col-start-9 col-span-4 row-start-9 row-auto px-6 flex flex-col justify-start">
-            <div class="flex gap-4 justify-end mr-4 border-b border-black font-bold">
+        <div class="col-start-9 col-span-4 row-start-9 row-span-full px-6 flex flex-col justify-center">
+            <div class="flex gap-4 justify-end mr-4 border-b border-black font-bold text-xl">
                 <p>Tổng tiền: </p>
                 <p>{{ formatPrice(total) }}VNĐ</p>
             </div>
@@ -127,7 +132,7 @@
             </div>
             </p>
             <div class="modal-action border-t border-black pt-4 mt-0">
-                <button class="btn btn-primary text-white">Xác Nhận</button>
+                <RouterLink class="btn btn-primary text-white" :to="`/staff/checkout/${id}`">Xác Nhận</RouterLink>
                 <form method="dialog">
                     <button class="btn btn-error text-white">Close</button>
                 </form>
@@ -141,8 +146,8 @@
                 Bạn có chắc chắn muốn thêm món này vào đơn hàng?
             </p>
             <div class="modal-action border-t border-black pt-4 mt-0">
-                <button class="btn btn-primary text-white">Xác Nhận</button>
                 <form method="dialog">
+                    <button class="btn btn-primary text-white mx-2" @click="addOrders()">Xác Nhận</button>
                     <button class="btn btn-error text-white">Close</button>
                 </form>
             </div>
@@ -153,27 +158,34 @@
 import { ref, onMounted } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 import { formatPrice } from "../../api/functions";
-import { getMenu, getTableCurrentBill } from "../../api/tableDetail";
+import { getMenu, getTableCurrentBill, addOrderItems } from "../../api/tableDetail";
 const route = useRoute();
 const id = route.params.id;
 const total = ref(0);
+const dishLength = ref(0);
 const tableDish = ref([]);
 const menu = ref([]);
 const tableBill = ref([]);
+const orderData = ref({
+    table_id: id,
+    user_id: id,
+    order_items: [],
+});
 
 onMounted(async () => {
     getMenu(id).then((res) => {
         menu.value = res;
     });
-    getTableCurrentBill().then((res) => {
-        tableBill.value = res;
-        if (tableBill.value.length > 0) {
-            total.value = tableBill.value.reduce((acc, dish) => {
-                return acc + dish.Bill_total;
-            }, 0);
-        }
-    });
 });
+
+async function reloadData() {
+    getTableCurrentBill(id).then((res) => {
+        tableBill.value = res;
+        total.value = res.Bill_total;
+        dishLength.value = res.Bill_detail.length;
+    });
+}
+reloadData();
 
 function confirm() {
     const dialog = document.getElementById("confirm");
@@ -196,11 +208,13 @@ async function addDish(category, food, dish) {
         const selectedFood = selectedCategory.Foods.find((item) => item.Food_id === food);
         const selectedDish = selectedFood.Dishes.find((item) => item.Dish_id === dish);
         if (selectedDish && selectedCategory) {
+            const method = selectedDish.Dish_cooking_method.Cooking_method_name == "nước" ? "" : selectedDish.Dish_cooking_method.Cooking_method_name;
             const dish = {
-                dish_name: selectedFood.Food_name + " " + selectedDish.Dish_cooking_method.Cooking_method_name,
+                dish_name: selectedFood.Food_name + " " + method,
                 dish_price: selectedFood.Food_price + selectedDish.Dish_additional_price,
                 dish_quantity: 1,
                 dish_id: selectedDish.Dish_id,
+                dish_note: "",
             }
             tableDish.value.push(dish);
         }
@@ -219,5 +233,22 @@ function decreaseQuantity(index) {
 
 function deleteDish(id) {
     tableDish.value = tableDish.value.filter((dish) => dish.dish_id !== id);
+}
+
+async function addOrders() {
+    let table_id = id;
+    let dishes = [];
+    let user_id = document.cookie.split(';').find(cookie => cookie.includes('Id')).split('=')[1];
+
+    tableDish.value.forEach((dish) => {
+        dishes.push({
+            dish_id: dish.dish_id,
+            quantity: dish.dish_quantity,
+            note: dish.dish_note,
+        });
+    });
+    const result = await addOrderItems(table_id, user_id, ...dishes)
+    tableDish.value = [];
+    reloadData();
 }
 </script>

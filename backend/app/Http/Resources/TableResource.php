@@ -18,6 +18,7 @@ class TableResource extends JsonResource
             'Table_id' => $this->id,
             'Table_number' => $this->table_number,
             'Table_status' => $this->status,
+            'Table_bill' => new BillResource($this->whenLoaded('bill')),
             'Table_branch' => new BranchResource($this->whenLoaded('branch')),
         ];
     }

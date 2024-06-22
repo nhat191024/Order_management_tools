@@ -22,8 +22,8 @@ class CheckoutService
             $total = 0;
             // Calculate total price of each dish in the bill
             foreach ($bill->billDetail as $billDetail) {
-                $billDetail->price = $billDetail->dish->food->price + $billDetail->dish->additional_price;
-                $total += $billDetail->price * $billDetail->quantity;
+                $billDetail->price = ($billDetail->dish->food->price + $billDetail->dish->additional_price) * $billDetail->quantity;
+                $total += $billDetail->price;
             }
             $bill->total = $total;
         }

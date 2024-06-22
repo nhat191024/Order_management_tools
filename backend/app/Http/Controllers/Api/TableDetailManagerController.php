@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 
 use App\Http\Resources\CategoryCollection;
-use App\Http\Resources\BillCollection;
+use App\Http\Resources\TableCollection;
 
 use App\Http\Requests\StoreStaffOrderRequest;
 
@@ -24,12 +24,11 @@ class TableDetailManagerController extends Controller
         return new CategoryCollection($menu);
     }
 
-    function currentOrder()
+    function currentOrder($id)
     {
         $service = new TableDetailManagerService();
-        $bill = $service->getTableCurrentBill();
-
-        return new BillCollection($bill);
+        $bill = $service->getTableCurrentBill($id);
+        return new TableCollection($bill);
     }
 
     function order(StoreStaffOrderRequest $request)

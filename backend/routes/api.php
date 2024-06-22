@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\StaffTableListController;
 |
 */
 
+Route::get('/user/{user_id}', [UserController::class, 'detail']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
 

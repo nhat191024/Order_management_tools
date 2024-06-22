@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\UserLoginRequest;
 
+use App\Service\UserDetailService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -20,6 +21,12 @@ class UserController extends Controller
     public function logout(Request $request){
         $userService = new LoginService();
         $respond = $userService->logout($request);
+        return $respond;
+    }
+
+    public function detail($id){
+        $userDetailService = new UserDetailService();
+        $respond = $userDetailService->userDetail($id);
         return $respond;
     }
 }

@@ -59,7 +59,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { RouterLink, useRouter } from 'vue-router';
+import { RouterLink } from 'vue-router';
 import { getTableData } from '../../api/table';
 import { logout } from '../../api/login';
 
@@ -67,7 +67,6 @@ const tableList = ref([]);
 // Để lấy username cần gọi đến API
 // Sẽ thêm hotfix sau khi API này được làm xong / merged
 const username = ref('admin');
-const route = useRouter();
 const userIdFromCookie = ref('1');
 
 onMounted(async () => {
@@ -85,7 +84,7 @@ onMounted(async () => {
 })
 function signOut() {
     logout();
-    route.push('/staff/login');
+    location.href = '/staff/login';
 }
 </script>
 

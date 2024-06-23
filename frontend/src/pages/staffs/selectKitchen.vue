@@ -24,7 +24,7 @@
         to=""
         class="w-64 h-40 rounded-xl flex flex-col items-center justify-between drop-shadow-sm bg-primary p-2"
       >
-        <img :src="kitchen.img" alt="demo" class="w-full h-4/5 rounded-xl" />
+        <img :src="kitchen.image" alt="demo" class="w-full h-4/5 rounded-xl" />
         <span class="text-white font-extrabold text-lg text-center">
           {{ kitchen.name }}
         </span>

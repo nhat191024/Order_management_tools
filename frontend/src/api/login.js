@@ -28,16 +28,13 @@ export async function loginHandle(username, password) {
     }
 }
 
-export async function logout() {
+export async function logoutHandle() {
     try {
-        const response = await api.post('/logout');
-        if (response.data.Message == 'logout success') {
-            document.cookie = `Token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
-            document.cookie = `Role=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
-            document.cookie = `Id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
-            document.cookie = `Branch_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
-            return 'success';
-        }
+        document.cookie = `Token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+        document.cookie = `Role=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+        document.cookie = `Id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+        document.cookie = `Branch_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+        await api.post('/logout');
     } catch (err) { }
 
 }

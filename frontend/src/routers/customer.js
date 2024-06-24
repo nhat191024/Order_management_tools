@@ -5,7 +5,7 @@ const customer = [
         component: () => import("../pages/customers/index.vue"),
     },
     {
-        path: "/orderConfirm",
+        path: "/orderConfirm/:id",
         name: "orderConfirm",
         component: () => import("../pages/customers/orderConfirm.vue"),
     }

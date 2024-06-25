@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', [CategoryController::class, 'index'])->name('admin.index');
+    Route::get('/category', [CategoryController::class, 'index'])->name('admin.index');
 });

@@ -46,7 +46,7 @@ import { getCookie } from '../../api/functions';
 
 const router = useRouter();
 const tableList = ref([]);
-let username = getCookie('Username');
+const username = getCookie('Username');
 const userId = getCookie('Id');
 const mainColor = 'bg-primary';
 const disabled = 'bg-gray-300';

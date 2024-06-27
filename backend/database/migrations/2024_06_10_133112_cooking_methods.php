@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('note')->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

@@ -61,7 +61,6 @@ class DatabaseSeeder extends Seeder
         foreach ($dataArray['branches'] as $row) {
             Branch::create([
                 "name" => $row['name'],
-                "image" => $row['image'],
             ]);
         }
 

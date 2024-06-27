@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MethodController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +22,32 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [CategoryController::class, 'index'])->name('admin.index');
-    Route::get('/category', [CategoryController::class, 'index'])->name('admin.index');
+    Route::prefix('/category')->group(function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('admin.category.index');
+        Route::get('/add', [CategoryController::class, 'showAddCategory'])->name('admin.category.show_add');
+        Route::post('/add', [CategoryController::class, 'addCategory'])->name('admin.category.add');
+        Route::post('/edit', [CategoryController::class, 'editCategory'])->name('admin.category.edit');
+        Route::get('/edit/{id}', [CategoryController::class, 'showEditCategory'])->name('admin.category.show_edit');
+        Route::get('/delete/{id}', [CategoryController::class, 'deleteCategory'])->name('admin.category.delete');
+    });
+
+    Route::prefix('/method')->group(function () {
+        Route::get('/', [MethodController::class, 'index'])->name('admin.method.index');
+        Route::get('/add', [MethodController::class, 'showAddMethod'])->name('admin.method.show_add');
+        Route::post('/add', [MethodController::class, 'addMethod'])->name('admin.method.add');
+        Route::post('/edit', [MethodController::class, 'editMethod'])->name('admin.method.edit');
+        Route::get('/edit/{id}', [MethodController::class, 'showEditMethod'])->name('admin.method.show_edit');
+        Route::get('/delete/{id}', [MethodController::class, 'deleteMethod'])->name('admin.method.delete');
+    });
+
+    Route::prefix('/branch')->group(function () {
+        Route::get('/', [BranchController::class, 'index'])->name('admin.branch.index');
+        Route::get('/add', [BranchController::class, 'showAddBranch'])->name('admin.branch.show_add');
+        Route::post('/add', [BranchController::class, 'addBranch'])->name('admin.branch.add');
+        Route::post('/edit', [BranchController::class, 'editBranch'])->name('admin.branch.edit');
+        Route::get('/edit/{id}', [BranchController::class, 'showEditBranch'])->name('admin.branch.show_edit');
+        Route::get('/delete/{id}', [BranchController::class, 'deleteBranch'])->name('admin.branch.delete');
+    });
+
+
 });

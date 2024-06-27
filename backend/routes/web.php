@@ -3,6 +3,7 @@
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\KitchenController;
 use App\Http\Controllers\MethodController;
 use Illuminate\Support\Facades\Route;
 
@@ -57,6 +58,15 @@ Route::prefix('admin')->group(function () {
         Route::post('/edit', [FoodController::class, 'editFood'])->name('admin.food.edit');
         Route::get('/edit/{id}', [FoodController::class, 'showEditFood'])->name('admin.food.show_edit');
         Route::get('/delete/{id}', [FoodController::class, 'deleteFood'])->name('admin.food.delete');
+    });
+
+    Route::prefix('/kitchen')->group(function () {
+        Route::get('/', [KitchenController::class, 'index'])->name('admin.kitchen.index');
+        Route::get('/add', [KitchenController::class, 'showAddKitchen'])->name('admin.kitchen.show_add');
+        Route::post('/add', [KitchenController::class, 'addKitchen'])->name('admin.kitchen.add');
+        Route::post('/edit', [KitchenController::class, 'editKitchen'])->name('admin.kitchen.edit');
+        Route::get('/edit/{id}', [KitchenController::class, 'showEditKitchen'])->name('admin.kitchen.show_edit');
+        Route::get('/delete/{id}', [KitchenController::class, 'deleteKitchen'])->name('admin.kitchen.delete');
     });
 
 

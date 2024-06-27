@@ -153,6 +153,11 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Thực phẩm</span></a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{route('admin.kitchen.index')}}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Bếp</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

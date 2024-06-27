@@ -9,6 +9,8 @@ class Kitchen extends Model
 {
     use HasFactory;
 
+    protected $table = 'kitchens';
+
     protected $fillable = [
         'name',
         'image',
@@ -22,7 +24,7 @@ class Kitchen extends Model
 
     public function cookingMethod()
     {
-        return $this->belongsToMany(Kitchen_cooking_method::class);
+        return $this->hasMany(Kitchen_cooking_method::class);
     }
 
 

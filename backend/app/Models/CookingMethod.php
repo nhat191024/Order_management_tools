@@ -18,9 +18,4 @@ class CookingMethod extends Model
     {
         return $this->hasMany(Dish::class);
     }
-
-    public function kitchen()
-    {
-        return $this->hasMany(Kitchen_cooking_method::class);
-    }
 }

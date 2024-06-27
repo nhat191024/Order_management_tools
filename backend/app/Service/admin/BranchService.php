@@ -14,7 +14,7 @@ class BranchService
     }
 
     public function getById($id) {
-        return Branch::find($id);
+        return Branch::find($id)->where('status', 1)->first();
     }
 
     public function add($branch)
@@ -34,6 +34,7 @@ class BranchService
     public function checkHasChildren($idBranch) {
         return Branch::find($idBranch)->user()->get()->count() > 0 || Branch::find($idBranch)->kitchen()->get()->count() > 0 || Branch::find($idBranch)->table()->get()->count() > 0;
     }
+
 
     public function delete($idBranch) {
         $method = Branch::find($idBranch);

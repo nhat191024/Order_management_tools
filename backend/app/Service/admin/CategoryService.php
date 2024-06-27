@@ -13,7 +13,7 @@ class CategoryService
     }
 
     public function getById($id) {
-        return Category::find($id);
+        return Category::find($id)->where('status', 1)->first();
     }
 
     public function add($categoryName, $categoryImage)

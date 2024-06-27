@@ -13,7 +13,7 @@ class FoodService
     }
 
     public function getById($id) {
-        return Food::find($id);
+        return Food::find($id)->where('status', 1)->first();
     }
 
     public function add($categoryId, $foodName, $foodPrice, $foodImage)

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FoodController;
 use App\Http\Controllers\MethodController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +48,15 @@ Route::prefix('admin')->group(function () {
         Route::post('/edit', [BranchController::class, 'editBranch'])->name('admin.branch.edit');
         Route::get('/edit/{id}', [BranchController::class, 'showEditBranch'])->name('admin.branch.show_edit');
         Route::get('/delete/{id}', [BranchController::class, 'deleteBranch'])->name('admin.branch.delete');
+    });
+
+    Route::prefix('/food')->group(function () {
+        Route::get('/', [FoodController::class, 'index'])->name('admin.food.index');
+        Route::get('/add', [FoodController::class, 'showAddFood'])->name('admin.food.show_add');
+        Route::post('/add', [FoodController::class, 'addFood'])->name('admin.food.add');
+        Route::post('/edit', [FoodController::class, 'editFood'])->name('admin.food.edit');
+        Route::get('/edit/{id}', [FoodController::class, 'showEditFood'])->name('admin.food.show_edit');
+        Route::get('/delete/{id}', [FoodController::class, 'deleteFood'])->name('admin.food.delete');
     });
 
 

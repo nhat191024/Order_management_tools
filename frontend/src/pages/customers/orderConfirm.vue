@@ -56,27 +56,14 @@ import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { formatPrice } from "../../api/functions";
 import { addOrderItems } from "../../api/customer";
+import { useOrderStore } from "../../stores/order";
 
+const orderStore = useOrderStore();
 const route = useRoute();
 const router = useRouter();
 const id = route.params.id;
 
-const tableDish = [
-  {
-    dishName: 'dcm trung',
-    dish_id: 1,
-    quantity: 1,
-    price :3000000,
-    note: "nhat gay nhat gay nhat gay nhat gay nhat gay nhat gay",
-  },
-  {
-    dishName: 'dcm trung',
-    dish_id: 2,
-    quantity: 1,
-    price :3000000,
-    note: "huy gay",
-  },
-];
+const tableDish = orderStore.dishes;
 
 function tempTotal() {
     let total = 0;
@@ -92,7 +79,7 @@ async function addOrders() {
 
   tableDish.forEach((dish) => {
     dishes.push({
-      dish_id: dish.dish_id,
+      dish_id: dish.dishId,
       quantity: dish.quantity,
       note: dish.note,
     });
@@ -101,6 +88,7 @@ async function addOrders() {
   const result = await addOrderItems(table_id, ...dishes);
   tableDish.value = [];
   if (result.status === 200) {
+    orderStore.clearDishes();
     router.push(`/order/${id}`);
   }
 }

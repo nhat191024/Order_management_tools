@@ -1,10 +1,10 @@
 <template>
   <div class="grid grid-rows-12 w-dvw h-dvh">
     <nav class="bg-primary top-0 left-0 w-full row-span-1 flex items-center justify-between px-4 rounded-b-lg">
-      <RouterLink v-bind:to="{path: '/order/' + id+''}" class="" >
+      <RouterLink v-bind:to="{path: '/order/' + id+''}" class="">
         <img class="rounded-full w-14 h-14" src="/src/assets/backButton.svg" alt="Logo" />
       </RouterLink>
-      
+
       <p class="text-white text-2xl font-semibold">Bàn {{ id }}</p>
     </nav>
     <div class="flex-auto my-3">
@@ -13,26 +13,17 @@
       </p>
     </div>
     <div class="row-start-3 row-span-8 px-3 flex flex-col overflow-auto scroll-smooth">
-      <div v-for="(dishes) in tableDish">
+      <template v-for="(dishes, key) in tableDish">
         <hr class="mt-3 mb-2" />
-        <div class="flex ...">
-          <div class="flex-none w-14 h-14 ms-1">
-            <img src="/src/assets/demo.jpg" alt="" width="100%" class="rounded-lg" />
-          </div>
-          <div class="grow h-14 ...">
-            <div class="grid grid-cols-12 grid-rows-2">
-              <span class="ms-3 col-span-2">x{{ dishes.quantity }} </span>
-              <span class="ms-3 col-span-6">{{ dishes.dishName }}</span>
-              <div>
-                <span class="col-span-4 ">{{ formatPrice(dishes.price) }}Đ</span>
-              </div>
-              <div class="row-start-2 col-start-1 col-span-12 ml-3">
-                <p class="overflow-x-auto whitespace-nowrap">{{ dishes.note }}</p>
-              </div>
-            </div>
+        <div class="flex items-center">
+          <img src="/src/assets/demo.jpg" alt="" width="100%" class="w-12 h-12 rounded-lg" />
+          <div class="flex-col ml-3 mt-3 w-[80%]">
+            <p class="text-lg font-semibold">x{{ dishes.quantity }} {{ dishes.dishName }}</p>
+            <p class=" text-sm font-extralight truncate">Ghi chú: {{ dishes.note }}</p>
+            <p class="text-lg">{{ formatPrice(dishes.price) }} VNĐ</p>
           </div>
         </div>
-      </div>
+      </template>
     </div>
     <footer class="row-start-11 bg-white">
       <hr class="" />

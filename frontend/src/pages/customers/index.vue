@@ -178,7 +178,7 @@
                             </p>
                         </div>
                         <div class="modal-action p-4 mt-2 border-t-2 border-grey-400">
-                            <button class="btn-secondary btn w-full">Đặt món</button>
+                            <button class="btn-secondary btn w-full" @click="confirmOrder()">Đặt món</button>
                         </div>
                     </div>
                 </div>
@@ -190,11 +190,16 @@
 <script setup>
 import { getMenuData } from "../../api/customer";
 import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { formatPrice } from "../../api/functions";
+import { useOrderStore } from "../../stores/order";
 
+const orderStore = useOrderStore();
 const route = useRoute();
+const router = useRouter();
+
 const id = route.params.id;
+
 const tabStatus = ref([]);
 const category = ref([]);
 const tempQuantity = ref(1);
@@ -202,7 +207,6 @@ const tempCookingMethod = ref(0);
 const tempNote = ref("");
 const billTemp = ref([]);
 const dishDetail = ref({});
-
 const menu = ref({});
 
 onMounted(async () => {
@@ -273,11 +277,9 @@ function addDish(id, cookingMethodId) {
         return;
     }
 
-    let dish = dishDetail.value.Dishes.find(
-        (item) => item.Dish_cooking_method.Cooking_method_id === tempCookingMethod.value
-    );
+    let checking = dishDetail.value.Dishes && dishDetail.value.Dishes.length > 1 ? true : false;
 
-    if (!dish) {
+    if (!checking) {
         const dish = dishDetail.value.Dishes[0];
         billTemp.value.push({
             foodId: dishDetail.value.Food_id,
@@ -295,6 +297,9 @@ function addDish(id, cookingMethodId) {
         tempNote.value = "";
         return;
     }
+    let dish = dishDetail.value.Dishes.find(
+        (item) => item.Dish_cooking_method.Cooking_method_id === tempCookingMethod.value
+    );
     billTemp.value.push({
         foodId: dishDetail.value.Food_id,
         dishId: dish.Dish_id,
@@ -330,6 +335,20 @@ function tempTotal() {
 function showCart() {
     const cart = document.getElementById("cart");
     cart.showModal();
+}
+
+function confirmOrder() {
+    billTemp.value.forEach((item) => {
+        orderStore.addDish({
+            dishName: item.dishName,
+            dishId: item.dishId,
+            quantity: item.quantity,
+            price: item.price,
+            note: item.note,
+        });
+    });
+
+    router.push(`/orderConfirm/${id}`);
 }
 </script>
 <!-- End Script -->

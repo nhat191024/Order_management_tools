@@ -75,7 +75,8 @@
                             <div
                                 class="col-start-10 col-span-full row-start-3 place-self-center w-full h-full flex items-center gap-3">
                                 <button @click="tempQuantity--"
-                                    class="join-item outline outline-1 p-1 outline-primary rounded-l-full transition-all transform linear duration-300 active:scale-125">
+                                    class="join-item outline outline-1 p-1 outline-primary rounded-l-full transition-all transform linear duration-300 active:scale-125"
+                                    :disabled="tempQuantity <= 1">
                                     <img src="../../assets/minus.svg" alt="" class="w-4" />
                                 </button>
                                 <p class="join-item">{{ tempQuantity }}</p>

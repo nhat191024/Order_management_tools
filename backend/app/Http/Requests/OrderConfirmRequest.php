@@ -24,7 +24,7 @@ class OrderConfirmRequest extends FormRequest
         return [
             
                 'table_id' => 'required|integer|exists:tables,id',
-                'user_id' => 'required|integer|exists:users,id',
+                'user_id' => 'integer|exists:users,id',
                 'dishes' => 'required|array',
                 'dishes.*.dish_id' => 'required|integer|exists:dishes,id',
                 'dishes.*.quantity' => 'required|integer|min:1',

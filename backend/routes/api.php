@@ -27,7 +27,7 @@ Route::group(['prefix' => 'staff', 'namespace' => 'App\Http\Controllers\Api'], f
     Route::get('/menu', [TableDetailManagerController::class, 'menu']);
     Route::get('/bill', [TableDetailManagerController::class, 'bill']);
     Route::get('/kitchensSelect/{branch_id}', [KitchenController::class, 'getKitchensByBranch']);
-    Route::get('/currentOrder', [TableDetailManagerController::class, 'currentOrder']);
+    Route::get('/currentOrder/{table_id}', [TableDetailManagerController::class, 'currentOrder']);
     Route::post('/order', [TableDetailManagerController::class, 'order']);
     Route::get('/checkout/{id}',[CheckoutController::class,'show']);
     Route::get('/tableList/{user_id}',[StaffTableListController::class,'tableList']);

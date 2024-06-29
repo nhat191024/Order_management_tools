@@ -54,10 +54,17 @@
                                         <td>{{ $item->branch->name }}</td>
                                         <td>{{ $item['name'] }}</td>
                                         <td class="text-center"><img width="300px"
-                                            src="{{ url('img') . '/' . $item['image'] }}" alt=""></td>
-                                        <td class="text-center"><a class="btn btn-warning" href="{{route('admin.kitchen.show_edit', ['id' => $item->id])}}">Sửa</a> <a
-                                                class="btn btn-danger" href="{{route('admin.kitchen.delete', ['id' => $item->id])}}"
-                                                onclick="confirm('Bạn chắc chắn chứ?')"> Xóa </a></td>
+                                                src="{{ url('img') . '/' . $item['image'] }}" alt=""></td>
+                                        <td class="text-center"><a class="btn btn-warning"
+                                                href="{{ route('admin.kitchen.show_edit', ['id' => $item->id]) }}">Sửa</a>
+                                            <a class="btn btn-danger"
+                                                href="{{ route('admin.kitchen.delete', ['id' => $item->id]) }}"
+                                                onclick="confirm('Bạn chắc chắn chứ?')"> Xóa </a>
+                                            <button type="button" onclick="getSelectedCheckboxes()" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#cooking_method">
+                                                Chi tiết
+                                            </button>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -76,4 +83,5 @@
 
     </div>
     <!-- End of Content Wrapper -->
+    @include('admin.modal.cooking_method_modal')
 @endsection

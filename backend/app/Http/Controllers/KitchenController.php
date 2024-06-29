@@ -4,21 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Service\admin\BranchService;
 use App\Service\admin\KitchenService;
+use App\Service\admin\MethodService;
 use Illuminate\Http\Request;
 
 class KitchenController extends Controller
 {
     private $kitchenService;
     private $branchService;
+    private $methodService;
     //
-    public function __construct(KitchenService $kitchenService, BranchService $branchService) {
+    public function __construct(KitchenService $kitchenService, BranchService $branchService, MethodService $methodService) {
         $this->kitchenService = $kitchenService;
         $this->branchService = $branchService;
+        $this->methodService = $methodService;
     }
 
     public function index() {
         $allKitchen = $this->kitchenService->getAll();
-        return view('admin.kitchen.kitchen', compact('allKitchen'));
+        $allMethod = $this->methodService->getAll();
+        return view('admin.kitchen.kitchen', compact('allKitchen', 'allMethod'));
     }
 
     public function showAddKitchen() {
@@ -75,5 +79,5 @@ class KitchenController extends Controller
             return redirect(route('admin.kitchen.index'))->with('success', 'Xóa bếp thành công');
         }
         return redirect(route('admin.kitchen.index'))->with('error', 'Bếp đang liên kết với cách thức nấu, không thể xóa !!!');
-    }   
+    }
 }

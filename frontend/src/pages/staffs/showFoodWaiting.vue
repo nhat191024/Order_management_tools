@@ -17,8 +17,6 @@
       </div>
       <hr class="mt-2" />
     </div>
-
-
     <div class="grid gap-4 p-4 mt-20 place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       <div v-for="(item, index) in items" :key="index"
         class="flex flex-col items-center p-4 m-2 text-center text-white bg-primary rounded-lg shadow-lg w-64 relative">
@@ -26,7 +24,6 @@
         <div class="text-lg font-bold">{{ item.title }}</div>
         <div class="w-full my-2 border-t border-white"></div>
         <div class="text-lg">{{ item.description }}</div>
-
         <div class="flex items-center justify-between w-full">
           <div class="w-full my-2 border-t border-white"></div>
           <div class="flex items-center justify-center min-w-14 h-14 p-2 bg-white rounded-full"

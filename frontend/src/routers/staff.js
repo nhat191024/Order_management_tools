@@ -1,6 +1,6 @@
 const staff = [
   {
-    path: "/",
+    path: "/staff",
     component: () => import("../layouts/staff.vue"),
     children: [
       {
@@ -19,12 +19,12 @@ const staff = [
         component: () => import("../pages/staffs/tableDetail.vue"),
       },
       {
-        path: "/kitchen/select",
+        path: "/staff/kitchen",
         name: "kitchen selection",
         component: () => import("../pages/staffs/selectKitchen.vue"),
       },
       {
-        path: "/staff/waitingFood",
+        path: "/staff/kitchen/:id",
         name: "waiting food",
         component: () => import("../pages/staffs/showFoodWaiting.vue"),
       },

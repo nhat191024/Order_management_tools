@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Bill;
 use App\Models\BillDetail;
 
+use App\Events\OrderCreate;
 
 class CustomerService
 {
@@ -28,6 +29,7 @@ class CustomerService
                 // Update current dish
                 if($dishes->has($billDetail->dish_id)){
                     $billDetail->quantity += $dishes[$billDetail->dish_id]['quantity'];
+                    event(new OrderCreate($billDetail));
                     $billDetail->save();
                     $dishes->forget($billDetail->dish_id);
                     $updatedEntities++;

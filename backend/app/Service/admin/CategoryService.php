@@ -13,7 +13,7 @@ class CategoryService
     }
 
     public function getById($id) {
-        return Category::find($id)->where('status', 1)->first();
+        return Category::where('id', $id)->where('status', 1)->first();
     }
 
     public function add($categoryName, $categoryImage)
@@ -26,7 +26,7 @@ class CategoryService
 
     public function edit($id, $categoryName, $categoryImage)
     {
-        $category = Category::find($id);
+        $category = Category::where('id', $id)->first();
         $category->name = $categoryName;
         if ($categoryImage != null) {
             $category->image = $categoryImage;

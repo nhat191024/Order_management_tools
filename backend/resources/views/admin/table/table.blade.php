@@ -9,11 +9,11 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">Danh sách thực phẩm</h1>
+            <h1 class="h3 mb-2 text-gray-800">Quản lý bàn</h1>
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <a class="btn btn-primary" href="{{ route('admin.food.show_add') }}">Thêm thực phẩm</a>
+                    <a class="btn btn-primary" href="{{ route('admin.table.show_add') }}">Thêm bàn</a>
 
                 </div>
                 <div class="card-body">
@@ -32,34 +32,27 @@
                             <thead>
                                 <tr>
                                     <th>STT</th>
-                                    <th>Tên danh mục</th>
-                                    <th>Tên thực phẩm</th>
-                                    <th>Giá</th>
-                                    <th>Ảnh</th>
+                                    <th>Tên chi nhánh</th>
+                                    <th>Tên bàn</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>STT</th>
-                                    <th>Tên danh mục</th>
-                                    <th>Tên thực phẩm</th>
-                                    <th>Giá</th>
-                                    <th>Ảnh</th>
+                                    <th>Tên chi nhánh</th>
+                                    <th>Tên bàn</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach ($allFood as $key => $item)
+                                @foreach ($allTable as $key => $item)
                                     <tr>
                                         <td>{{ ++$key }}</td>
-                                        <td>{{ $item->category->name }}</td>
-                                        <td>{{ $item['name'] }}</td>
-                                        <td>{{ $item['price'] }}</td>
-                                        <td class="text-center"><img width="200px"
-                                                src="{{ url('img') . '/' . $item['image'] }}" alt=""></td>
-                                        <td class="text-center"><a class="btn btn-warning" href="{{route('admin.food.show_edit', ['id' => $item->id])}}">Sửa</a> <a
-                                                class="btn btn-danger" href="{{route('admin.food.delete', ['id' => $item->id])}}"
+                                        <td>{{ $item->branch->name }}</td>
+                                        <td>{{ $item['table_number'] }}</td>
+                                        <td class="text-center"><a class="btn btn-warning" href="{{route('admin.table.show_edit', ['id' => $item->id])}}">Sửa</a> <a
+                                                class="btn btn-danger" href="{{route('admin.table.delete', ['id' => $item->id])}}"
                                                 onclick="confirm('Bạn chắc chắn chứ?')"> Xóa </a></td>
                                     </tr>
                                 @endforeach

@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <title>SB Admin 2 - Tables</title>
 
@@ -134,29 +135,44 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{route('admin.category.index')}}">
+                <a class="nav-link" href="{{ route('admin.category.index') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Danh mục</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{route('admin.method.index')}}">
+                <a class="nav-link" href="{{ route('admin.method.index') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Cách thức nấu</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{route('admin.branch.index')}}">
+                <a class="nav-link" href="{{ route('admin.branch.index') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Chi nhánh</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{route('admin.food.index')}}">
+                <a class="nav-link" href="{{ route('admin.food.index') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Thực phẩm</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{route('admin.kitchen.index')}}">
+                <a class="nav-link" href="{{ route('admin.kitchen.index') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Bếp</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('admin.table.index') }}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Bàn</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('admin.table.index') }}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Món ăn</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('admin.table.index') }}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Hóa đơn</span></a>
             </li>
 
             <!-- Divider -->
@@ -294,7 +310,8 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{url('') . '/'}}img/undraw_profile_1.svg" alt="...">
+                                        <img class="rounded-circle" src="{{ url('') . '/' }}img/undraw_profile_1.svg"
+                                            alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -305,7 +322,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{url('') . '/'}}img/undraw_profile_2.svg" alt="...">
+                                        <img class="rounded-circle" src="{{ url('') . '/' }}img/undraw_profile_2.svg"
+                                            alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -316,7 +334,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="{{url('') . '/'}}img/undraw_profile_3.svg" alt="...">
+                                        <img class="rounded-circle" src="{{ url('') . '/' }}img/undraw_profile_3.svg"
+                                            alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -350,7 +369,8 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="{{url('') . '/'}}img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle"
+                                    src="{{ url('') . '/' }}img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -420,21 +440,21 @@
             </div>
 
             <!-- Bootstrap core JavaScript-->
-            <script src="{{url('') . '/'}}vendor/jquery/jquery.min.js"></script>
-            <script src="{{url('') . '/'}}vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="{{ url('') . '/' }}vendor/jquery/jquery.min.js"></script>
+            <script src="{{ url('') . '/' }}vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
             <!-- Core plugin JavaScript-->
-            <script src="{{url('') . '/'}}vendor/jquery-easing/jquery.easing.min.js"></script>
+            <script src="{{ url('') . '/' }}vendor/jquery-easing/jquery.easing.min.js"></script>
 
             <!-- Custom scripts for all pages-->
-            <script src="{{url('') . '/'}}js/sb-admin-2.min.js"></script>
+            <script src="{{ url('') . '/' }}js/sb-admin-2.min.js"></script>
 
             <!-- Page level plugins -->
-            <script src="{{url('') . '/'}}vendor/datatables/jquery.dataTables.min.js"></script>
-            <script src="{{url('') . '/'}}vendor/datatables/dataTables.bootstrap4.min.js"></script>
+            <script src="{{ url('') . '/' }}vendor/datatables/jquery.dataTables.min.js"></script>
+            <script src="{{ url('') . '/' }}vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
             <!-- Page level custom scripts -->
-            <script src="{{url('') . '/'}}js/demo/datatables-demo.js"></script>
+            <script src="{{ url('') . '/' }}js/demo/datatables-demo.js"></script>
 
 </body>
 

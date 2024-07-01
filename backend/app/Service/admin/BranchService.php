@@ -14,7 +14,7 @@ class BranchService
     }
 
     public function getById($id) {
-        return Branch::find($id)->where('status', 1)->first();
+        return Branch::where('id', $id)->where('status', 1)->first();
     }
 
     public function add($branch)
@@ -26,7 +26,7 @@ class BranchService
 
     public function edit($id, $branchName)
     {
-        $method = Branch::find($id);
+        $method = Branch::where('id', $id)->first();
         $method->name = $branchName;
         $method->save();
     }

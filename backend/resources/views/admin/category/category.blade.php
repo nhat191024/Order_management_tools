@@ -50,11 +50,11 @@
                                     <tr>
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $item['name'] }}</td>
-                                        <td class="text-center"><img width="300px"
+                                        <td class="text-center"><img width="200px"
                                                 src="{{ url('img') . '/' . $item['image'] }}" alt=""></td>
                                         <td class="text-center"><a class="btn btn-warning" href="{{route('admin.category.show_edit', ['id' => $item->id])}}">Sửa</a> <a
                                                 class="btn btn-danger" href="{{route('admin.category.delete', ['id' => $item->id])}}"
-                                                onclick="confirm('Bạn chắc chắn chứ?')"> Xóa </a></td>
+                                                onclick="confirm('Bạn chắc chắn chứ?')"> Xóa </a> </td>
                                     </tr>
                                 @endforeach
                             </tbody>

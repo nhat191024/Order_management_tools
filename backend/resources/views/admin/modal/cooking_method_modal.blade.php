@@ -8,37 +8,59 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    @foreach ($allMethod as $item)
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <input checked value="{{$item['id']}}" type="checkbox" id="checkbox{{$item['id']}}">
-                                    <label for="checkbox1">{{ $item['name'] }}</label>
-                                </div>
+            <form action="{{route('admin.kitchen.add_kitchen_method')}}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+
+                        @foreach ($allMethod as $item)
+                            <div class="col-md-3 ">
+                                <div class="card mb-2" >
+                                    <div class="card-body">
+                                        <input value="{{ $item['id'] }}" type="checkbox"
+                                            id="checkbox{{ $item['id'] }}" name="cooking_method_id[]">
+                                        <label for="checkbox{{ $item['id'] }}">{{ $item['name'] }}</label>
+                                    </div>
+                                </div>  
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                <button type="button" class="btn btn-primary">Cập nhật</button>
-            </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="kitchen_id" name="kitchen_id">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
 <script>
-    function getSelectedCheckboxes() {
-        const checkboxes = document.querySelectorAll('.card-body input[type="checkbox"]');
-        const selected = [];
-        checkboxes.forEach(checkbox => {
-            if (checkbox.checked) {
-                selected.push(checkbox.value);
+    function showModal(kitchenId) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        alert('Selected checkboxes: ' + selected.join(', '));
+        $.ajax({
+
+            type: "POST",
+            url: "{{ route('admin.kitchen.get_kitchen_method') }}",
+            data: {
+                kitchen_id: kitchenId,
+            },
+            success: function(response) {
+                $('#kitchen_id').val(kitchenId);
+                response.data.forEach(function(itemId) {
+                    $('#checkbox' + itemId).prop('checked', true);
+                });
+            },
+            error: function(response, status, error) {
+                var errorMessage = JSON.parse(response.responseText);
+                console.log(errorMessage);
+            }
+        })
+        $('#cooking_method').modal('toggle');
     }
 </script>

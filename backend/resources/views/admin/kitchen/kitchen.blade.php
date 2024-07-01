@@ -53,15 +53,15 @@
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $item->branch->name }}</td>
                                         <td>{{ $item['name'] }}</td>
-                                        <td class="text-center"><img width="300px"
+                                        <td class="text-center"><img width="200px"
                                                 src="{{ url('img') . '/' . $item['image'] }}" alt=""></td>
                                         <td class="text-center"><a class="btn btn-warning"
                                                 href="{{ route('admin.kitchen.show_edit', ['id' => $item->id]) }}">Sửa</a>
                                             <a class="btn btn-danger"
                                                 href="{{ route('admin.kitchen.delete', ['id' => $item->id]) }}"
                                                 onclick="confirm('Bạn chắc chắn chứ?')"> Xóa </a>
-                                            <button type="button" onclick="getSelectedCheckboxes()" class="btn btn-primary" data-toggle="modal"
-                                                data-target="#cooking_method">
+                                            <button type="button" onclick="showModal({{$item['id']}})" class="btn btn-primary" data-toggle="modal"
+                                                data-target="">
                                                 Chi tiết
                                             </button>
                                         </td>

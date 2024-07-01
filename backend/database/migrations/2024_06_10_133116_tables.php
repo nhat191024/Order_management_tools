@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('table_number');
             $table->text('note')->nullable();
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(1);
+            $table->tinyInteger('is_deleted')->default(0);
             $table->unsignedBigInteger('branch_id');
             $table->timestamps();
 

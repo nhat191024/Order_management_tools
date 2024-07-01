@@ -4,6 +4,7 @@ namespace App\Service\admin;
 
 use App\Models\Branch;
 use App\Models\Kitchen;
+use App\Models\Kitchen_cooking_method;
 
 class KitchenService
 {
@@ -14,7 +15,7 @@ class KitchenService
     }
 
     public function getById($id) {
-        return Kitchen::find($id)->where('status', 1)->first();
+        return Kitchen::where('id', $id)->where('status', 1)->first();
     }
 
     public function add($brandId, $kitchenName, $kitchenImage)
@@ -28,7 +29,7 @@ class KitchenService
 
     public function edit($id, $branchId, $kitchenName, $imageName)
     {
-        $kitchen = Kitchen::find($id);
+        $kitchen = Kitchen::where('id', $id)->first();
         $kitchen->branch_id = $branchId;
         $kitchen->name = $kitchenName;
         if ($imageName != null) {
@@ -45,5 +46,21 @@ class KitchenService
         $method = Kitchen::find($idBranch);
         $method->status = 0;
         $method->save();
+    }
+
+    public function getKitchenCookingMethodById($idKitchen) {
+        return Kitchen::find($idKitchen)->cookingMethod()->pluck('cooking_method_id');
+    }
+
+    public function addKitchenCookingMethod($idKitchen, $cookingMethodArray) {
+        Kitchen_cooking_method::where('kitchen_id', $idKitchen)->delete();
+        if ($cookingMethodArray != null || $cookingMethodArray != []) {
+            foreach ($cookingMethodArray as $item) {
+                Kitchen_cooking_method::create([
+                    'kitchen_id' => $idKitchen,
+                    'cooking_method_id' => $item
+                ]);
+            }
+        }
     }
 }

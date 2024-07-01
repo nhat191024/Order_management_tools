@@ -80,4 +80,25 @@ class KitchenController extends Controller
         }
         return redirect(route('admin.kitchen.index'))->with('error', 'Bếp đang liên kết với cách thức nấu, không thể xóa !!!');
     }
+
+    public function getKitchenMethod(Request $request) {
+        $request->validate([
+            'kitchen_id' => 'required'
+        ]);
+        $idKitchen = $request->kitchen_id;
+        $cookingMethodInfor = $this->kitchenService->getKitchenCookingMethodById($idKitchen);
+        return response()->json([
+            'data' => $cookingMethodInfor,
+        ]);
+    }
+
+    public function addKitchenMethod(Request $request) {
+        $request->validate([
+            'kitchen_id' => 'required',
+        ]);
+        $idKitchen = $request->kitchen_id;
+        $cookingMethodArray = $request->cooking_method_id ?? null;
+        $this->kitchenService->addKitchenCookingMethod($idKitchen, $cookingMethodArray);
+        return redirect(route('admin.kitchen.index'))->with('success', 'Thêm phương thức nấu cho bếp thành công');
+    }
 }

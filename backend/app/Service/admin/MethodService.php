@@ -13,7 +13,7 @@ class MethodService
     }
 
     public function getById($id) {
-        return CookingMethod::find($id)->where('status', 1)->first();
+        return CookingMethod::where('id', $id)->where('status', 1)->first();
     }
 
     public function add($methodName)
@@ -25,7 +25,7 @@ class MethodService
 
     public function edit($id, $methodName)
     {
-        $method = CookingMethod::find($id);
+        $method = CookingMethod::where('id', $id)->first();
         $method->name = $methodName;
         $method->save();
     }

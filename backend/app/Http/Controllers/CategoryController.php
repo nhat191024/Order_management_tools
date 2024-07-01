@@ -68,4 +68,5 @@ class CategoryController extends Controller
         }
         return redirect(route('admin.category.index'))->with('error', 'Danh mục đang có sản phẩm không thể xóa');
     }
+
 }

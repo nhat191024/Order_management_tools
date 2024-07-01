@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\KitchenController;
 use App\Http\Controllers\MethodController;
+use App\Http\Controllers\TableController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,6 +50,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/edit', [BranchController::class, 'editBranch'])->name('admin.branch.edit');
         Route::get('/edit/{id}', [BranchController::class, 'showEditBranch'])->name('admin.branch.show_edit');
         Route::get('/delete/{id}', [BranchController::class, 'deleteBranch'])->name('admin.branch.delete');
+        Route::post('/table', [BranchController::class, 'showTable'])->name('admin.branch.show_table');
     });
 
     Route::prefix('/food')->group(function () {
@@ -60,6 +62,15 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id}', [FoodController::class, 'deleteFood'])->name('admin.food.delete');
     });
 
+    Route::prefix('/table')->group(function () {
+        Route::get('/', [TableController::class, 'index'])->name('admin.table.index');
+        Route::get('/add', [TableController::class, 'showAddTable'])->name('admin.table.show_add');
+        Route::post('/add', [TableController::class, 'addTable'])->name('admin.table.add');
+        Route::post('/edit', [TableController::class, 'editTable'])->name('admin.table.edit');
+        Route::get('/edit/{id}', [TableController::class, 'showEditTable'])->name('admin.table.show_edit');
+        Route::get('/delete/{id}', [TableController::class, 'deleteTable'])->name('admin.table.delete');
+    });
+
     Route::prefix('/kitchen')->group(function () {
         Route::get('/', [KitchenController::class, 'index'])->name('admin.kitchen.index');
         Route::get('/add', [KitchenController::class, 'showAddKitchen'])->name('admin.kitchen.show_add');
@@ -67,6 +78,8 @@ Route::prefix('admin')->group(function () {
         Route::post('/edit', [KitchenController::class, 'editKitchen'])->name('admin.kitchen.edit');
         Route::get('/edit/{id}', [KitchenController::class, 'showEditKitchen'])->name('admin.kitchen.show_edit');
         Route::get('/delete/{id}', [KitchenController::class, 'deleteKitchen'])->name('admin.kitchen.delete');
+        Route::post('/add-kitchen-method', [KitchenController::class, 'addKitchenMethod'])->name('admin.kitchen.add_kitchen_method');
+        Route::post('/get-kitchen-method', [KitchenController::class, 'getKitchenMethod'])->name('admin.kitchen.get_kitchen_method');
     });
 
 

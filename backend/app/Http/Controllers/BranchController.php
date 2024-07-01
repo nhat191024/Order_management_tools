@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Service\admin\BranchService;
+use App\Service\admin\TableService;
 use Illuminate\Http\Request;
 
 class BranchController extends Controller
 {
     private $branchService;
+    private $tableService;
     //
-    public function __construct(BranchService $branchService) {
+    public function __construct(BranchService $branchService, TableService $tableService) {
         $this->branchService = $branchService;
+        $this->tableService = $tableService;
     }
 
     public function index() {
@@ -53,4 +56,16 @@ class BranchController extends Controller
         }
         return redirect(route('admin.branch.index'))->with('error', 'Chi nhánh đang có bàn, quản lý, bếp, không thể xóa !!!');
     }   
+
+    
+    public function showTable(Request $request) {
+        $request->validate([
+            'branch_id' => 'required',
+        ]);
+        $id = $request->branch_id;
+        $tableArray = $this->tableService->getNameTableByIdBranch($id);
+        return response()->json([
+            'data' => $tableArray,
+        ]);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\Order;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryCollection;
 use App\Service\CustomerService;
@@ -20,6 +21,9 @@ class CustomerController extends Controller
     function orderConfirm(OrderConfirmRequest $request){
         $service = new CustomerService();
         $bill = $service->getOrderConfirm($request);
+
+        event(new Order());
+
         return $bill;
     }
 }

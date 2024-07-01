@@ -40,91 +40,18 @@
 <script setup>
 import { ref } from "vue";
 
+window.Echo.channel('orders')
+    .listen('Order', (e) => {
+        console.log(e);
+    });
+
 const items = ref([
   {
     title: "Ốc sên xào",
     description: "Không nướng",
     table: "Bàn 1",
     visible: true,
-  },
-  {
-    title: "Ốc bươu xào",
-    description: "Không nướng",
-    table: "Bàn 2",
-    visible: true,
-  },
-  {
-    title: "Ốc sên xào",
-    description: "Không nướng",
-    table: "Bàn 3",
-    visible: true,
-  },
-  {
-    title: "Ốc sên xào",
-    description: "Không nướng",
-    table: "Bàn 1",
-    visible: true,
-  },
-  {
-    title: "Ốc bươu xào",
-    description: "Không nướng",
-    table: "Bàn 2",
-    visible: true,
-  },
-  {
-    title: "Ốc sên xào",
-    description: "Không nướng",
-    table: "Bàn 3",
-    visible: true,
-  },
-  {
-    title: "Ốc sên xào",
-    description: "Không nướng",
-    table: "Bàn 1",
-    visible: true,
-  },
-  {
-    title: "Ốc bươu xào",
-    description: "Không nướng",
-    table: "Bàn 2",
-    visible: true,
-  },
-  {
-    title: "Ốc sên xào",
-    description: "Không nướng",
-    table: "Bàn 3",
-    visible: true,
-  },
-  {
-    title: "Ốc sên xào",
-    description: "Không nướng",
-    table: "Bàn 1",
-    visible: true,
-  },
-  {
-    title: "Ốc bươu xào",
-    description: "Không nướng",
-    table: "Bàn 2",
-    visible: true,
-  },
-  {
-    title: "Ốc sên xào",
-    description: "Không nướng",
-    table: "Bàn 3",
-    visible: true,
-  },
-  {
-    title: "Ốc sên xào",
-    description: "Không nướng",
-    table: "Bàn 1",
-    visible: true,
-  },
-  {
-    title: "Ốc bươu xào",
-    description: "Không nướng",
-    table: "Bàn 2",
-    visible: true,
-  },
+  }
 ]);
 
 const removeItem = (index) => {

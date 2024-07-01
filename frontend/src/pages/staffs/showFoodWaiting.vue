@@ -41,7 +41,7 @@
 import { ref } from "vue";
 
 window.Echo.channel('orders')
-    .listen('Order', (e) => {
+    .listen('OrderCreate', (e) => {
         console.log(e);
     });
 

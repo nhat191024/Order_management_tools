@@ -3,7 +3,7 @@ import { getCookie } from './functions';
 const token = getCookie('Token');
 
 export const api = axios.create({
-    baseURL: 'http://van191024.xyz/api/',
+    baseURL: 'https://van191024.xyz/api/',
     headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',

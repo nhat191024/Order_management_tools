@@ -14,13 +14,26 @@ class OrderCreate implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $order;
+    public $name;
+    public $note;
+    public $quantity;
+    public $table;
+
+    public $test;
     /**
      * Create a new event instance.
      */
-    public function __construct($order)
+    // public function __construct($name, $note, $quantity, $table)
+    // {
+    //     $this->name = $name;
+    //     $this->note = $note;
+    //     $this->quantity = $quantity;
+    //     $this->table = $table;
+    // }
+
+    public function __construct($test)
     {
-        $this->order = $order;
+        $this->test = $test;
     }
 
     /**

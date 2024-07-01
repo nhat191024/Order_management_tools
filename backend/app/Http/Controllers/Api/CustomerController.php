@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Events\OrderCreate;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryCollection;
 use App\Service\CustomerService;
-use Illuminate\Http\Request;
-use App\Http\Resources\BillCollection;
 use App\Http\Requests\OrderConfirmRequest;
 class CustomerController extends Controller
 {
@@ -21,8 +18,6 @@ class CustomerController extends Controller
     function orderConfirm(OrderConfirmRequest $request){
         $service = new CustomerService();
         $bill = $service->getOrderConfirm($request);
-
-        event(new OrderCreate($bill));
 
         return $bill;
     }

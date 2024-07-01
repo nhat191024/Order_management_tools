@@ -22,7 +22,7 @@ class CustomerController extends Controller
         $service = new CustomerService();
         $bill = $service->getOrderConfirm($request);
 
-        event(new OrderCreate());
+        event(new OrderCreate($bill));
 
         return $bill;
     }

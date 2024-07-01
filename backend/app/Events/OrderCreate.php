@@ -18,9 +18,9 @@ class OrderCreate implements ShouldBroadcast
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct($order)
     {
-        $this->order = 'Order created';
+        $this->order = $order;
     }
 
     /**

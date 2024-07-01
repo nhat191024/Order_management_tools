@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Events\Order;
+use App\Events\OrderCreate;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryCollection;
 use App\Service\CustomerService;
@@ -22,7 +22,7 @@ class CustomerController extends Controller
         $service = new CustomerService();
         $bill = $service->getOrderConfirm($request);
 
-        event(new Order());
+        event(new OrderCreate());
 
         return $bill;
     }

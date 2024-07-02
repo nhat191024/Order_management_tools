@@ -2,6 +2,7 @@
 
 namespace App\Service\admin;
 
+use App\Models\Bill;
 use App\Models\Branch;
 use App\Models\CookingMethod;
 
@@ -9,12 +10,12 @@ class BranchService
 {
     public function getAll()
     {
-        $branch = Branch::all()->where('status', 1);
-        return $branch;
+        $bill = Bill::orderByDesc('created_at')->get();
+        return $bill;
     }
 
     public function getById($id) {
-        return Branch::where('id', $id)->where('status', 1)->first();
+        return Bill::where('id', $id)->first();
     }
 
     public function add($branch)

@@ -3,13 +3,14 @@
 namespace App\Service\admin;
 
 use App\Models\Food;
+use App\Models\User;
 
-class FoodService
+class UserService
 {
     public function getAll()
     {
-        $food = Food::where('status', 1)->with('category')->get();
-        return $food;
+        $user = User::where('status', 1)->get();
+        return $user;
     }
 
     public function getById($id) {

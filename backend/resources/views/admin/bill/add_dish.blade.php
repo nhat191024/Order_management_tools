@@ -7,37 +7,35 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Thêm thực phẩm</h1>
+        <h1 class="h3 mb-2 text-gray-800">Thêm món ăn</h1>
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
-                    <form action="{{ route('admin.food.add') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.dish.add') }}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label for="categorySelect">Chọn danh mục</label>
-                            <select required name="category_id" class="form-control" id="categorySelect">
-                                @foreach ($allCategory as $key => $item)
+                            <label for="foodSelect">Chọn thực phẩm</label>
+                            <select required name="food_id" class="form-control selectpicker" data-live-search="true" id="foodSelect">
+                                @foreach ($allFood as $key => $item)
                                     <option {{ $key == 0 ? 'selected' : '' }} value="{{ $item['id'] }}">
                                         {{ $item['name'] }} </option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="">Tên thực phẩm</label>
-                            <input required type="text" class="form-control" id="" aria-describedby=""
-                                name="food_name" placeholder="Nhập tên thực phẩm">
+                            <label for="methodSelect">Chọn chọn phương thức nấu</label>
+                            <select required name="method_id" class="form-control selectpicker" data-live-search="true" id="methodSelect">
+                                @foreach ($allMethod as $key => $item)
+                                    <option {{ $key == 0 ? 'selected' : '' }} value="{{ $item['id'] }}">
+                                        {{ $item['name'] }} </option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="">Giá thực phẩm</label>
+                            <label for="">Giá thêm</label>
                             <input required type="number" class="form-control" id="" aria-describedby=""
-                                name="food_price" placeholder="Nhập giá sản phẩm">
-                        </div>
-                        <label for="">Ảnh thực phẩm</label>
-                        <div class="custom-file">
-                            <input required type="file" accept="image/*" class="custom-file-input" id="customFile"
-                                name="food_image">
-                            <label class="custom-file-label" for="customFile">Chọn ảnh</label>
+                                name="additional_price" placeholder="" value="0">
                         </div>
                         <button class="btn btn-success mt-4" type="submit">Thêm</button>
                     </form>

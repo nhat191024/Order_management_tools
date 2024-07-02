@@ -51,8 +51,8 @@ class TableService
 
     public function delete($idTable)
     {
-        $method = Table::find($idTable);
-        $method->is_deleted = 1;
-        $method->save();
+        $table = Table::find($idTable);
+        $table->is_deleted = 1;
+        $table->save();
     }
 }

@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BillController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DishController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\KitchenController;
 use App\Http\Controllers\MethodController;
@@ -62,8 +65,17 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id}', [FoodController::class, 'deleteFood'])->name('admin.food.delete');
     });
 
+    Route::prefix('/dish')->group(function () {
+        Route::get('/', [DishController::class, 'index'])->name('admin.dish.index');
+        Route::get('/add', [DishController::class, 'showAddDish'])->name('admin.dish.show_add');
+        Route::post('/add', [DishController::class, 'addDish'])->name('admin.dish.add');
+        Route::post('/edit', [DishController::class, 'editDish'])->name('admin.dish.edit');
+        Route::get('/edit/{id}', [DishController::class, 'showEditDish'])->name('admin.dish.show_edit');
+        Route::get('/delete/{id}', [DishController::class, 'deleteDish'])->name('admin.dish.delete');
+    });
+
     Route::prefix('/table')->group(function () {
-        Route::get('/', [TableController::class, 'index'])->name('admin.table.index');
+        Route::get('/', [TableController::class, 'index'])->name('admin.table.index'); 
         Route::get('/add', [TableController::class, 'showAddTable'])->name('admin.table.show_add');
         Route::post('/add', [TableController::class, 'addTable'])->name('admin.table.add');
         Route::post('/edit', [TableController::class, 'editTable'])->name('admin.table.edit');
@@ -81,6 +93,19 @@ Route::prefix('admin')->group(function () {
         Route::post('/add-kitchen-method', [KitchenController::class, 'addKitchenMethod'])->name('admin.kitchen.add_kitchen_method');
         Route::post('/get-kitchen-method', [KitchenController::class, 'getKitchenMethod'])->name('admin.kitchen.get_kitchen_method');
     });
-
+    
+    Route::prefix('/bill')->group(function () {
+        Route::get('/', [BillController::class, 'index'])->name('admin.bill.index'); 
+        Route::get('/{id}', [BillController::class, 'showDetail'])->name('admin.bill.show_detail');
+    });
+    
+    Route::prefix('/user')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
+        Route::get('/add', [UserController::class, 'showAddUser'])->name('admin.user.show_add');
+        Route::post('/add', [UserController::class, 'addUser'])->name('admin.user.add');
+        Route::post('/edit', [UserController::class, 'editUser'])->name('admin.user.edit');
+        Route::get('/edit/{id}', [UserController::class, 'showEditUser'])->name('admin.user.show_edit');
+        Route::get('/delete/{id}', [UserController::class, 'deleteUser'])->name('admin.user.delete');
+    });
 
 });

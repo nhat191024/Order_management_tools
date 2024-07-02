@@ -11,10 +11,8 @@ class Dish extends Model
     protected $fillable = [
         'category_id',
         'food_id',
-        'id_cooking_method',
-        'price',
+        'cooking_method_id',
         'additional_price',
-        'image',
         'note'
     ];
 

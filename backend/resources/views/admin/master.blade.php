@@ -11,7 +11,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <title>SB Admin 2 - Tables</title>
-
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
     <!-- Custom fonts for this template -->
     <link href="{{ url('') . '/' }}vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -54,13 +55,6 @@
                     <span>Dashboard</span></a>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             {{-- <li class="nav-item">
@@ -102,7 +96,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Addons
+                Chức năng
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -136,27 +130,27 @@
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('admin.category.index') }}">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-fw fa-calendar"></i>
                     <span>Danh mục</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('admin.method.index') }}">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-fw fa-cookie"></i>
                     <span>Cách thức nấu</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('admin.branch.index') }}">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-fw fa-warehouse"></i>
                     <span>Chi nhánh</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('admin.food.index') }}">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-fw fa-carrot"></i>
                     <span>Thực phẩm</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('admin.kitchen.index') }}">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-fw fa-dumpster-fire"></i>
                     <span>Bếp</span></a>
             </li>
             <li class="nav-item active">
@@ -165,14 +159,19 @@
                     <span>Bàn</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('admin.table.index') }}">
-                    <i class="fas fa-fw fa-table"></i>
+                <a class="nav-link" href="{{ route('admin.dish.index') }}">
+                    <i class="fas fa-fw fa-cloud-meatball"></i>
                     <span>Món ăn</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('admin.table.index') }}">
-                    <i class="fas fa-fw fa-table"></i>
+                <a class="nav-link" href="{{ route('admin.bill.index') }}">
+                    <i class="fas fa-fw fa-money-bill"></i>
                     <span>Hóa đơn</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('admin.user.index') }}">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Quản lý tài khoản</span></a>
             </li>
 
             <!-- Divider -->
@@ -455,7 +454,14 @@
 
             <!-- Page level custom scripts -->
             <script src="{{ url('') . '/' }}js/demo/datatables-demo.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 
 </body>
 
 </html>
+
+<script>
+    $(function() {
+        $('.selectpicker').selectpicker();
+    });
+</script>

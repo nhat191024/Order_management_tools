@@ -21,7 +21,7 @@
                         </div>
                         <div class="form-group">
                             <label for="categorySelect">Chọn chi nhánh</label>
-                            <select name="branch_id" class="form-control" id="categorySelect">
+                            <select required name="branch_id" class="form-control" id="categorySelect">
                                 @foreach($allBranch as $key => $item)
                                     <option {{ $key == 0 ? 'selected' : '' }} value="{{ $item['id'] }}"> {{ $item['name'] }} </option>
                                 

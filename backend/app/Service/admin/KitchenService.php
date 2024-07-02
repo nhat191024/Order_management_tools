@@ -43,9 +43,9 @@ class KitchenService
     }
 
     public function delete($idBranch) {
-        $method = Kitchen::find($idBranch);
-        $method->status = 0;
-        $method->save();
+        $kitchen = Kitchen::find($idBranch);
+        $kitchen->status = 0;
+        $kitchen->save();
     }
 
     public function getKitchenCookingMethodById($idKitchen) {

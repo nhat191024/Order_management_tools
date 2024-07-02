@@ -18,22 +18,17 @@ class OrderCreate implements ShouldBroadcast
     public $note;
     public $quantity;
     public $table;
-
-    public $test;
+    public $kitchen;
     /**
      * Create a new event instance.
      */
-    // public function __construct($name, $note, $quantity, $table)
-    // {
-    //     $this->name = $name;
-    //     $this->note = $note;
-    //     $this->quantity = $quantity;
-    //     $this->table = $table;
-    // }
-
-    public function __construct($test)
+    public function __construct($name, $note, $quantity, $table, $kitchen)
     {
-        $this->test = $test;
+        $this->name = $name;
+        $this->note = $note;
+        $this->quantity = $quantity;
+        $this->table = $table;
+        $this->kitchen = $kitchen;
     }
 
     /**

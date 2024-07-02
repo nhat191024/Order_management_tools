@@ -7,10 +7,20 @@ use App\Models\Category;
 use App\Models\Bill;
 use App\Models\BillDetail;
 
+use App\Service\KitchenService;
+
 use App\Events\OrderCreate;
+use App\Models\Kitchen;
 
 class CustomerService
 {
+    private $kitchenService;
+
+    public function __construct()
+    {
+        $this->kitchenService = new KitchenService();
+    }
+
     public function getMenu()
     {
         $menu = Category::where('id', ">", "0");
@@ -21,34 +31,19 @@ class CustomerService
     {
         $table = Table::where('id', $request->table_id)->first();
         // create variable
-        $updatedEntities = 0;
         $createdEntities = 0;
-        if ($table->status == 1) { // If table not empty => update  current bill
+        if ($table->status == 1) { // If table not empty => update current bill
             $bill = $table->bill;
-            $billDetails = $bill->billDetail;
-            $dishes = collect($request->dishes)->keyBy('dish_id');
-            event(new OrderCreate($billDetails));
-            foreach ($billDetails as $billDetail) {
-                // Update current dish
-                if ($dishes->has($billDetail->dish_id)) {
-                    $billDetail->quantity += $dishes[$billDetail->dish_id]['quantity'];
-                    $billDetail->save();
-                    $dishes->forget($billDetail->dish_id);
-                    $updatedEntities++;
-                }
-            }
-            // Create new dish if dish in the bill is not exist
-            if (isset($dishes)) {
-                foreach ($dishes as $dish) {
-                    $billDetail::create([
-                        'bill_id' => $bill->id,
-                        'dish_id' => $dish['dish_id'],
-                        'quantity' => $dish['quantity'],
-                        'price' => 0,
-                        'note' => $dish['note'],
-                    ]);
-                    $createdEntities++;
-                }
+            foreach ($request->dishes as $dish) {
+                BillDetail::create([
+                    'bill_id' => $bill->id,
+                    'dish_id' => $dish['dish_id'],
+                    'quantity' => $dish['quantity'],
+                    'price' => 0,
+                    'note' => $dish['note'],
+                ]);
+                $this->kitchenService->sendNewOrder($dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
+                $createdEntities++;
             }
         } else { // if table is empty => create new bill
             $table->status = 1;
@@ -69,7 +64,6 @@ class CustomerService
             }
         }
         return [
-            'updated' => $updatedEntities,
             'created' => $createdEntities,
         ];
     }

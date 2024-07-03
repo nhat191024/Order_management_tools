@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Events\OrderCreate;
+use App\Models\Bill;
 use App\Models\Dish;
 use App\Models\Kitchen;
 
@@ -30,6 +31,12 @@ class KitchenService
         $kitchenId = $kitchen[0]['id'];
 
         event(new OrderCreate($dishName, $note, $quantity, $table, $kitchenId));
+    }
+
+    public function getCurrentOrders($kitchenId, $branchId){
+        Bill::where('branch_id', $branchId)
+        ->with('billDetail')
+        ;
     }
 }
 

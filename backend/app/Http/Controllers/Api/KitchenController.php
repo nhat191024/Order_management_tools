@@ -7,14 +7,18 @@ use App\Models\Branch;
 use App\Models\Kitchen;
 use App\Http\Controllers\Controller;
 
+use App\Service\KitchenService;
+
 class KitchenController extends Controller
 {
-    /**
-     * Display a listing of the kitchens for a specific branch.
-     *
-     * @param  int  $branchId
-     * @return \Illuminate\Http\Response
-     */
+
+    private $service;
+
+    public function __construct()
+    {
+        $this->service = new KitchenService();
+    }
+
     public function getKitchensByBranch($branchId)
     {
 
@@ -22,6 +26,15 @@ class KitchenController extends Controller
 
         return response()->json([
             'kitchens' => $kitchens,
+        ]);
+    }
+
+    public function getKitchenOrders($kitchenId, $branchId)
+    {
+        $orders = $this->service->getCurrentOrders($kitchenId, $branchId);
+
+        return  response()->json([
+            'orders' => $orders,
         ]);
     }
 }

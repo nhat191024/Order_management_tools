@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kitchen_cooking_method extends Model
+class KitchenCookingMethod extends Model
 {
     protected $table = 'kitchen_cooking_method';
 

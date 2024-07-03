@@ -39,7 +39,7 @@ class OrderCreate implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('orders'),
+            new Channel('orders'.$this->kitchen),
         ];
     }
 }

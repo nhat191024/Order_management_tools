@@ -23,8 +23,7 @@ class CustomerService
 
     public function getMenu()
     {
-        $menu = Category::where('id', ">", "0");
-        $menu = $menu->with('food', 'food.dish', 'food.dish.cookingMethod')->get();
+        $menu = Category::with('food.dish.cookingMethod')->get();
         return $menu;
     }
     public function getOrderConfirm($request)
@@ -42,7 +41,8 @@ class CustomerService
                     'price' => 0,
                     'note' => $dish['note'],
                 ]);
-                $this->kitchenService->sendNewOrder($dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
+
+                $this->kitchenService->sendNewOrder($request->branch_id, $dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
                 $createdEntities++;
             }
         } else { // if table is empty => create new bill
@@ -60,6 +60,7 @@ class CustomerService
                     'price' => 0,
                     'note' => $dish['note'],
                 ]);
+                $this->kitchenService->sendNewOrder($request->branch_id, $dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
                 $createdEntities++;
             }
         }

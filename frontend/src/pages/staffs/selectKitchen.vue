@@ -12,7 +12,7 @@
       <p>Chọn Bếp</p>
     </div>
     <div class="row-span-7 col-span-full place-items-center overflow-auto grid grid-cols-3 grid-rows-10">
-      <a v-for="kitchen in kitchens" :key="kitchen.id" :href="'/staffs/kitchen/' + kitchen.id"
+      <a v-for="kitchen in kitchens" :key="kitchen.id" :href="'/staff/kitchen/' + kitchen.id"
         class="w-64 h-40 row-span-4 rounded-xl flex flex-col items-center justify-between drop-shadow-sm bg-primary p-2">
         <img src="../../assets/demo.jpg" alt="demo" class="w-full h-4/5 rounded-xl" />
         <span class="text-white font-extrabold text-lg text-center">

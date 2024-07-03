@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->string('price');
             $table->string('note')->nullable();
-            $table->tinyIncrements('status')->default(0);
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
 
             $table->foreign('bill_id')->references('id')->on('bills');

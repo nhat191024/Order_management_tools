@@ -93,6 +93,7 @@ class DatabaseSeeder extends Seeder
         foreach ($dataArray['bills'] as $row) {
             Bill::create([
                 "table_id" => $row['table_id'],
+                "branch_id" => $row['branch_id'],
                 "user_id" => $row['user_id'],
                 "time_in" => $row['time_in']
             ]);

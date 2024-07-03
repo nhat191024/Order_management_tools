@@ -1533,12 +1533,14 @@
         {
             "id": 1,
             "table_id": 1,
+            "branch_id": 1,
             "user_id": 4,
             "time_in": "2019-11-11 08:00:00"
         },
         {
             "id": 2,
             "table_id": 2,
+            "branch_id": 2,
             "user_id": 5,
             "time_in": "2019-11-11 08:00:00"
         }

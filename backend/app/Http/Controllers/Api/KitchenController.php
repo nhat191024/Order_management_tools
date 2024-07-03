@@ -29,9 +29,9 @@ class KitchenController extends Controller
         ]);
     }
 
-    public function getKitchenOrders($kitchenId, $branchId)
+    public function getKitchenOrders(Request $request)
     {
-        $orders = $this->service->getCurrentOrders($kitchenId, $branchId);
+        $orders = $this->service->getCurrentOrders($request->kitchenId, $request->branchId);
 
         return  response()->json([
             'orders' => $orders,

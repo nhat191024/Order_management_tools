@@ -26,11 +26,12 @@ Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:sanc
 Route::group(['prefix' => 'staff', 'namespace' => 'App\Http\Controllers\Api'], function () {
     Route::get('/menu', [TableDetailManagerController::class, 'menu']);
     Route::get('/bill', [TableDetailManagerController::class, 'bill']);
-    Route::get('/kitchensSelect/{branch_id}', [KitchenController::class, 'getKitchensByBranch']);
+    Route::get('/kitchen/{branch_id}', [KitchenController::class, 'getKitchensByBranch']);
+    Route::get('/kitchen/{kitchen_id}/{branch_id}', [KitchenController::class, 'getKitchenOrders']);
     Route::get('/currentOrder/{table_id}', [TableDetailManagerController::class, 'currentOrder']);
     Route::post('/order', [TableDetailManagerController::class, 'order']);
     Route::get('/checkout/{id}',[CheckoutController::class,'show']);
-    Route::get('/tableList/{user_id}',[StaffTableListController::class,'tableList']);
+    Route::get('/table/{user_id}',[StaffTableListController::class,'tableList']);
 });
 
 Route::get('/menu', [CustomerController::class, 'menu']);

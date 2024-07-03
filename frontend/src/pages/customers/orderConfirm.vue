@@ -45,7 +45,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { formatPrice } from "../../api/functions";
+import { formatPrice, getCookie } from "../../api/functions";
 import { addOrderItems } from "../../api/customer";
 import { useOrderStore } from "../../stores/order";
 
@@ -53,6 +53,8 @@ const orderStore = useOrderStore();
 const route = useRoute();
 const router = useRouter();
 const id = route.params.id;
+
+const branch_id = getCookie('Branch_id');
 
 const tableDish = orderStore.dishes;
 
@@ -76,7 +78,7 @@ async function addOrders() {
     });
   });
 
-  const result = await addOrderItems(table_id, ...dishes);
+  const result = await addOrderItems(table_id, branch_id, ...dishes);
   tableDish.value = [];
   if (result.status === 200) {
     orderStore.clearDishes();

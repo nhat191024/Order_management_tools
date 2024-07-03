@@ -25,8 +25,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { RouterLink } from "vue-router";
-import { getKitchenData } from "../../api/kitchensSelect";
+import { getKitchenData } from "../../api/kitchen";
 import { getCookie } from "../../api/functions";
 const kitchens = ref([]);
 const branchId = getCookie("Branch_id");

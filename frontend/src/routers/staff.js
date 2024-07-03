@@ -26,7 +26,7 @@ const staff = [
       {
         path: "/staff/kitchen/:id",
         name: "waiting food",
-        component: () => import("../pages/staffs/showFoodWaiting.vue"),
+        component: () => import("../pages/staffs/foodQueue.vue"),
       },
       {
         path: "/staff/checkout/:id",

@@ -39,8 +39,11 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRoute } from "vue-router";
 
-window.Echo.channel('orders')
+const id = useRoute().params.id;
+
+window.Echo.channel('orders'+id)
     .listen('OrderCreate', (e) => {
         console.log(e);
     });

@@ -14,5 +14,10 @@ export async function addOrderItems(table_id, branch_id, ...dishes) {
   }).then((res) => {
     return res;
   });
+}
 
-} 
+export async function getBranches(tableId) {
+  return await api.get(`/tableBranch/${tableId}`).then((res) => {
+    return res;
+  });
+}

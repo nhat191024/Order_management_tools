@@ -210,6 +210,10 @@ const billTemp = ref([]);
 const dishDetail = ref({});
 const menu = ref({});
 
+if(orderStore.dishes) {
+    billTemp.value = [...orderStore.dishes];
+}
+
 onMounted(async () => {
     getMenuData().then((res) => {
         menu.value = res;
@@ -339,12 +343,16 @@ function showCart() {
 }
 
 function confirmOrder() {
+    orderStore.clearDishes();
     billTemp.value.forEach((item) => {
         orderStore.addDish({
-            dishName: item.dishName,
+            foodId: item.foodId,
             dishId: item.dishId,
+            dishName: item.dishName,
             quantity: item.quantity,
             price: item.price,
+            cookingMethod: item.cookingMethod,
+            cookingMethodId: item.cookingMethodId,
             note: item.note,
         });
     });

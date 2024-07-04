@@ -8,8 +8,8 @@ export async function getKitchenData(branch_id) {
 
 export async function getKitchenCurrentOrder(branch_id, kitchen_id) {
   return await api.post(`staff/kitchen/order`, {
-    branchId: 1,
-    kitchenId: 1
+    branchId: branch_id,
+    kitchenId: kitchen_id
   }).then((res) => {
     return res;
   });

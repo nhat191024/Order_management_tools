@@ -17,7 +17,7 @@ class CookingMethodResource extends JsonResource
         return [
             "Cooking_method_id" => $this->id,
             "Cooking_method_name" => $this->name,
-            "Cooking_method_note" => $this->note,
+            "Cooking_method_kitchen" => new KitchenCookingMethodCollection($this->whenLoaded('kitchen')),
         ];
     }
 }

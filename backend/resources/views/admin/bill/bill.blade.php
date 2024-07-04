@@ -60,7 +60,7 @@
                                         <td>{{ $item->user->username }}</td>
                                         <td>{{ $item->time_in }}</td>
                                         <td>{{ $item->time_out }}</td>
-                                        <td>{{ $item->pay_status == 0 ? 'Tiền mặt' : 'Chuyển khoản' }}</td>
+                                        <td>{{ $item->pay_status == 0 ? 'Chưa thanh toán' : 'Đã thanh toán' }}</td>
                                         <td>{{ $item->total }}</td>
                                         <td class="text-center"><a class="btn btn-warning"
                                                 href="{{ route('admin.bill.show_detail', ['id' => $item->id]) }}">Chi tiết</a>

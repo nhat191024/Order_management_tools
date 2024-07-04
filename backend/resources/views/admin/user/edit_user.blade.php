@@ -7,37 +7,35 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Sửa thực phẩm</h1>
+        <h1 class="h3 mb-2 text-gray-800">Sửa tài khoản</h1>
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
-                    <form action="{{ route('admin.food.edit') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.user.edit') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="categorySelect">Chọn danh mục</label>
-                            <select required name="category_id" class="form-control" id="categorySelect">
-                                @foreach($allCategory as $key => $item)
-                                    <option {{ $item['id'] == $foodInfo['category_id'] ? 'selected' : '' }} value="{{ $item['id'] }}"> {{ $item['name'] }} </option>
-                                
+                            <label for="branchSelect">Chọn chi nhánh</label>
+                            <select required name="branch_id" class="form-control" id="branchSelect">
+                                @foreach ($allBranch as $key => $item)
+                                    <option {{ $item['id'] == $userInfo['branch_id'] ? 'selected' : '' }} value="{{ $item['id'] }}">
+                                        {{ $item['name'] }} </option>
                                 @endforeach
                             </select>
-                          </div>
+                        </div>
                         <div class="form-group">
-                            <label for="">Tên thực phẩm</label>
+                            <label for="">Tên tài khoản</label>
                             <input required type="text" class="form-control" id="" aria-describedby=""
-                                name="food_name" placeholder="Nhập tên thực phẩm" value="{{ $foodInfo['name'] }}">
-                        </div>
+                                name="username" placeholder="Nhập tên tài khoản" disabled value="{{$userInfo['username']}}">
+                        </div>  
                         <div class="form-group">
-                            <label for="">Giá thực phẩm</label>
-                            <input required type="number" class="form-control" id="" aria-describedby=""
-                                name="food_price" placeholder="Nhập giá sản phẩm" value="{{ $foodInfo['price'] }}">
-                        </div>
-                        <label for="">Ảnh thực phẩm</label>
-                        <div class="custom-file">
-                            <input type="file" accept="image/*" class="custom-file-input" id="customFile"
-                                name="food_image">
-                            <label class="custom-file-label" for="customFile">Chọn ảnh</label>
+                            <label for="roleSelect">Chọn quyền</label>
+                            <select required name="role_id" class="form-control" id="roleSelect">
+                                @foreach ($allRole as $key => $item)
+                                    <option {{ $item['id'] == $userInfo['role'] ? 'selected' : '' }}
+                                        value="{{ $item['id'] }}"> {{ $item['name'] }} </option>
+                                @endforeach
+                            </select>
                         </div>
                         <input type="hidden" name="id" value="{{ $id }}">
                         <button class="btn btn-success mt-4" type="submit">Sửa</button>

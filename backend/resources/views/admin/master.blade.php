@@ -1,3 +1,5 @@
+@php
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +12,7 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    <title>SB Admin 2 - Tables</title>
+    <title>Quản trị</title>
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
     <!-- Custom fonts for this template -->
@@ -38,19 +40,19 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="{{ url('') . '/' }}index.html">
+                href="{{ route('admin.index') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Thương ốc</div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('') . '/' }}index.html">
+            <li class="nav-item @if (Request::url() == route('admin.index')) {{ 'active' }} @endif">
+                <a class="nav-link" href="{{route('admin.index')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -128,47 +130,47 @@
             </li> --}}
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
+            <li class="nav-item @if (Request::url() == route('admin.category.index')) {{ 'active' }} @endif">
                 <a class="nav-link" href="{{ route('admin.category.index') }}">
                     <i class="fas fa-fw fa-calendar"></i>
                     <span>Danh mục</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item @if (Request::url() == route('admin.method.index')) {{ 'active' }} @endif">
                 <a class="nav-link" href="{{ route('admin.method.index') }}">
                     <i class="fas fa-fw fa-cookie"></i>
                     <span>Cách thức nấu</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item @if (Request::url() == route('admin.branch.index')) {{ 'active' }} @endif">
                 <a class="nav-link" href="{{ route('admin.branch.index') }}">
                     <i class="fas fa-fw fa-warehouse"></i>
                     <span>Chi nhánh</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item @if (Request::url() == route('admin.food.index')) {{ 'active' }} @endif">
                 <a class="nav-link" href="{{ route('admin.food.index') }}">
                     <i class="fas fa-fw fa-carrot"></i>
                     <span>Thực phẩm</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item @if (Request::url() == route('admin.kitchen.index')) {{ 'active' }} @endif">
                 <a class="nav-link" href="{{ route('admin.kitchen.index') }}">
                     <i class="fas fa-fw fa-dumpster-fire"></i>
                     <span>Bếp</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item @if (Request::url() == route('admin.table.index')) {{ 'active' }} @endif">
                 <a class="nav-link" href="{{ route('admin.table.index') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Bàn</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item @if (Request::url() == route('admin.dish.index')) {{ 'active' }} @endif">
                 <a class="nav-link" href="{{ route('admin.dish.index') }}">
                     <i class="fas fa-fw fa-cloud-meatball"></i>
                     <span>Món ăn</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item @if (Request::url() == route('admin.bill.index')) {{ 'active' }} @endif">
                 <a class="nav-link" href="{{ route('admin.bill.index') }}">
                     <i class="fas fa-fw fa-money-bill"></i>
                     <span>Hóa đơn</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item @if (Request::url() == route('admin.user.index')) {{ 'active' }} @endif">
                 <a class="nav-link" href="{{ route('admin.user.index') }}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Quản lý tài khoản</span></a>
@@ -432,7 +434,7 @@
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-primary" href="{{ url('') . '/' }}login.html">Logout</a>
+                            <a class="btn btn-primary" href="#">Logout</a>
                         </div>
                     </div>
                 </div>

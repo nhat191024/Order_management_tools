@@ -10,7 +10,7 @@ class BillService
 {
     public function getAll()
     {
-        $bill = Bill::all()->where('status', 1);
+        $bill = Bill::all() ;
         return $bill;
     }
 

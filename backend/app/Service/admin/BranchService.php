@@ -10,12 +10,12 @@ class BranchService
 {
     public function getAll()
     {
-        $bill = Bill::orderByDesc('created_at')->get();
-        return $bill;
+        $branch = Branch::all()->where('status', 1);
+        return $branch;
     }
 
     public function getById($id) {
-        return Bill::where('id', $id)->first();
+        return Branch::where('id', $id)->where('status', 1)->first();
     }
 
     public function add($branch)

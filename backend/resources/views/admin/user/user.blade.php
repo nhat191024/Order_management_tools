@@ -52,11 +52,22 @@
                                     <tr>
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $item->username }}</td>
-                                        <td>{{ $item['role'] == 1 ? 'admin' : ($item['role'] == 2 ? 'Nhân viên' : 'Bếp') }}</td>
+                                        <td>{{ $item['role'] == 1 ? 'admin' : ($item['role'] == 2 ? 'Nhân viên' : 'Bếp') }}
+                                        </td>
                                         <td>{{ $item->branch->name }}</td>
-                                        <td class="text-center"><a class="btn btn-warning" href="{{route('admin.user.show_edit', ['id' => $item->id])}}">Sửa</a> <a
-                                                class="btn btn-danger" href="{{route('admin.user.delete', ['id' => $item->id])}}"
-                                                onclick="confirm('Bạn chắc chắn chứ?')"> Xóa </a></td>
+                                        <td class="text-center">
+                                            <a class="btn btn-warning"
+                                                href="{{ route('admin.user.show_edit', ['id' => $item->id]) }}">Sửa
+                                            </a>
+                                            {{-- <a class="btn btn-danger"
+                                                href="{{ route('admin.user.delete', ['id' => $item->id]) }}"
+                                                onclick="confirm('Bạn chắc chắn chứ?')"> Xóa
+                                            </a> --}}
+                                            <a class="btn btn-danger"
+                                                href="{{ route('admin.user.reset', ['id' => $item->id]) }}"
+                                                onclick="confirm('Bạn chắc chắn chứ?')"> Reset (123)
+                                            </a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

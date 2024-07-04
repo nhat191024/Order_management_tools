@@ -6,7 +6,7 @@ use App\Service\admin\BillService;
 use App\Service\admin\TableService;
 use Illuminate\Http\Request;
 
-class BillController extends Controller
+class DashboardController extends Controller
 {
     private $billService;
     private $billDetailService;
@@ -17,8 +17,11 @@ class BillController extends Controller
     }
 
     public function index() {
-        $allBill = $this->billService->getAll();
-        return view('admin.bill.bill', compact('allBill'));
+        $billDay = $this->billService->getRevenueByDay();
+        $billWeek = $this->billService->getRevenueByWeek(); 
+        $billMonth = $this->billService->getRevenueByMonth();
+        $billYears = $this->billService->getRevenueByYears();
+        return view('admin.dashboard', compact('billDay', 'billWeek', 'billMonth', 'billYears'));
     }
 
     public function showDetail(Request $request) {

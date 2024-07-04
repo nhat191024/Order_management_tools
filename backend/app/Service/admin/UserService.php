@@ -4,6 +4,7 @@ namespace App\Service\admin;
 
 use App\Models\Food;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
@@ -14,38 +15,41 @@ class UserService
     }
 
     public function getById($id) {
-        return Food::where('id', $id)->where('status', 1)->first();
+        return User::where('id', $id)->where('status', 1)->first();
     }
 
-    public function add($categoryId, $foodName, $foodPrice, $foodImage)
+    public function add($branchId, $username, $password, $roleId)
     {
-        Food::create([
-            'category_id' => $categoryId,
-            'name' => $foodName,
-            'price' => $foodPrice,
-            'image' => $foodImage
+        User::create([
+            'branch_id' => $branchId,
+            'username' => $username,
+            'password' => Hash::make($password),
+            'role' => $roleId
         ]);
     }
 
-    public function edit($id, $categoryId, $foodName, $foodPrice, $foodImage)
+    public function edit($id, $branchId, $roleId)
     {
-        $food = Food::where('id', $id)->first();
-        $food->category_id = $categoryId;
-        $food->name = $foodName;
-        $food->price = $foodPrice;
-        if ($foodImage != null) {
-            $food->image = $foodImage;
-        }
-        $food->save();
+        $user = User::where('id', $id)->first();
+        $user->branch_id = $branchId;
+        $user->role = $roleId;
+        $user->save();
     }
 
-    public function checkHasChildren($idFood) {
-        return Food::find($idFood)->dish()->get()->count() > 0;
+    public function resetUser($id)
+    {
+        $user = User::where('id', $id)->first();
+        $user->password = Hash::make(123);
+        $user->save();
     }
 
-    public function delete($idFood) {
-        $food = Food::find($idFood);
-        $food->status = 0;
-        $food->save();
-    }
+    // public function checkHasChildren($idFood) {
+    //     return User::find($idFood)->dish()->get()->count() > 0;
+    // }
+
+    // public function delete($idFood) {
+    //     $food = User::find($idFood);
+    //     $food->status = 0;
+    //     $food->save();
+    // }
 }

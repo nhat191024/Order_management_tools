@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DishController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\KitchenController;
@@ -25,9 +26,11 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::get('/', [CategoryController::class, 'index']);
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', [CategoryController::class, 'index'])->name('admin.index');
+    Route::get('/', [DashboardController::class, 'index'])->name('admin.index');
+
     Route::prefix('/category')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('admin.category.index');
         Route::get('/add', [CategoryController::class, 'showAddCategory'])->name('admin.category.show_add');
@@ -106,6 +109,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/edit', [UserController::class, 'editUser'])->name('admin.user.edit');
         Route::get('/edit/{id}', [UserController::class, 'showEditUser'])->name('admin.user.show_edit');
         Route::get('/delete/{id}', [UserController::class, 'deleteUser'])->name('admin.user.delete');
+        Route::get('/reset/{id}', [UserController::class, 'resetUser'])->name('admin.user.reset');
     });
 
 });

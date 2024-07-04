@@ -58,7 +58,7 @@ class KitchenService
                 $cookingMethodId = $billDetail->dish->cooking_method_id;
                 if (in_array($cookingMethodId, $kitchenCookingMethods->pluck('cooking_method_id')->toArray())) {
                     $orders[] = [
-                        'dish_name' => $billDetail->dish->food->name . ' ' . $billDetail->dish->cookingMethod->name,
+                        'name' => $billDetail->dish->food->name . ' ' . $billDetail->dish->cookingMethod->name,
                         'quantity' => $billDetail->quantity,
                         'note' => $billDetail->note,
                         'table' => $dish->table_id,

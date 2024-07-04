@@ -43,7 +43,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { formatPrice, getCookie } from "../../api/functions";
 import { addOrderItems } from "../../api/customer";
@@ -74,6 +73,7 @@ async function addOrders() {
     dishes.push({
       dish_id: dish.dishId,
       quantity: dish.quantity,
+      branch_id: branch_id,
       note: dish.note,
     });
   });

@@ -38,12 +38,21 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import { getKitchenCurrentOrder } from "../../api/kitchen";
+import { getCookie } from "../../api/functions";
 
 const id = useRoute().params.id;
+const branchId = getCookie("Branch_id");
 
 const items = ref([]);
+
+onMounted(() => {
+  getKitchenCurrentOrder(branchId, id).then((res) => {
+    items.value.push(...res.data);
+  });
+});
 
 window.Echo.channel('orders' + id)
   .listen('OrderCreate', (e) => {

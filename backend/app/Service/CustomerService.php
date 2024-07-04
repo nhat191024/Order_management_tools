@@ -30,7 +30,7 @@ class CustomerService
     public function getTableBranch($tableId){
         $table = Table::where('id', $tableId)->first();
         $branch = $table->branch;
-        return $branch;
+        return $branch->id;
     }
 
     public function getOrderConfirm($request)

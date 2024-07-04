@@ -36,3 +36,4 @@ Route::group(['prefix' => 'staff', 'namespace' => 'App\Http\Controllers\Api'], f
 
 Route::get('/menu', [CustomerController::class, 'menu']);
 Route::post('/orderConfirm',[CustomerController::class, 'orderConfirm']);
+Route::get('/tableBranch/{tableId}',[CustomerController::class, 'tableBranch']);

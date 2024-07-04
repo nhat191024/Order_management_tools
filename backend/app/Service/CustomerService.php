@@ -26,6 +26,13 @@ class CustomerService
         $menu = Category::with('food.dish.cookingMethod')->get();
         return $menu;
     }
+
+    public function getTableBranch($tableId){
+        $table = Table::where('id', $tableId)->first();
+        $branch = $table->branch;
+        return $branch;
+    }
+
     public function getOrderConfirm($request)
     {
         $table = Table::where('id', $request->table_id)->first();

@@ -15,6 +15,14 @@ class CustomerController extends Controller
 
         return new CategoryCollection($menu);
     }
+
+    function tableBranch($tableId){
+        $service = new CustomerService();
+        $branch = $service->getTableBranch($tableId);
+
+        return $branch;
+    }
+
     function orderConfirm(OrderConfirmRequest $request){
         $service = new CustomerService();
         $bill = $service->getOrderConfirm($request);

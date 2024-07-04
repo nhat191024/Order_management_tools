@@ -46,7 +46,7 @@ class KitchenService
             ->first();
 
         if ($dishes->isEmpty() || !$kitchen) {
-            return response()->json(['message' => 'Hiện không có đơn được đặt'], 404);
+            return response()->json(['message' => 'Hiện không có đơn được đặt'], 200);
         }
 
         $kitchenCookingMethods = KitchenCookingMethod::where('kitchen_id', $kitchenId)->get();

@@ -1161,42 +1161,42 @@
         {
             "id": 45,
             "food_id": 45,
-            "cooking_method_id": 20,
+            "cooking_method_id": 22,
             "additional_price": 0,
             "note": ""
         },
         {
             "id": 100,
             "food_id": 46,
-            "cooking_method_id": 20,
+            "cooking_method_id": 22,
             "additional_price": 0,
             "note": ""
         },
         {
             "id": 101,
             "food_id": 47,
-            "cooking_method_id": 20,
+            "cooking_method_id": 22,
             "additional_price": 0,
             "note": ""
         },
         {
             "id": 102,
             "food_id": 48,
-            "cooking_method_id": 20,
+            "cooking_method_id": 22,
             "additional_price": 0,
             "note": ""
         },
         {
             "id": 103,
             "food_id": 49,
-            "cooking_method_id": 20,
+            "cooking_method_id": 22,
             "additional_price": 0,
             "note": ""
         },
         {
             "id": 104,
             "food_id": 50,
-            "cooking_method_id": 20,
+            "cooking_method_id": 22,
             "additional_price": 0,
             "note": ""
         }

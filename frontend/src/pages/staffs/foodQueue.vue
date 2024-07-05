@@ -69,8 +69,4 @@ async function completeOrder(id) {
     }
   });
 }
-
-const removeItem = (index) => {
-  items.value.splice(index, 1);
-};
 </script>

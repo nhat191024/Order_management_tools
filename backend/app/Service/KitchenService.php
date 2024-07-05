@@ -57,13 +57,16 @@ class KitchenService
         foreach ($dishes as $dish) {
             foreach ($dish->billDetail as $billDetail) {
                 $cookingMethodId = $billDetail->dish->cooking_method_id;
-                if (in_array($cookingMethodId, $kitchenCookingMethods->pluck('cooking_method_id')->toArray())) {
-                    $orders[] = [
-                        'name' => $billDetail->dish->food->name . ' ' . $billDetail->dish->cookingMethod->name,
-                        'quantity' => $billDetail->quantity,
-                        'note' => $billDetail->note,
-                        'table' => $dish->table_id,
-                    ];
+                if ($billDetail->status == 0) {
+                    if (in_array($cookingMethodId, $kitchenCookingMethods->pluck('cooking_method_id')->toArray())) {
+                        $orders[] = [
+                            'id' => $billDetail->id,
+                            'name' => $billDetail->dish->food->name . ' ' . $billDetail->dish->cookingMethod->name,
+                            'quantity' => $billDetail->quantity,
+                            'note' => $billDetail->note,
+                            'table' => $dish->table_id,
+                        ];
+                    }
                 }
             }
         }

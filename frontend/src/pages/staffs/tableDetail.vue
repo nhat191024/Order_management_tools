@@ -92,8 +92,7 @@
             <hr class=" w-3/4 ">
         </div>
         <div class="col-start-9 col-span-4 row-start-2 row-span-7 mt-4 px-3 font-medium text-lg overflow-auto">
-            <div v-for="(dishes, index) in tableBill.Bill_detail"
-                class="flex justify-between mb-2 border-b border-primary">
+            <div v-for="(dishes, index) in tableBill" class="flex justify-between mb-2 border-b border-primary">
                 <p class=" w-3/5">
                     <span>{{ dishes.BillDetail_Dish.Dish_food.Food_name + " " }}</span>
                     <span
@@ -180,9 +179,17 @@ onMounted(async () => {
 
 async function loadData() {
     getTableCurrentBill(id).then((res) => {
-        tableBill.value = res;
+        res.Bill_detail.forEach((dish) => {
+            const index = tableBill.value.findIndex((item) => item.BillDetail_Dish.Dish_id === dish.BillDetail_Dish.Dish_id);
+            if (index === -1) {
+                tableBill.value.push(dish);
+            } else {
+                tableBill.value[index].BillDetail_quantity += dish.BillDetail_quantity;
+                tableBill.value[index].BillDetail_price += dish.BillDetail_price;
+            }
+        });
+        dishLength.value = tableBill.value.length;
         total.value = res.Bill_total;
-        dishLength.value = res.Bill_detail.length;
     });
 }
 loadData();

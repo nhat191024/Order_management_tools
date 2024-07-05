@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Events\OrderCreate;
 use App\Models\Bill;
+use App\Models\BillDetail;
 use App\Models\Dish;
 use App\Models\Kitchen;
 use App\Models\KitchenCookingMethod;
@@ -67,5 +68,18 @@ class KitchenService
             }
         }
         return $orders;
+    }
+
+    public function changeOrderStatus($orderId)
+    {
+        $billDetail = BillDetail::find($orderId);
+        $billDetail->status = 1;
+        $billDetail->save();
+
+        if ($billDetail) {
+            return response()->json(['message' => 'success'], 200);
+        } else {
+            return response()->json(['message' => 'error'], 200);
+        }
     }
 }

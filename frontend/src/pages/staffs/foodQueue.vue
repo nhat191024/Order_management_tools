@@ -27,7 +27,7 @@
         <div class="flex items-center justify-between w-full">
           <div class="w-full my-2 border-t border-white"></div>
           <div class="flex items-center justify-center min-w-14 h-14 p-2 bg-white rounded-full"
-            @click="removeItem(index)">
+            @click="completeOrder(item.id)">
             <img src="./../../assets/check.svg" alt="Check Icon" />
           </div>
         </div>
@@ -40,7 +40,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
-import { getKitchenCurrentOrder } from "../../api/kitchen";
+import { getKitchenCurrentOrder, updateOrderStatus } from "../../api/kitchen";
 import { getCookie } from "../../api/functions";
 
 const id = useRoute().params.id;
@@ -51,6 +51,7 @@ const items = ref([]);
 onMounted(() => {
   getKitchenCurrentOrder(branchId, id).then((res) => {
     items.value.push(...res.data);
+    console.log(res.data);
   });
 });
 
@@ -59,6 +60,16 @@ window.Echo.channel('orders' + id)
     items.value.push(e);
     console.log(e);
   });
+
+async function completeOrder(id) {
+  updateOrderStatus(id).then((res) => {
+    if (res.data.message === 'success') {
+      items.value = items.value.filter(item => item.id !== id);
+    } else {
+      return;
+    }
+  });
+}
 
 const removeItem = (index) => {
   items.value.splice(index, 1);

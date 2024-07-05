@@ -11,7 +11,7 @@ use App\Models\KitchenCookingMethod;
 
 class KitchenService
 {
-    public function sendNewOrder($branchId, $dishId, $note, $quantity, $table)
+    public function sendNewOrder($billDetailId, $branchId, $dishId, $note, $quantity, $table)
     {
         $dish = Dish::find($dishId);
         $food = $dish->food;
@@ -32,7 +32,7 @@ class KitchenService
 
         $kitchenId = $kitchen[0]['id'];
 
-        event(new OrderCreate($dishName, $note, $quantity, $table, $kitchenId));
+        event(new OrderCreate($billDetailId, $dishName, $note, $quantity, $table, $kitchenId));
     }
 
     public function getCurrentOrders($kitchenId, $branchId)

@@ -41,7 +41,7 @@ class CustomerService
         if ($table->status == 1) { // If table not empty => update current bill
             $bill = $table->bill;
             foreach ($request->dishes as $dish) {
-                BillDetail::create([
+                $billDetail = BillDetail::create([
                     'bill_id' => $bill->id,
                     'dish_id' => $dish['dish_id'],
                     'quantity' => $dish['quantity'],
@@ -49,7 +49,7 @@ class CustomerService
                     'note' => $dish['note'],
                 ]);
 
-                $this->kitchenService->sendNewOrder($request->branch_id, $dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
+                $this->kitchenService->sendNewOrder($billDetail, $request->branch_id, $dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
                 $createdEntities++;
             }
         } else { // if table is empty => create new bill
@@ -60,14 +60,14 @@ class CustomerService
                 'user_id' => $request->user_id,
             ]);
             foreach ($request->dishes as $dish) {
-                BillDetail::create([
+                $billDetail = BillDetail::create([
                     'bill_id' => $bill->id,
                     'dish_id' => $dish['dish_id'],
                     'quantity' => $dish['quantity'],
                     'price' => 0,
                     'note' => $dish['note'],
                 ]);
-                $this->kitchenService->sendNewOrder($request->branch_id, $dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
+                $this->kitchenService->sendNewOrder($billDetail, $request->branch_id, $dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
                 $createdEntities++;
             }
         }

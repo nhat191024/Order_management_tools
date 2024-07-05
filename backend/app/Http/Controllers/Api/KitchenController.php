@@ -43,5 +43,14 @@ class KitchenController extends Controller
 
         return $response;
     }
+
+    public function getKitchenName($kitchenId)
+    {
+        $kitchen = Kitchen::find($kitchenId);
+
+        return response()->json([
+            'name' => $kitchen->name,
+        ]);
+    }
 }
 

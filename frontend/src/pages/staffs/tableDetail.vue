@@ -165,11 +165,6 @@ const dishLength = ref(0);
 const tableDish = ref([]);
 const menu = ref([]);
 const tableBill = ref([]);
-const orderData = ref({
-    table_id: id,
-    user_id: id,
-    order_items: [],
-});
 
 onMounted(async () => {
     getMenu(id).then((res) => {

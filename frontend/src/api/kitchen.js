@@ -11,12 +11,12 @@ export async function getKitchenCurrentOrder(branch_id, kitchen_id) {
     branchId: branch_id,
     kitchenId: kitchen_id
   }).then((res) => {
-    return res;
+    return res.data;
   });
 }
 
 export async function updateOrderStatus(order_id) {
   return await api.get(`staff/kitchen/orderComplete/${order_id}`).then((res) => {
-    return res;
+    return res.data;
   });
 }

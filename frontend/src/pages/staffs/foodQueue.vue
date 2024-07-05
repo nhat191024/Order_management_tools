@@ -50,8 +50,7 @@ const items = ref([]);
 
 onMounted(() => {
   getKitchenCurrentOrder(branchId, id).then((res) => {
-    items.value.push(...res.data);
-    console.log(res.data);
+    items.value.push(...res);
   });
 });
 
@@ -63,7 +62,7 @@ window.Echo.channel('orders' + id)
 
 async function completeOrder(id) {
   updateOrderStatus(id).then((res) => {
-    if (res.data.message === 'success') {
+    if (res.message === 'success') {
       items.value = items.value.filter(item => item.id !== id);
     } else {
       return;

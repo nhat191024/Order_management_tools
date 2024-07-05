@@ -22,15 +22,12 @@ class OrderConfirmRequest extends FormRequest
     public function rules(): array
     {
         return [
-
                 'table_id' => 'required|integer|exists:tables,id',
-                'user_id' => 'integer|exists:users,id',
                 'branch_id' => 'required|integer|exists:branches,id',
                 'dishes' => 'required|array',
                 'dishes.*.dish_id' => 'required|integer|exists:dishes,id',
                 'dishes.*.quantity' => 'required|integer|min:1',
                 'dishes.*.note' => 'nullable|string'
-
         ];
     }
 }

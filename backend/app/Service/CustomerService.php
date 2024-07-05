@@ -49,7 +49,7 @@ class CustomerService
                     'note' => $dish['note'],
                 ]);
 
-                $this->kitchenService->sendNewOrder($billDetail, $request->branch_id, $dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
+                $this->kitchenService->sendNewOrder($billDetail->id, $request->branch_id, $dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
                 $createdEntities++;
             }
         } else { // if table is empty => create new bill
@@ -67,7 +67,7 @@ class CustomerService
                     'price' => 0,
                     'note' => $dish['note'],
                 ]);
-                $this->kitchenService->sendNewOrder($billDetail, $request->branch_id, $dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
+                $this->kitchenService->sendNewOrder($billDetail->id, $request->branch_id, $dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
                 $createdEntities++;
             }
         }

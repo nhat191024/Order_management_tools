@@ -9,7 +9,6 @@ export async function loginHandle(username, password) {
             password: password
         });
         if (response.data.data.message == 'Login Success') {
-            console.log(response.data.data.id);
             document.cookie = `Username=${username}; expires=${expires.toUTCString}; path=/`;
             document.cookie = `Token=${response.data.data.token}; expires=${expires.toUTCString}; path=/`;
             document.cookie = `Role=${response.data.data.role}; expires=${expires.toUTCString}; path=/`;

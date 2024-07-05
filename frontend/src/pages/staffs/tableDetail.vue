@@ -156,7 +156,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { RouterLink, useRoute } from "vue-router";
-import { formatPrice } from "../../api/functions";
+import { formatPrice, getCookie } from "../../api/functions";
 import { getMenu, getTableCurrentBill, addOrderItems } from "../../api/tableDetail";
 const route = useRoute();
 const id = route.params.id;
@@ -240,7 +240,8 @@ function deleteDish(id) {
 async function addOrders() {
     let table_id = id;
     let dishes = [];
-    let user_id = document.cookie.split(';').find(cookie => cookie.includes('Id')).split('=')[1];
+    let user_id = getCookie('Id');
+    let branch_id = getCookie('Branch_id');
 
     tableDish.value.forEach((dish) => {
         dishes.push({
@@ -249,7 +250,7 @@ async function addOrders() {
             note: dish.dish_note,
         });
     });
-    const result = await addOrderItems(table_id, user_id, ...dishes)
+    const result = await addOrderItems(table_id, branch_id, user_id, ...dishes)
     tableDish.value = [];
     loadData();
 }

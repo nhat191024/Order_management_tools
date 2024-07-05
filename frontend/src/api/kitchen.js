@@ -20,3 +20,9 @@ export async function updateOrderStatus(order_id) {
     return res.data;
   });
 }
+
+export async function getKitchenName(kitchen_id) {
+  return await api.get(`staff/kitchen/name/${kitchen_id}`).then((res) => {
+    return res.data;
+  });
+}

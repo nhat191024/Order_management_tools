@@ -14,3 +14,9 @@ export async function getKitchenCurrentOrder(branch_id, kitchen_id) {
     return res;
   });
 }
+
+export async function updateOrderStatus(order_id) {
+  return await api.get(`staff/kitchen/orderComplete/${order_id}`).then((res) => {
+    return res;
+  });
+}

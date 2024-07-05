@@ -1,13 +1,13 @@
 import { api } from "./api";
 
 export async function getKitchenData(branch_id) {
-  return await api.get(`/staff/kitchen/${branch_id}`).then((res) => {
+  return await api.get(`/kitchen/${branch_id}`).then((res) => {
     return res.data.kitchens;
   });
 }
 
 export async function getKitchenCurrentOrder(branch_id, kitchen_id) {
-  return await api.post(`staff/kitchen/order`, {
+  return await api.post(`/kitchen/order`, {
     branchId: branch_id,
     kitchenId: kitchen_id
   }).then((res) => {
@@ -16,13 +16,13 @@ export async function getKitchenCurrentOrder(branch_id, kitchen_id) {
 }
 
 export async function updateOrderStatus(order_id) {
-  return await api.get(`staff/kitchen/orderComplete/${order_id}`).then((res) => {
+  return await api.get(`/kitchen/orderComplete/${order_id}`).then((res) => {
     return res.data;
   });
 }
 
 export async function getKitchenName(kitchen_id) {
-  return await api.get(`staff/kitchen/name/${kitchen_id}`).then((res) => {
+  return await api.get(`/kitchen/name/${kitchen_id}`).then((res) => {
     return res.data;
   });
 }

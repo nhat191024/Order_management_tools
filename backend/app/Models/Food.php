@@ -19,11 +19,11 @@ class Food extends Model
 
     public function dish()
     {
-        return $this->hasMany(dish::class);
+        return $this->hasMany(Dish::class);
     }
 
     public function category()
     {
-        return $this->belongsTo(category::class);
+        return $this->belongsTo(Category::class);
     }
 }

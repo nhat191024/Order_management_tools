@@ -11,7 +11,7 @@ use App\Models\Table;
 use App\Models\User;
 use App\Models\Bill;
 use App\Models\BillDetail;
-use App\Models\Kitchen_cooking_method;
+use App\Models\KitchenCookingMethod;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -92,6 +92,7 @@ class DatabaseSeeder extends Seeder
         foreach ($dataArray['bills'] as $row) {
             Bill::create([
                 "table_id" => $row['table_id'],
+                "branch_id" => $row['branch_id'],
                 "user_id" => $row['user_id'],
                 "time_in" => $row['time_in']
             ]);
@@ -107,7 +108,7 @@ class DatabaseSeeder extends Seeder
         }
 
         foreach ($dataArray['kitchen_cooking_method'] as $row){
-            Kitchen_cooking_method::create([
+            KitchenCookingMethod::create([
                 'kitchen_id' => $row['kitchen_id'],
                 'cooking_method_id' => $row['cooking_method_id']
             ]);

@@ -92,8 +92,7 @@
             <hr class=" w-3/4 ">
         </div>
         <div class="col-start-9 col-span-4 row-start-2 row-span-7 mt-4 px-3 font-medium text-lg overflow-auto">
-            <div v-for="(dishes, index) in tableBill.Bill_detail"
-                class="flex justify-between mb-2 border-b border-primary">
+            <div v-for="(dishes, index) in tableBill" class="flex justify-between mb-2 border-b border-primary">
                 <p class=" w-3/5">
                     <span>{{ dishes.BillDetail_Dish.Dish_food.Food_name + " " }}</span>
                     <span
@@ -101,8 +100,8 @@
                         {{ dishes.BillDetail_Dish.Dish_cooking_method.Cooking_method_name }}
                     </span>
                 </p>
-                <p class="w-[5%] text-start">x{{ dishes.BillDetail_quantity }}</p>
-                <p class="w-[25%] font-bold text-end">{{ formatPrice(dishes.BillDetail_price) }} đ</p>
+                <p class="w-[10%] text-start">x{{ dishes.BillDetail_quantity }}</p>
+                <p class="w-[30%] font-bold text-end">{{ formatPrice(dishes.BillDetail_price) }}đ</p>
             </div>
         </div>
         <div class="col-start-9 col-span-4 row-start-9 row-span-full px-6 flex flex-col justify-center">
@@ -157,7 +156,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { RouterLink, useRoute } from "vue-router";
-import { formatPrice } from "../../api/functions";
+import { formatPrice, getCookie } from "../../api/functions";
 import { getMenu, getTableCurrentBill, addOrderItems } from "../../api/tableDetail";
 const route = useRoute();
 const id = route.params.id;
@@ -166,26 +165,31 @@ const dishLength = ref(0);
 const tableDish = ref([]);
 const menu = ref([]);
 const tableBill = ref([]);
-const orderData = ref({
-    table_id: id,
-    user_id: id,
-    order_items: [],
-});
 
 onMounted(async () => {
     getMenu(id).then((res) => {
         menu.value = res;
     });
 });
-
-async function reloadData() {
+function loadData() {
+    let count = 0;
+    let data = [];
     getTableCurrentBill(id).then((res) => {
-        tableBill.value = res;
+        res.Bill_detail.forEach((dish) => {
+            const index = data.findIndex((item) => item.BillDetail_Dish.Dish_id === dish.BillDetail_Dish.Dish_id);
+            if (index === -1) {
+                data.push(dish);
+            } else {
+                data[index].BillDetail_quantity += dish.BillDetail_quantity;
+                data[index].BillDetail_price += dish.BillDetail_price;
+            }
+        });
+        tableBill.value = data;
+        dishLength.value = tableBill.value.length;
         total.value = res.Bill_total;
-        dishLength.value = res.Bill_detail.length;
     });
 }
-reloadData();
+loadData();
 
 function confirm() {
     const dialog = document.getElementById("confirm");
@@ -238,7 +242,8 @@ function deleteDish(id) {
 async function addOrders() {
     let table_id = id;
     let dishes = [];
-    let user_id = document.cookie.split(';').find(cookie => cookie.includes('Id')).split('=')[1];
+    let user_id = getCookie('Id');
+    let branch_id = getCookie('Branch_id');
 
     tableDish.value.forEach((dish) => {
         dishes.push({
@@ -247,8 +252,10 @@ async function addOrders() {
             note: dish.dish_note,
         });
     });
-    const result = await addOrderItems(table_id, user_id, ...dishes)
-    tableDish.value = [];
-    reloadData();
+    const result = await addOrderItems(table_id, branch_id, user_id, ...dishes)
+    if (result.status === 200) {
+        tableDish.value = [];
+        loadData();
+    }
 }
 </script>

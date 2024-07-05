@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kitchen_cooking_method extends Model
+class KitchenCookingMethod extends Model
 {
     protected $table = 'kitchen_cooking_method';
 
@@ -16,11 +16,11 @@ class Kitchen_cooking_method extends Model
 
     public function kitchen()
     {
-        return $this->belongsToMany(Kitchen::class);
+        return $this->belongsTo(Kitchen::class);
     }
 
-    public function cooking_method()
+    public function cookingMethod()
     {
-        return $this->belongsTo(CookingMethod::class);
+        return $this->belongsToMany(CookingMethod::class);
     }
 }

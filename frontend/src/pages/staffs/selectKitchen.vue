@@ -1,79 +1,54 @@
 <template>
-  <div class="grid grid-cols-12 grid-rows-8 gap-2 h-dvh w-dvw ">
-    <div class="col-span-2 flex items-center justify-center ">
-      <button class="items-center bg-white drop-shadow-2x text-black inline-flex">
-        <div class="bg-primary w-10 h-10 m-2 drop-shadow-2xl rounded-xl p-1">
-          <img src="./../../assets/left-long-solid.svg" alt="My SVG Icon" class="">
+  <div class="grid grid-cols-12 grid-rows-8 gap-2 h-dvh w-dvw">
+    <div class="col-span-2 flex items-center justify-center">
+      <div class="dropdown">
+        <div tabindex="0" role="button" class="m-1">
+          <img class="bg-white w-16 h-16 mr-2 rounded-full border shadow-lg" src="../../assets/logo.jpg"></img>
         </div>
-        <span class="text-xl drop-shadow">Trở về</span>
-      </button>
+        <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+          <li><a>Xin chào {{ username }} !</a></li>
+          <li><button @click="logout">Đăng Xuất</button></li>
+        </ul>
+      </div>
+      <p class="font-bold text-xl">Thương ốc</p>
     </div>
-    <div class="col-start-6 col-span-2 flex  justify-center items-center font-extrabold text-3xl">
+    <div class="col-start-5 col-span-4 self-center mx-auto font-extrabold text-3xl">
       <p>Chọn Bếp</p>
     </div>
-    <div class="row-span-7 col-start-2 col-span-10 place-items-center overflow-auto grid grid-cols-3 gap-4">
-      <RouterLink v-for="kitchen in kitchens" to=""
-        class="w-64 h-40 rounded-xl flex flex-col items-center justify-between drop-shadow-sm bg-primary p-2">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr4v-CwguS8bic62WkC1PwUSIPZOli4GuthA&s"
-          alt="demo" class="w-full h-4/5 rounded-xl">
-        <span class="text-white font-extrabold text-xl text-center">{{ kitchen.name }}</span>
-      </RouterLink>
+    <div class="row-span-7 col-span-full place-items-center overflow-auto grid grid-cols-3 grid-rows-10">
+      <a v-for="kitchen in kitchens" :key="kitchen.id" :href="'/staff/kitchen/' + kitchen.id"
+        class="w-64 h-40 row-span-4 rounded-xl flex flex-col items-center justify-between drop-shadow-sm bg-primary p-2">
+        <img src="../../assets/demo.jpg" alt="demo" class="w-full h-4/5 rounded-xl" />
+        <span class="text-white font-extrabold text-lg text-center">
+          {{ kitchen.name }}
+        </span>
+      </a>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { RouterLink } from 'vue-router'
+import { ref, onMounted } from "vue";
+import { useRouter } from 'vue-router';
+import { logoutHandle } from '../../api/login';
+import { getKitchenData } from "../../api/kitchen";
+import { getCookie } from "../../api/functions";
 
-const mainColor = 'bg-primary'
-const disabled = 'bg-gray-300'
+const router = useRouter();
+const kitchens = ref([])
+const branchId = getCookie("Branch_id");
+const username = getCookie('Username');
 
-const kitchens = ref([
-  {
-    name: "Bàn 1",
-    status: 1
-  },
-  {
-    name: "Bàn 2",
-    status: 0
-  },
-  {
-    name: "Bàn 1",
-    status: 1
-  },
-  {
-    name: "Bàn 2",
-    status: 0
-  },
-  {
-    name: "Bàn 1",
-    status: 1
-  },
-  {
-    name: "Bàn 2",
-    status: 0
-  },
-  {
-    name: "Bàn 2",
-    status: 0
-  },
-  {
-    name: "Bàn 2",
-    status: 0
-  },
-  {
-    name: "Bàn 2",
-    status: 0
-  },
-  {
-    name: "Bàn 2",
-    status: 0
-  },
-  {
-    name: "Bàn 2",
-    status: 0
-  },
+onMounted(async () => {
+  try {
+    kitchens.value = await getKitchenData(branchId);
+  } catch (error) {
+    console.error("Error fetching kitchen data:", error);
+  }
+});
 
-])
+function logout() {
+  logoutHandle();
+  router.push('/staff/login');
+}
 </script>

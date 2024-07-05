@@ -14,6 +14,7 @@ class BillDetail extends Model
         'quantity',
         'price',
         'status',
+        'note',
     ];
 
     public function bill()

@@ -9,7 +9,7 @@ export async function loginHandle(username, password) {
             password: password
         });
         if (response.data.data.message == 'Login Success') {
-            console.log(response.data.data.id);
+            document.cookie = `Username=${username}; expires=${expires.toUTCString}; path=/`;
             document.cookie = `Token=${response.data.data.token}; expires=${expires.toUTCString}; path=/`;
             document.cookie = `Role=${response.data.data.role}; expires=${expires.toUTCString}; path=/`;
             document.cookie = `Id=${response.data.data.id}; expires=${expires.toUTCString}; path=/`;
@@ -30,6 +30,7 @@ export async function loginHandle(username, password) {
 
 export async function logoutHandle() {
     try {
+        document.cookie = `Username=; expires=01 Jan 1970 00:00:00 UTC; path=/`;
         document.cookie = `Token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
         document.cookie = `Role=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
         document.cookie = `Id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;

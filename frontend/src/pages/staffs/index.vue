@@ -49,7 +49,7 @@ async function onSubmit(values) {
                 if (res.role === 2)
                     router.push('/staff/table');
                 else
-                    router.push('/kitchen/select');
+                    router.push('/staff/kitchen');
             } else {
                 auth.value = 'fail';
             }

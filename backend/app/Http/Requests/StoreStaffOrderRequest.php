@@ -23,6 +23,7 @@ class StoreStaffOrderRequest extends FormRequest
     {
         return [
             'table_id' => 'required|integer|exists:tables,id',
+            'branch_id' => 'required|integer|exists:branches,id',
             'user_id' => 'required|integer|exists:users,id',
             'dishes' => 'required|array',
             'dishes.*.dish_id' => 'required|integer|exists:dishes,id',

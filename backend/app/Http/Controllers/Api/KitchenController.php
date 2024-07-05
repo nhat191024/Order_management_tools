@@ -5,16 +5,23 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\Branch;
 use App\Models\Kitchen;
+use App\Models\Bill;
+
 use App\Http\Controllers\Controller;
+use App\Http\Resources\BillCollection;
+use App\Models\KitchenCookingMethod;
+use App\Service\KitchenService;
 
 class KitchenController extends Controller
 {
-    /**
-     * Display a listing of the kitchens for a specific branch.
-     *
-     * @param  int  $branchId
-     * @return \Illuminate\Http\Response
-     */
+
+    private $service;
+
+    public function __construct()
+    {
+        $this->service = new KitchenService();
+    }
+
     public function getKitchensByBranch($branchId)
     {
 
@@ -22,6 +29,27 @@ class KitchenController extends Controller
 
         return response()->json([
             'kitchens' => $kitchens,
+        ]);
+    }
+
+    public function getKitchenOrders(Request $request)
+    {
+        $orders = $this->service->getCurrentOrders($request->kitchenId, $request->branchId);
+        return $orders;
+    }
+
+    public function orderComplete($orderId){
+        $response = $this->service->changeOrderStatus($orderId);
+
+        return $response;
+    }
+
+    public function getKitchenName($kitchenId)
+    {
+        $kitchen = Kitchen::find($kitchenId);
+
+        return response()->json([
+            'name' => $kitchen->name,
         ]);
     }
 }

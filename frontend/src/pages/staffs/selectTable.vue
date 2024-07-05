@@ -7,7 +7,7 @@
                         src="../../assets/logo.jpg"></img>
                 </div>
                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><a>{{ username }}</a></li>
+                    <li><a>Xin chào {{ username }} !</a></li>
                     <li><button @click="logout">Đăng Xuất</button></li>
                 </ul>
             </div>
@@ -46,11 +46,8 @@ import { getCookie } from '../../api/functions';
 
 const router = useRouter();
 const tableList = ref([]);
-// Để lấy username cần gọi đến API
-// Sẽ thêm hotfix sau khi API này được làm xong / merged
-const username = ref('admin'); //Only for testing
+const username = getCookie('Username');
 const userId = getCookie('Id');
-
 const mainColor = 'bg-primary';
 const disabled = 'bg-gray-300';
 

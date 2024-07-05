@@ -75,7 +75,8 @@
                             <div
                                 class="col-start-10 col-span-full row-start-3 place-self-center w-full h-full flex items-center gap-3">
                                 <button @click="tempQuantity--"
-                                    class="join-item outline outline-1 p-1 outline-primary rounded-l-full transition-all transform linear duration-300 active:scale-125">
+                                    class="join-item outline outline-1 p-1 outline-primary rounded-l-full transition-all transform linear duration-300 active:scale-125"
+                                    :disabled="tempQuantity <= 1">
                                     <img src="../../assets/minus.svg" alt="" class="w-4" />
                                 </button>
                                 <p class="join-item">{{ tempQuantity }}</p>
@@ -178,7 +179,7 @@
                             </p>
                         </div>
                         <div class="modal-action p-4 mt-2 border-t-2 border-grey-400">
-                            <button class="btn-secondary btn w-full">Đặt món</button>
+                            <button class="btn-secondary btn w-full" @click="confirmOrder()">Đặt món</button>
                         </div>
                     </div>
                 </div>
@@ -190,11 +191,16 @@
 <script setup>
 import { getMenuData } from "../../api/customer";
 import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { formatPrice } from "../../api/functions";
+import { useOrderStore } from "../../stores/order";
 
+const orderStore = useOrderStore();
 const route = useRoute();
+const router = useRouter();
+
 const id = route.params.id;
+
 const tabStatus = ref([]);
 const category = ref([]);
 const tempQuantity = ref(1);
@@ -202,8 +208,11 @@ const tempCookingMethod = ref(0);
 const tempNote = ref("");
 const billTemp = ref([]);
 const dishDetail = ref({});
-
 const menu = ref({});
+
+if(orderStore.dishes) {
+    billTemp.value = [...orderStore.dishes];
+}
 
 onMounted(async () => {
     getMenuData().then((res) => {
@@ -273,11 +282,9 @@ function addDish(id, cookingMethodId) {
         return;
     }
 
-    let dish = dishDetail.value.Dishes.find(
-        (item) => item.Dish_cooking_method.Cooking_method_id === tempCookingMethod.value
-    );
+    let checking = dishDetail.value.Dishes && dishDetail.value.Dishes.length > 1 ? true : false;
 
-    if (!dish) {
+    if (!checking) {
         const dish = dishDetail.value.Dishes[0];
         billTemp.value.push({
             foodId: dishDetail.value.Food_id,
@@ -295,6 +302,9 @@ function addDish(id, cookingMethodId) {
         tempNote.value = "";
         return;
     }
+    let dish = dishDetail.value.Dishes.find(
+        (item) => item.Dish_cooking_method.Cooking_method_id === tempCookingMethod.value
+    );
     billTemp.value.push({
         foodId: dishDetail.value.Food_id,
         dishId: dish.Dish_id,
@@ -330,6 +340,24 @@ function tempTotal() {
 function showCart() {
     const cart = document.getElementById("cart");
     cart.showModal();
+}
+
+function confirmOrder() {
+    orderStore.clearDishes();
+    billTemp.value.forEach((item) => {
+        orderStore.addDish({
+            foodId: item.foodId,
+            dishId: item.dishId,
+            dishName: item.dishName,
+            quantity: item.quantity,
+            price: item.price,
+            cookingMethod: item.cookingMethod,
+            cookingMethodId: item.cookingMethodId,
+            note: item.note,
+        });
+    });
+
+    router.push(`/orderConfirm/${id}`);
 }
 </script>
 <!-- End Script -->

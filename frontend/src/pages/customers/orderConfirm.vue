@@ -53,12 +53,12 @@ const orderStore = useOrderStore();
 const route = useRoute();
 const router = useRouter();
 const id = route.params.id;
-const branch_id = ref('');
+const branchId = ref('');
 const tableDish = orderStore.dishes;
 
 onMounted(async () => {
   getBranches(id).then((res) => {
-    branch_id.value = res.data;
+    branchId.value = res.data;
   });
 });
 
@@ -82,7 +82,7 @@ async function addOrders() {
     });
   });
 
-  const result = await addOrderItems(table_id, branch_id.value, ...dishes);
+  const result = await addOrderItems(table_id, branchId.value, ...dishes);
   tableDish.value = [];
   if (result.status === 200) {
     orderStore.clearDishes();

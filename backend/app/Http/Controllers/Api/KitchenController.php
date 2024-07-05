@@ -37,5 +37,11 @@ class KitchenController extends Controller
         $orders = $this->service->getCurrentOrders($request->kitchenId, $request->branchId);
         return $orders;
     }
+
+    public function orderComplete($orderId){
+        $response = $this->service->changeOrderStatus($orderId);
+
+        return $response;
+    }
 }
 

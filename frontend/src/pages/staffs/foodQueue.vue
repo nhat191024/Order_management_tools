@@ -11,7 +11,7 @@
           </a>
         </div>
         <h1 class="flex-grow text-3xl font-bold text-center text-black">
-          Bếp xào
+          Bếp {{ name }}
         </h1>
         <div class="w-16"></div>
       </div>
@@ -20,7 +20,8 @@
     <div class="grid gap-4 p-4 mt-20 place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       <div v-for="(item, index) in items" :key="index"
         class="flex flex-col items-center p-3 m-2 text-center text-white bg-primary rounded-lg shadow-lg w-64 relative">
-        <div class="text-xl font-bold w-full flex justify-between"><span>{{ index + 1 }}</span><span>Bàn {{ item.table }}</span></div>
+        <div class="text-xl font-bold w-full flex justify-between"><span>{{ index + 1 }}</span><span>Bàn {{ item.table
+            }}</span></div>
         <div class="w-full border-t border-white"></div>
         <div class="text-lg font-bold mt-3">{{ item.quantity }}x {{ item.name }}</div>
         <div class="w-full my-2 border-t border-white"></div>
@@ -40,17 +41,22 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
-import { getKitchenCurrentOrder, updateOrderStatus } from "../../api/kitchen";
+import { getKitchenCurrentOrder, updateOrderStatus, getKitchenName } from "../../api/kitchen";
 import { getCookie } from "../../api/functions";
 
 const id = useRoute().params.id;
 const branchId = getCookie("Branch_id");
 
+const name = ref("");
 const items = ref([]);
 
 onMounted(() => {
   getKitchenCurrentOrder(branchId, id).then((res) => {
     items.value.push(...res);
+  });
+
+  getKitchenName(id).then((res) => {
+    name.value = res.name;
   });
 });
 

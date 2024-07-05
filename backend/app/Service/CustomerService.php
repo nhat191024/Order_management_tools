@@ -71,8 +71,6 @@ class CustomerService
                 $createdEntities++;
             }
         }
-        return [
-            'created' => $createdEntities,
-        ];
+        return response()->json(['created' => $createdEntities], 200);
     }
 }

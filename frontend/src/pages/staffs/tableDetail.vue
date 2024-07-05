@@ -100,8 +100,8 @@
                         {{ dishes.BillDetail_Dish.Dish_cooking_method.Cooking_method_name }}
                     </span>
                 </p>
-                <p class="w-[5%] text-start">x{{ dishes.BillDetail_quantity }}</p>
-                <p class="w-[25%] font-bold text-end">{{ formatPrice(dishes.BillDetail_price) }} đ</p>
+                <p class="w-[10%] text-start">x{{ dishes.BillDetail_quantity }}</p>
+                <p class="w-[30%] font-bold text-end">{{ formatPrice(dishes.BillDetail_price) }}đ</p>
             </div>
         </div>
         <div class="col-start-9 col-span-4 row-start-9 row-span-full px-6 flex flex-col justify-center">

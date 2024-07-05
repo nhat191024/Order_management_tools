@@ -19,6 +19,6 @@ export async function addOrderItems(table_id, branch_id, user_id, ...dishes) {
         user_id: user_id,
         dishes: dishes
     }).then((res) => {
-        return res.data.data;
+        return res;
     });
 } 

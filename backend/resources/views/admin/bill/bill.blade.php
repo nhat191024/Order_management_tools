@@ -33,7 +33,7 @@
                                     <th>Tên nhân viên</th>
                                     <th>Giờ vào</th>
                                     <th>Giờ ra</th>
-                                    <th>Phương thức</th>
+                                    <th>Tình trạng</th>
                                     <th>Tổng tiền</th>
                                     <th>Action</th>
                                 </tr>
@@ -46,7 +46,7 @@
                                     <th>Tên nhân viên</th>
                                     <th>Giờ vào</th>
                                     <th>Giờ ra</th>
-                                    <th>Phương thức</th>
+                                    <th>Tình trạng</th>
                                     <th>Tổng tiền</th>
                                     <th>Action</th>
                                 </tr>

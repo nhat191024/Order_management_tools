@@ -14,6 +14,7 @@ class OrderCreate implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $billDetailId;
     public $name;
     public $note;
     public $quantity;
@@ -22,8 +23,9 @@ class OrderCreate implements ShouldBroadcast
     /**
      * Create a new event instance.
      */
-    public function __construct($name, $note, $quantity, $table, $kitchen)
+    public function __construct($billDetailId, $name, $note, $quantity, $table, $kitchen)
     {
+        $this->billDetailId = $billDetailId;
         $this->name = $name;
         $this->note = $note;
         $this->quantity = $quantity;

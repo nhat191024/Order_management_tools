@@ -171,18 +171,20 @@ onMounted(async () => {
         menu.value = res;
     });
 });
-
-async function loadData() {
+function loadData() {
+    let count = 0;
+    let data = [];
     getTableCurrentBill(id).then((res) => {
         res.Bill_detail.forEach((dish) => {
-            const index = tableBill.value.findIndex((item) => item.BillDetail_Dish.Dish_id === dish.BillDetail_Dish.Dish_id);
+            const index = data.findIndex((item) => item.BillDetail_Dish.Dish_id === dish.BillDetail_Dish.Dish_id);
             if (index === -1) {
-                tableBill.value.push(dish);
+                data.push(dish);
             } else {
-                tableBill.value[index].BillDetail_quantity += dish.BillDetail_quantity;
-                tableBill.value[index].BillDetail_price += dish.BillDetail_price;
+                data[index].BillDetail_quantity += dish.BillDetail_quantity;
+                data[index].BillDetail_price += dish.BillDetail_price;
             }
         });
+        tableBill.value = data;
         dishLength.value = tableBill.value.length;
         total.value = res.Bill_total;
     });
@@ -251,7 +253,9 @@ async function addOrders() {
         });
     });
     const result = await addOrderItems(table_id, branch_id, user_id, ...dishes)
-    tableDish.value = [];
-    loadData();
+    if (result.status === 200) {
+        tableDish.value = [];
+        loadData();
+    }
 }
 </script>

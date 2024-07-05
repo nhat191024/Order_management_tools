@@ -19,6 +19,7 @@ class BillDetailResource extends JsonResource
             'BillDetail_quantity' => $this->quantity,
             'BillDetail_price' => $this->price,
             'BillDetail_note' => $this->note,
+            'BillDetail_dish_id' => $this->dish_id,
             'BillDetail_Dish' => new DishResource($this->whenLoaded('dish')),
         ];
     }

@@ -12,12 +12,13 @@ export async function getTableCurrentBill(id) {
     });
 }
 
-export async function addOrderItems(table_id, user_id, ...dishes) {
+export async function addOrderItems(table_id, branch_id, user_id, ...dishes) {
     return await api.post(`/staff/order`, {
         table_id: table_id,
+        branch_id: branch_id,
         user_id: user_id,
         dishes: dishes
     }).then((res) => {
-        return res.data.data;
+        return res;
     });
 } 

@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-rows-12 w-dvw h-dvh">
     <nav class="bg-primary top-0 left-0 w-full row-span-1 flex items-center justify-between px-4 rounded-b-lg">
-      <RouterLink v-bind:to="{path: '/order/' + id+''}" class="">
+      <RouterLink v-bind:to="{ path: '/order/' + id}" class="">
         <img class="rounded-full w-14 h-14" src="/src/assets/backButton.svg" alt="Logo" />
       </RouterLink>
 
@@ -43,25 +43,31 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { formatPrice } from "../../api/functions";
-import { addOrderItems } from "../../api/customer";
+import { addOrderItems, getBranches } from "../../api/customer";
 import { useOrderStore } from "../../stores/order";
 
 const orderStore = useOrderStore();
 const route = useRoute();
 const router = useRouter();
 const id = route.params.id;
-
+const branch_id = ref('');
 const tableDish = orderStore.dishes;
 
+onMounted(async () => {
+  getBranches(id).then((res) => {
+    branch_id.value = res.data;
+  });
+});
+
 function tempTotal() {
-    let total = 0;
-    tableDish.forEach((item) => {
-        total += item.price * item.quantity;
-    });
-    return total;
+  let total = 0;
+  tableDish.forEach((item) => {
+    total += item.price * item.quantity;
+  });
+  return total;
 }
 
 async function addOrders() {
@@ -76,7 +82,7 @@ async function addOrders() {
     });
   });
 
-  const result = await addOrderItems(table_id, ...dishes);
+  const result = await addOrderItems(table_id, branch_id.value, ...dishes);
   tableDish.value = [];
   if (result.status === 200) {
     orderStore.clearDishes();

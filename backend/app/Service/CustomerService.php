@@ -57,6 +57,7 @@ class CustomerService
             $table->save();
             $bill = Bill::create([
                 'table_id' => $request->table_id,
+                'branch_id' => $request->branch_id,
                 'user_id' => $request->user_id,
             ]);
             foreach ($request->dishes as $dish) {

@@ -178,14 +178,14 @@ onMounted(async () => {
     });
 });
 
-async function reloadData() {
+async function loadData() {
     getTableCurrentBill(id).then((res) => {
         tableBill.value = res;
         total.value = res.Bill_total;
         dishLength.value = res.Bill_detail.length;
     });
 }
-reloadData();
+loadData();
 
 function confirm() {
     const dialog = document.getElementById("confirm");
@@ -249,6 +249,6 @@ async function addOrders() {
     });
     const result = await addOrderItems(table_id, user_id, ...dishes)
     tableDish.value = [];
-    reloadData();
+    loadData();
 }
 </script>

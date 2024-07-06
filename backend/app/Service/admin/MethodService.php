@@ -31,7 +31,7 @@ class MethodService
     }
 
     public function checkHasChildren($idMethod) {
-        return CookingMethod::find($idMethod)->dish()->where('status', 1)->get()->count() > 0 || CookingMethod::find($idMethod)->kitchen()->where('status', 1)->get()->count() > 0;
+        return CookingMethod::find($idMethod)->dish()->get()->count() > 0 || CookingMethod::find($idMethod)->kitchen()->get()->count() > 0;
     }
 
     public function delete($idMethod) {

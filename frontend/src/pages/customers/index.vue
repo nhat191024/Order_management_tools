@@ -35,8 +35,7 @@
                                 <button @click="
                                     food.Dishes.length > 1
                                         ? DetailDish(food.Food_id)
-                                        : addDish(food.Food_id, food.Dishes[0].Dish_cooking_method.Cooking_method_id)
-                                    "
+                                        : addDish(food.Food_id, food.Dishes[0].Dish_cooking_method.Cooking_method_id)"
                                     class="col-start-12 flex justify-center items-center bg-primary rounded-lg m-px transition-all transform linear duration-300 active:scale-110">
                                     <img src="../../assets/plus-white.svg" alt="" class="w-10/12" />
                                 </button>
@@ -44,11 +43,19 @@
                 </div>
             </div>
         </div>
-        <button class="flex bg-white border-t-4 items-center justify-center dropdown dropdown-top" @click="showCart()">
-            <img src="/src/assets/Vector.svg" alt="Cart" class="h-10" />
-            <span class="rounded-full bg-primary self-start px-1 mt-1 -ml-4 text-white border border-white">
-                {{ totalDish() < 10 ? "0" + totalDish() : totalDish() }} </span>
-        </button>
+        <div class="bg-white border-t-4 h-full flex justify-around">
+            <div class="flex items-center justify-center" @click="showCart()">
+                <img src="/src/assets/Vector.svg" alt="Cart" class="h-10" />
+                <span class="rounded-full bg-primary self-start px-1 mt-1 -ml-4 text-white border border-white">
+                    {{ totalDish() < 10 ? "0" + totalDish() : totalDish() }} </span>
+            </div>
+            <div class="flex items-center justify-center" @click="showOrderHistory()">
+                <img src="/src/assets/list.svg" alt="Cart" class="h-10" />
+                <span class="rounded-full bg-primary self-start px-1 mt-1 -ml-4 text-white border border-white">
+                    {{ totalDish() < 10 ? "0" + totalDish() : totalDish() }} </span>
+            </div>
+        </div>
+
         <!-- Modal chi tiết món ăn -->
         <dialog id="dishDetail" class="modal modal-bottom">
             <form method="dialog" class="modal-backdrop">
@@ -185,11 +192,65 @@
                 </div>
             </div>
         </dialog>
+
+        <dialog id="orderHistory" class="modal modal-bottom ">
+            <form method="dialog" class="modal-backdrop">
+                <button>close</button>
+            </form>
+            <div class="modal-box p-0 h-4/5">
+                <form method="dialog">
+                    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                        ✕
+                    </button>
+                </form>
+                <div class="h-full grid grid-rows-10">
+                    <h3 class="font-bold text-xl text-center pt-2 row-start-1 place-self-center">Đơn hàng đã đặt</h3>
+                    <div class="overflow-auto row-start-2 row-span-full">
+                        <div v-for="order in orderHistory.orders"
+                            class="w-full h-24 grid grid-rows-4 grid-cols-12 text-lg font-light my-5 px-4">
+                            <img src="../../assets/demo.jpg" alt="demo"
+                                class="row-span-full col-span-3 w-full h-full rounded-lg" />
+                            <p class="col-start-4 col-span-full row-span-1 pl-3">
+                                {{ order.dishName }}
+                            </p>
+                            <p class="col-start-4 col-span-full pl-3 text-sm text-gray-500">
+                                {{ order.cookingMethod }}
+                            </p>
+                            <input class="pl-3 row-start-3 col-start-4 col-span-full outline-none" placeholder="Ghi chú"
+                                v-model="order.note" disabled/>
+                            <p class="text-gray-500 pl-3 col-span-4 row-start-4">
+                                {{ formatPrice(order.price) }}đ
+                            </p>
+                            <div
+                                class="col-start-10 col-span-full row-start-4 place-self-center w-full h-full flex items-center gap-3">
+                                <button @click="dishDelete(order.dishId)" disabled
+                                    class="join-item outline outline-1 p-1 outline-primary rounded-l-full">
+                                    <img src="../../assets/minus.svg" alt="" class="w-4" />
+                                </button>
+                                <p class="join-item">{{ order.quantity }}</p>
+                                <button @click="order.quantity++" disabled
+                                    class="join-item bg-primary p-1 rounded-r-full">
+                                    <img src="../../assets/plus-white.svg" alt="plus" class="w-4" />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="py-2 border-t border-gray-300">
+                        <div class="flex justify-end gap-2 px-4 py-2 text-lg">
+                            <p>Tổng cộng :</p>
+                            <p class="text-primary font-medium">
+                                {{ formatPrice(orderHistory.total) }}đ
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </dialog>
     </div>
 </template>
 
 <script setup>
-import { getMenuData } from "../../api/customer";
+import { getMenuData, currentOrder } from "../../api/customer";
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { formatPrice } from "../../api/functions";
@@ -207,10 +268,12 @@ const tempQuantity = ref(1);
 const tempCookingMethod = ref(0);
 const tempNote = ref("");
 const billTemp = ref([]);
-const dishDetail = ref({});
-const menu = ref({});
+const dishDetail = ref([]);
+const menu = ref([]);
+const orderHistory = ref([]); 
 
-if(orderStore.dishes) {
+
+if (orderStore.dishes) {
     billTemp.value = [...orderStore.dishes];
 }
 
@@ -244,6 +307,13 @@ function tabChange(id) {
     });
 }
 
+function getCurrentOrder(id) {
+    currentOrder(id).then((res) => {
+        orderHistory.value = res;
+    });
+}
+getCurrentOrder(id);
+
 function totalDish() {
     let total = 0;
     billTemp.value.forEach((item) => {
@@ -263,6 +333,11 @@ function DetailDish(id) {
 function showDishDetail() {
     const dishDetail = document.getElementById("dishDetail");
     dishDetail.showModal();
+}
+
+function showOrderHistory() {
+    const orderHistory = document.getElementById("orderHistory");
+    orderHistory.showModal();
 }
 
 function addDish(id, cookingMethodId) {
@@ -356,7 +431,7 @@ function confirmOrder() {
             note: item.note,
         });
     });
-
+    getCurrentOrder(id);
     router.push(`/orderConfirm/${id}`);
 }
 </script>

@@ -10,6 +10,7 @@ class Bill extends Model
 
     protected $fillable = [
         'table_id',
+        'branch_id',
         'user_id',
         'time_in',
         'time_out',

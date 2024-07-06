@@ -78,6 +78,7 @@ class CustomerService
 
     public function getOrderHistory($tableId)
     {
+        $total = 0;
         $bill = Bill::where('table_id', $tableId)
             ->where('pay_status', 0)
             ->with('billDetail.dish.cookingMethod')
@@ -85,7 +86,6 @@ class CustomerService
 
         $order = [];
         foreach ($bill as $t) {
-            $total = 0;
             // Calculate total price of each dish in the bill
             foreach ($t->billDetail as $billDetail) {
                 $billDetail;

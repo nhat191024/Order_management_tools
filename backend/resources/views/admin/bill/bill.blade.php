@@ -57,7 +57,7 @@
                                         <td>{{ $item->id}}</td>
                                         <td>{{ $item->table->branch->name }}</td>
                                         <td>{{ $item->table->table_number }}</td>
-                                        <td>{{ $item->user->username }}</td>
+                                        <td>{{ $item->user->username ?? "Khách"}}</td>
                                         <td>{{ $item->time_in }}</td>
                                         <td>{{ $item->time_out }}</td>
                                         <td>{{ $item->pay_status == 0 ? 'Chưa thanh toán' : 'Đã thanh toán' }}</td>

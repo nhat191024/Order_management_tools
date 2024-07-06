@@ -27,7 +27,8 @@ class CustomerService
         return $menu;
     }
 
-    public function getTableBranch($tableId){
+    public function getTableBranch($tableId)
+    {
         $table = Table::where('id', $tableId)->first();
         $branch = $table->branch;
         return $branch->id;
@@ -73,5 +74,34 @@ class CustomerService
             }
         }
         return response()->json(['created' => $createdEntities], 200);
+    }
+
+    public function getOrderHistory($tableId)
+    {
+        $bill = Bill::where('table_id', $tableId)
+            ->where('pay_status', 0)
+            ->with('billDetail.dish.cookingMethod')
+            ->get();
+
+        $order = [];
+        foreach ($bill as $t) {
+            $total = 0;
+            // Calculate total price of each dish in the bill
+            foreach ($t->billDetail as $billDetail) {
+                $billDetail;
+                $billDetail->price = ($billDetail->dish->food->price + $billDetail->dish->additional_price) * $billDetail->quantity;
+                $total += $billDetail->price;
+
+                $order[] = [
+                    'dishId' => $billDetail->dish->id,
+                    'dishName' => $billDetail->dish->food->name . ' ' . $billDetail->dish->cookingMethod->name,
+                    'cookingMethod' => $billDetail->dish->cookingMethod->name,
+                    'quantity' => $billDetail->quantity,
+                    'price' => $billDetail->price,
+                    'note' => $billDetail->note
+                ];
+            }
+        }
+        return ['orders' => $order, 'total' => $total];
     }
 }

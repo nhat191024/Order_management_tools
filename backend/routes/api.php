@@ -42,3 +42,4 @@ Route::group(['prefix' => 'kitchen', 'namespace' => 'App\Http\Controllers\Api', 
 Route::get('/menu', [CustomerController::class, 'menu']);
 Route::post('/orderConfirm',[CustomerController::class, 'orderConfirm']);
 Route::get('/tableBranch/{tableId}',[CustomerController::class, 'tableBranch']);
+Route::get('/orderHistory/{tableId}',[CustomerController::class, 'orderHistory']);

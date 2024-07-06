@@ -75,6 +75,10 @@ class KitchenController extends Controller
     public function deleteKitchen(Request $request) {
         $id = $request->id;
         if(!$this->kitchenService->checkHasChildren($id)) {
+            $oldImagePath = $this->kitchenService->getById($request->id)->image;
+            if (file_exists(public_path('img') . '/' . $oldImagePath)) {
+                unlink(public_path('img') . '/' . $oldImagePath);
+            }
             $this->kitchenService->delete($id);
             return redirect(route('admin.kitchen.index'))->with('success', 'Xóa bếp thành công');
         }

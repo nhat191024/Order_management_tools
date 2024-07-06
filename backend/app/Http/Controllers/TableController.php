@@ -72,10 +72,7 @@ class TableController extends Controller
     public function deleteTable(Request $request)
     {
         $id = $request->id;
-        if (!$this->tableService->checkHasChildren($id)) {
-            $this->tableService->delete($id);
-            return redirect(route('admin.table.index'))->with('success', 'Xóa bàn thành công');
-        }
-        return redirect(route('admin.table.index'))->with('error', 'Bàn đang tồn tại trong hóa đơn, không thể xóa !!!');
+        $this->tableService->delete($id);
+        return redirect(route('admin.table.index'))->with('success', 'Xóa bàn thành công');
     }
 }

@@ -37,7 +37,8 @@ class DishService
     }
 
     public function checkHasChildren($idDish) {
-        return Dish::find($idDish)->billDetail()->get()->count() > 0;
+        // return Dish::find($idDish)->billDetail()->get()->count() > 0;
+        return false;
     }
 
 

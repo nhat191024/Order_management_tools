@@ -82,6 +82,10 @@ class FoodController extends Controller
     public function deleteFood(Request $request) {
         $id = $request->id;
         if(!$this->foodService->checkHasChildren($id)) {
+            $oldImagePath = $this->foodService->getById($request->id)->image;
+            if (file_exists(public_path('img') . '/' . $oldImagePath)) {
+                unlink(public_path('img') . '/' . $oldImagePath);
+            }
             $this->foodService->delete($id);
             return redirect(route('admin.food.index'))->with('success', 'Xóa thực phẩm thành công') ;
         }

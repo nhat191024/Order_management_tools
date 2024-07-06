@@ -4,7 +4,6 @@ namespace App\Service\admin;
 
 use App\Models\Branch;
 use App\Models\Kitchen;
-use App\Models\Kitchen_cooking_method;
 use App\Models\Table;
 
 class TableService
@@ -46,7 +45,7 @@ class TableService
 
     public function checkHasChildren($idTable)
     {
-        return Table::where('id', $idTable)->first()->bill;
+        return false;   
     }
 
     public function delete($idTable)

@@ -39,8 +39,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="{{ route('admin.index') }}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.index') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -52,7 +51,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item @if (Request::url() == route('admin.index')) {{ 'active' }} @endif">
-                <a class="nav-link" href="{{route('admin.index')}}">
+                <a class="nav-link" href="{{ route('admin.index') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -130,40 +129,40 @@
             </li> --}}
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item @if (Request::url() == route('admin.category.index')) {{ 'active' }} @endif">
-                <a class="nav-link" href="{{ route('admin.category.index') }}">
-                    <i class="fas fa-fw fa-calendar"></i>
-                    <span>Danh mục</span></a>
-            </li>
-            <li class="nav-item @if (Request::url() == route('admin.method.index')) {{ 'active' }} @endif">
-                <a class="nav-link" href="{{ route('admin.method.index') }}">
-                    <i class="fas fa-fw fa-cookie"></i>
-                    <span>Cách thức nấu</span></a>
-            </li>
             <li class="nav-item @if (Request::url() == route('admin.branch.index')) {{ 'active' }} @endif">
                 <a class="nav-link" href="{{ route('admin.branch.index') }}">
                     <i class="fas fa-fw fa-warehouse"></i>
                     <span>Chi nhánh</span></a>
+            </li>
+            <li class="nav-item @if (Request::url() == route('admin.category.index')) {{ 'active' }} @endif">
+                <a class="nav-link" href="{{ route('admin.category.index') }}">
+                    <i class="fas fa-fw fa-calendar"></i>
+                    <span>Danh mục</span></a>
             </li>
             <li class="nav-item @if (Request::url() == route('admin.food.index')) {{ 'active' }} @endif">
                 <a class="nav-link" href="{{ route('admin.food.index') }}">
                     <i class="fas fa-fw fa-carrot"></i>
                     <span>Thực phẩm</span></a>
             </li>
-            <li class="nav-item @if (Request::url() == route('admin.kitchen.index')) {{ 'active' }} @endif">
-                <a class="nav-link" href="{{ route('admin.kitchen.index') }}">
-                    <i class="fas fa-fw fa-dumpster-fire"></i>
-                    <span>Bếp</span></a>
+            <li class="nav-item @if (Request::url() == route('admin.method.index')) {{ 'active' }} @endif">
+                <a class="nav-link" href="{{ route('admin.method.index') }}">
+                    <i class="fas fa-fw fa-cookie"></i>
+                    <span>Cách thức nấu</span></a>
+            </li>
+            <li class="nav-item @if (Request::url() == route('admin.dish.index')) {{ 'active' }} @endif">
+                <a class="nav-link" href="{{ route('admin.dish.index') }}">
+                    <i class="fas fa-fw fa-cloud-meatball"></i>
+                    <span>Món ăn</span></a>
             </li>
             <li class="nav-item @if (Request::url() == route('admin.table.index')) {{ 'active' }} @endif">
                 <a class="nav-link" href="{{ route('admin.table.index') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Bàn</span></a>
             </li>
-            <li class="nav-item @if (Request::url() == route('admin.dish.index')) {{ 'active' }} @endif">
-                <a class="nav-link" href="{{ route('admin.dish.index') }}">
-                    <i class="fas fa-fw fa-cloud-meatball"></i>
-                    <span>Món ăn</span></a>
+            <li class="nav-item @if (Request::url() == route('admin.kitchen.index')) {{ 'active' }} @endif">
+                <a class="nav-link" href="{{ route('admin.kitchen.index') }}">
+                    <i class="fas fa-fw fa-dumpster-fire"></i>
+                    <span>Bếp</span></a>
             </li>
             <li class="nav-item @if (Request::url() == route('admin.bill.index')) {{ 'active' }} @endif">
                 <a class="nav-link" href="{{ route('admin.bill.index') }}">

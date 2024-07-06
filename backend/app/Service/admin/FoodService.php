@@ -39,7 +39,7 @@ class FoodService
     }
 
     public function checkHasChildren($idFood) {
-        return Food::find($idFood)->dish()->get()->count() > 0;
+        return Food::find($idFood)->dish()->where('status', 1)->get()->count() > 0;
     }
 
     public function delete($idFood) {

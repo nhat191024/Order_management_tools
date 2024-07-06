@@ -33,7 +33,7 @@ class BranchService
     }
 
     public function checkHasChildren($idBranch) {
-        return Branch::find($idBranch)->user()->get()->count() > 0 || Branch::find($idBranch)->kitchen()->get()->count() > 0 || Branch::find($idBranch)->table()->get()->count() > 0;
+        return Branch::find($idBranch)->user()->where('status', 1)->get()->count() > 0 || Branch::find($idBranch)->kitchen()->where('status', 1)->get()->count() > 0 || Branch::find($idBranch)->table()->where('status', 1)->get()->count() > 0;
     }
 
 

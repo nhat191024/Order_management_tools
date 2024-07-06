@@ -41,7 +41,7 @@
                             <div class="form-group">
                                 <label for="">Tên nhân viên thanh toán</label>
                                 <input type="text" class="form-control" id="" aria-describedby=""
-                                    name="" disabled placeholder="" value="{{$billInfo->user->username}}">
+                                    name="" disabled placeholder="" value="{{$billInfo->user->username ?? "Khách" }}">
                             </div>
                             <div class="form-group">
                                 <label for="">Thời gian vào</label>

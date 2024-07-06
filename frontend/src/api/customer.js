@@ -21,3 +21,9 @@ export async function getBranches(tableId) {
     return res;
   });
 }
+
+export async function currentOrder(tableId) {
+  return await api.get(`/orderHistory/${tableId}`).then((res) => {
+    return res.data;
+  });
+}

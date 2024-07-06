@@ -29,4 +29,11 @@ class CustomerController extends Controller
 
         return $bill;
     }
+
+    function orderHistory($tableId){
+        $service = new CustomerService();
+        $history = $service->getOrderHistory($tableId);
+
+        return $history;
+    }
 }

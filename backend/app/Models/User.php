@@ -10,7 +10,7 @@ class User extends Authenticatable
     use HasApiTokens;
 
     protected $fillable = [
-        'id_branch',
+        'branch_id',
         'username',
         'password',
         'role',

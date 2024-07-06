@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('image');
             $table->unsignedBigInteger('branch_id');
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
-
             $table->foreign('branch_id')->references('id')->on('branches');
         });
     }

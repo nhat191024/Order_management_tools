@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('branches', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('image');
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

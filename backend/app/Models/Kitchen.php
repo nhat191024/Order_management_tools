@@ -24,6 +24,4 @@ class Kitchen extends Model
     {
         return $this->hasMany(KitchenCookingMethod::class);
     }
-
-
 }

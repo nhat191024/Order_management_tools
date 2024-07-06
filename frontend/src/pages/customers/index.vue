@@ -52,7 +52,7 @@
             <div class="flex items-center justify-center" @click="showOrderHistory()">
                 <img src="/src/assets/list.svg" alt="Cart" class="h-10" />
                 <span class="rounded-full bg-primary self-start px-1 mt-1 -ml-4 text-white border border-white">
-                    {{ totalDish() < 10 ? "0" + totalDish() : totalDish() }} </span>
+                    {{ orderHistory.length < 10 ? "0" + orderHistory.length : orderHistory.length }} </span>
             </div>
         </div>
 
@@ -206,7 +206,7 @@
                 <div class="h-full grid grid-rows-10">
                     <h3 class="font-bold text-xl text-center pt-2 row-start-1 place-self-center">Đơn hàng đã đặt</h3>
                     <div class="overflow-auto row-start-2 row-span-full">
-                        <div v-for="order in orderHistory.orders"
+                        <div v-for="order in orderHistory"
                             class="w-full h-24 grid grid-rows-4 grid-cols-12 text-lg font-light my-5 px-4">
                             <img src="../../assets/demo.jpg" alt="demo"
                                 class="row-span-full col-span-3 w-full h-full rounded-lg" />
@@ -239,7 +239,7 @@
                         <div class="flex justify-end gap-2 px-4 py-2 text-lg">
                             <p>Tổng cộng :</p>
                             <p class="text-primary font-medium">
-                                {{ formatPrice(orderHistory.total) }}đ
+                                {{ formatPrice(orderHistoryTotal) }}đ
                             </p>
                         </div>
                     </div>
@@ -270,7 +270,8 @@ const tempNote = ref("");
 const billTemp = ref([]);
 const dishDetail = ref([]);
 const menu = ref([]);
-const orderHistory = ref([]); 
+const orderHistory = ref([]);
+const orderHistoryTotal = ref(0);
 
 
 if (orderStore.dishes) {
@@ -309,7 +310,18 @@ function tabChange(id) {
 
 function getCurrentOrder(id) {
     currentOrder(id).then((res) => {
-        orderHistory.value = res;
+        let data = [];
+        res.orders.forEach((dish) => {
+            const index = data.findIndex((item) => item.dishId === dish.dishId);
+            if (index === -1) {
+                data.push(dish);
+            } else {
+                data[index].quantity += dish.quantity;
+                data[index].price += dish.price;
+            }
+        });
+        orderHistoryTotal.value = res.total;
+        orderHistory.value = data;
     });
 }
 getCurrentOrder(id);

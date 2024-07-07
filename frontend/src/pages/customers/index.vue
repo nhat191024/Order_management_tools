@@ -50,6 +50,9 @@
                 <span class="rounded-full bg-primary self-start px-1 mt-1 -ml-4 text-white border border-white">
                     {{ totalDish() < 10 ? "0" + totalDish() : totalDish() }} </span>
             </div>
+            <div class="flex items-center justify-center" @click="showCredit">
+                <img src="/src/assets/fpt.png" alt="Cart" class="h-10" />
+            </div>
             <div class="flex items-center justify-center" @click="showOrderHistory()">
                 <img src="/src/assets/list.svg" alt="Cart" class="h-10" />
                 <span class="rounded-full bg-primary self-start px-1 mt-1 -ml-4 text-white border border-white">
@@ -187,7 +190,8 @@
                             </p>
                         </div>
                         <div class="modal-action p-4 mt-2 border-t-2 border-grey-400">
-                            <button class="btn-secondary btn w-full" @click="confirmOrder()" :class="billTemp.length < 1 ? 'btn-disabled' : ''">Đặt món</button>
+                            <button class="btn-secondary btn w-full" @click="confirmOrder()"
+                                :class="billTemp.length < 1 ? 'btn-disabled' : ''">Đặt món</button>
                         </div>
                     </div>
                 </div>
@@ -246,6 +250,19 @@
                     </div>
                 </div>
             </div>
+        </dialog>
+
+        <dialog id="credit" class="modal">
+            <div class="modal-box">
+                <h3 class="text-lg font-bold text-center text-orange-500">ĐƠN VỊ PHÁT TRIỂN</h3>
+                <p class="py-4">
+                    Bộ môn Công nghệ thông tin FPL Hải Phòng Hợp tác cùng DEV TEAM FPL Hải Phòng K19
+                </p>
+                <img src="/src/assets/poly.png" alt="">
+            </div>
+            <form method="dialog" class="modal-backdrop">
+                <button>close</button>
+            </form>
         </dialog>
     </div>
 </template>
@@ -318,7 +335,7 @@ function handleScroll(event) {
     for (const category of categories) {
         const rect = category.getBoundingClientRect();
         // console.log(rect.top, rect.bottom, containerHeight);
-        if (rect.bottom-140 > 0 && rect.top <= container.offsetHeight) {
+        if (rect.bottom - 140 > 0 && rect.top <= container.offsetHeight) {
             currentId = category.id;
             break;
         }
@@ -369,6 +386,11 @@ function showDishDetail() {
 function showOrderHistory() {
     const orderHistory = document.getElementById("orderHistory");
     orderHistory.showModal();
+}
+
+function showCredit() {
+    const credit = document.getElementById("credit");
+    credit.showModal();
 }
 
 function addDish(id, cookingMethodId) {

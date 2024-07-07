@@ -5,7 +5,7 @@
         <img class="rounded-full w-14 h-14" src="/src/assets/backButton.svg" alt="Logo" />
       </RouterLink>
 
-      <p class="text-white text-2xl font-semibold">Bàn {{ id }}</p>
+      <p class="text-white text-2xl font-semibold">Bàn {{ tableDish[0].table }}</p>
     </nav>
     <div class="flex-auto my-3">
       <p class="text-black text-2xl font-semibold text-center">
@@ -54,6 +54,7 @@ const route = useRoute();
 const router = useRouter();
 const id = route.params.id;
 const branchId = ref('');
+const table = ref('');
 const tableDish = orderStore.dishes;
 
 onMounted(async () => {

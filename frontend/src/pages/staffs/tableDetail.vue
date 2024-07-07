@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="col-start-4 col-span-5 self-center text-center font-bold text-4xl text-primary">
-            Bàn {{ id }}
+            Bàn {{ table }}
         </div>
         <div class="col-start-4 col-span-5 row-start-2 row-span-8 px-4 overflow-auto">
             <div v-for="(dishes, index) in tableDish"
@@ -168,6 +168,7 @@ const dishLength = ref(0);
 const tableDish = ref([]);
 const menu = ref([]);
 const tableBill = ref([]);
+const table = ref('');
 
 onMounted(async () => {
     getMenu(id).then((res) => {
@@ -177,7 +178,8 @@ onMounted(async () => {
 function loadData() {
     let data = [];
     getTableCurrentBill(id).then((res) => {
-        res.Bill_detail.forEach((dish) => {
+        table.value = res.Table_number;
+        res.Table_bill.Bill_detail.forEach((dish) => {
             const index = data.findIndex((item) => item.BillDetail_Dish.Dish_id === dish.BillDetail_Dish.Dish_id);
             if (index === -1) {
                 data.push(dish);
@@ -187,7 +189,7 @@ function loadData() {
         });
         tableBill.value = data;
         dishLength.value = tableBill.value.length;
-        total.value = res.Bill_total;
+        total.value = res.Table_bill.Bill_total;
     });
 }
 loadData();

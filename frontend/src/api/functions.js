@@ -29,3 +29,10 @@ export function getCookie(cookieName) {
     }
     return "";
 }
+
+export function checkLogin() {
+    const token = getCookie("token");
+    if (token === "") {
+        window.location.href = "/staff/login";
+    }
+}

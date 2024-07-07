@@ -1,21 +1,22 @@
 <template>
     <div class="grid grid-rows-12 w-dvw h-dvh">
         <nav class="bg-primary row-span-1 flex items-center justify-between px-4 rounded-b-lg">
-            <img class="rounded-full w-14 h-14" src="/src/assets/logo.jpg" alt="Logo" />
-            <p class="text-white text-2xl font-semibold">Bàn {{ id }}</p>
+            <img class="rounded-full max-[400px]:w-12 max-[400px]:h-12 w-14 h-14" src="/src/assets/logo.jpg" alt="Logo" />
+            <p class="text-white text-2xl font-semibold">Bàn {{ table }}</p>
         </nav>
         <!-- category -->
-        <div role="tablist" class="tabs tabs-bordered row-span-1 flex items-center overflow-auto">
+        <div role="tablist" class="tabs tabs-bordered row-span-1 items-center overflow-auto">
             <a v-for="(tab, index) in category" role="tab"
-                class="tab h-3/5 font-medium transition-all transform linear duration-500" :href="'#' + tab.id"
-                :class="tabStatus[index].status ? 'tab-active text-primary' : ''" @click="tabChange(tab.id)">
+                class="tab h-3/5 font-medium transition-all transform linear duration-500 text-nowrap"
+                :href="'#' + tab.id" :class="tabStatus[index].status ? 'tab-active text-primary' : ''"
+                @click="tabChange(tab.id)">
                 {{ tab.name }}
             </a>
         </div>
         <!-- Menu -->
-        <div class="row-span-9 px-3 flex flex-col overflow-auto scroll-smooth">
+        <div class="row-span-9 px-3 flex flex-col overflow-auto scroll-smooth" @scroll="handleScroll">
             <div v-for="category in menu" :id="category.Category_id"
-                class="flex flex-col mb-4 pb-4 border-b border-gray-400">
+                class="category flex flex-col mb-4 pb-4 border-b border-gray-400">
                 <p class="text-xl font-medium mb-4">
                     {{ category.Category_name }} ({{ category.Foods.length }})
                 </p>
@@ -36,7 +37,7 @@
                                     food.Dishes.length > 1
                                         ? DetailDish(food.Food_id)
                                         : addDish(food.Food_id, food.Dishes[0].Dish_cooking_method.Cooking_method_id)"
-                                    class="col-start-12 flex justify-center items-center bg-primary rounded-lg m-px transition-all transform linear duration-300 active:scale-110">
+                                    class="col-start-12 flex justify-center items-center bg-primary rounded-lg m-px transition-all transform linear duration-300 active:scale-150">
                                     <img src="../../assets/plus-white.svg" alt="" class="w-10/12" />
                                 </button>
                     </div>
@@ -48,6 +49,9 @@
                 <img src="/src/assets/Vector.svg" alt="Cart" class="h-10" />
                 <span class="rounded-full bg-primary self-start px-1 mt-1 -ml-4 text-white border border-white">
                     {{ totalDish() < 10 ? "0" + totalDish() : totalDish() }} </span>
+            </div>
+            <div class="flex items-center justify-center" @click="showCredit">
+                <img src="/src/assets/fpt.png" alt="Cart" class="h-10" />
             </div>
             <div class="flex items-center justify-center" @click="showOrderHistory()">
                 <img src="/src/assets/list.svg" alt="Cart" class="h-10" />
@@ -117,9 +121,9 @@
                     </div>
                     <div>
                         <div class="my-2">
-                            <label for="" class="px-4">Ghi Chú:</label>
-                            <textarea class="outline-none w-full textarea-md py-1" placeholder="📝Ghi chú cho quán"
-                                v-model="tempNote"></textarea>
+                            <label for="note" class="px-4">Ghi Chú:</label>
+                            <textarea id="note" class="outline-none w-full textarea-md py-1"
+                                placeholder="📝Ghi chú cho quán" v-model="tempNote"></textarea>
                         </div>
                     </div>
                 </div>
@@ -149,7 +153,7 @@
                 <div class="h-full grid grid-rows-10">
                     <h3 class="font-bold text-xl text-center pt-2 row-start-1 place-self-center">Giỏ hàng</h3>
                     <div class="overflow-auto row-start-2 row-span-full">
-                        <div v-for="dish in billTemp"
+                        <div v-for="(dish, index) in billTemp"
                             class="w-full h-24 grid grid-rows-4 grid-cols-12 text-lg font-light my-5 px-4">
                             <img src="../../assets/demo.jpg" alt="demo"
                                 class="row-span-full col-span-3 w-full h-full rounded-lg" />
@@ -166,7 +170,7 @@
                             </p>
                             <div
                                 class="col-start-10 col-span-full row-start-4 place-self-center w-full h-full flex items-center gap-3">
-                                <button @click="dishDelete(dish.dishId)"
+                                <button @click="dishDelete(dish.dishId, index)"
                                     class="join-item outline outline-1 p-1 outline-primary rounded-l-full transition-all transform linear duration-300 active:scale-125">
                                     <img src="../../assets/minus.svg" alt="" class="w-4" />
                                 </button>
@@ -186,7 +190,8 @@
                             </p>
                         </div>
                         <div class="modal-action p-4 mt-2 border-t-2 border-grey-400">
-                            <button class="btn-secondary btn w-full" @click="confirmOrder()">Đặt món</button>
+                            <button class="btn-secondary btn w-full" @click="confirmOrder()"
+                                :class="billTemp.length < 1 ? 'btn-disabled' : ''">Đặt món</button>
                         </div>
                     </div>
                 </div>
@@ -217,7 +222,7 @@
                                 {{ order.cookingMethod }}
                             </p>
                             <input class="pl-3 row-start-3 col-start-4 col-span-full outline-none" placeholder="Ghi chú"
-                                v-model="order.note" disabled/>
+                                v-model="order.note" disabled />
                             <p class="text-gray-500 pl-3 col-span-4 row-start-4">
                                 {{ formatPrice(order.price) }}đ
                             </p>
@@ -246,6 +251,19 @@
                 </div>
             </div>
         </dialog>
+
+        <dialog id="credit" class="modal">
+            <div class="modal-box">
+                <h3 class="text-lg font-bold text-center text-orange-500">ĐƠN VỊ PHÁT TRIỂN</h3>
+                <p class="py-4">
+                    Bộ môn Công nghệ thông tin FPL Hải Phòng Hợp tác cùng DEV TEAM FPL Hải Phòng K19
+                </p>
+                <img src="/src/assets/poly.png" alt="">
+            </div>
+            <form method="dialog" class="modal-backdrop">
+                <button>close</button>
+            </form>
+        </dialog>
     </div>
 </template>
 
@@ -272,6 +290,7 @@ const dishDetail = ref([]);
 const menu = ref([]);
 const orderHistory = ref([]);
 const orderHistoryTotal = ref(0);
+const table = ref('');
 
 
 if (orderStore.dishes) {
@@ -308,8 +327,26 @@ function tabChange(id) {
     });
 }
 
+function handleScroll(event) {
+    const container = event.target;
+    const categories = container.querySelectorAll('.category');
+
+    let currentId = '';
+
+    for (const category of categories) {
+        const rect = category.getBoundingClientRect();
+        if (rect.bottom - 140 > 0 && rect.top <= container.offsetHeight) {
+            currentId = category.id;
+            break;
+        }
+    }
+    let id = parseInt(currentId);
+    tabChange(id);
+}
+
 function getCurrentOrder(id) {
     currentOrder(id).then((res) => {
+        table.value = res.table;
         let data = [];
         res.orders.forEach((dish) => {
             const index = data.findIndex((item) => item.dishId === dish.dishId);
@@ -317,7 +354,6 @@ function getCurrentOrder(id) {
                 data.push(dish);
             } else {
                 data[index].quantity += dish.quantity;
-                data[index].price += dish.price;
             }
         });
         orderHistoryTotal.value = res.total;
@@ -350,6 +386,11 @@ function showDishDetail() {
 function showOrderHistory() {
     const orderHistory = document.getElementById("orderHistory");
     orderHistory.showModal();
+}
+
+function showCredit() {
+    const credit = document.getElementById("credit");
+    credit.showModal();
 }
 
 function addDish(id, cookingMethodId) {
@@ -408,11 +449,17 @@ function addDish(id, cookingMethodId) {
     tempNote.value = "";
 }
 
-function dishDelete(id) {
-    const index = billTemp.value.find((item) => item.dishId === id);
-    index.quantity--;
-    if (index.quantity === 0) {
-        billTemp.value = billTemp.value.filter((item) => item.dishId !== id);
+function dishDelete(id, index) {
+    const dish = billTemp.value.find((item) => item.dishId === id);
+    dish.quantity--;
+
+    if (orderStore.dishes.length != 0 && orderStore.dishes.find((item) => item.dishId === id) != undefined){
+        orderStore.updateDishQuantity(index, dish.quantity);
+    }
+    if (dish.quantity === 0) {
+        orderStore.removeDish(index);
+        billTemp.value = billTemp.value.filter((item) => item.dishId !== id); 
+        return;
     }
 }
 

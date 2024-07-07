@@ -94,7 +94,7 @@
         },
         {
             "id": 11,
-            "category_id": 1,
+            "category_id": 3,
             "name": "Cà la",
             "price": 120000,
             "image": "demo.jpg"
@@ -711,20 +711,6 @@
             "note": ""
         },
         {
-            "id": 35,
-            "food_id": 10,
-            "cooking_method_id": 3,
-            "additional_price": 0,
-            "note": ""
-        },
-        {
-            "id": 36,
-            "food_id": 10,
-            "cooking_method_id": 4,
-            "additional_price": 0,
-            "note": ""
-        },
-        {
             "id": 37,
             "food_id": 11,
             "cooking_method_id": 3,
@@ -1294,154 +1280,126 @@
     ],
     "tables": [
         {
-            "id": 1,
+            "id": "063cde00-3198-4c74-a363-8a8c16971711",
             "tables_number": 1,
             "branch_id": 1,
             "status": 1
         },
         {
-            "id": 2,
+            "id": "13840bf4-64af-4fce-8c43-41a86c1e3687",
             "tables_number": 2,
             "branch_id": 1,
             "status": 1
         },
         {
-            "id": 3,
             "tables_number": 3,
             "branch_id": 1
         },
         {
-            "id": 4,
             "tables_number": 4,
             "branch_id": 1
         },
         {
-            "id": 5,
             "tables_number": 5,
             "branch_id": 1
         },
         {
-            "id": 6,
             "tables_number": 6,
             "branch_id": 1
         },
         {
-            "id": 7,
             "tables_number": 7,
             "branch_id": 1
         },
         {
-            "id": 8,
             "tables_number": 8,
             "branch_id": 1
         },
         {
-            "id": 9,
             "tables_number": 9,
             "branch_id": 1
         },
         {
-            "id": 10,
             "tables_number": 10,
             "branch_id": 1
         },
         {
-            "id": 11,
             "tables_number": 11,
             "branch_id": 2
         },
         {
-            "id": 12,
             "tables_number": 12,
             "branch_id": 2
         },
         {
-            "id": 13,
             "tables_number": 13,
             "branch_id": 2
         },
         {
-            "id": 14,
             "tables_number": 14,
             "branch_id": 2
         },
         {
-            "id": 15,
             "tables_number": 15,
             "branch_id": 2
         },
         {
-            "id": 16,
             "tables_number": 16,
             "branch_id": 2
         },
         {
-            "id": 17,
             "tables_number": 17,
             "branch_id": 2
         },
         {
-            "id": 18,
             "tables_number": 18,
             "branch_id": 2
         },
         {
-            "id": 19,
             "tables_number": 19,
             "branch_id": 2
         },
         {
-            "id": 20,
             "tables_number": 20,
             "branch_id": 2
         },
         {
-            "id": 21,
             "tables_number": 21,
             "branch_id": 3
         },
         {
-            "id": 22,
             "tables_number": 22,
             "branch_id": 3
         },
         {
-            "id": 23,
             "tables_number": 23,
             "branch_id": 3
         },
         {
-            "id": 24,
             "tables_number": 24,
             "branch_id": 3
         },
         {
-            "id": 25,
             "tables_number": 25,
             "branch_id": 3
         },
         {
-            "id": 26,
             "tables_number": 26,
             "branch_id": 3
         },
         {
-            "id": 27,
             "tables_number": 27,
             "branch_id": 3
         },
         {
-            "id": 28,
             "tables_number": 28,
             "branch_id": 3
         },
         {
-            "id": 29,
             "tables_number": 29,
             "branch_id": 3
         },
         {
-            "id": 30,
             "tables_number": 30,
             "branch_id": 3
         }
@@ -1532,17 +1490,39 @@
     "bills": [
         {
             "id": 1,
-            "table_id": 1,
+            "table_id": "063cde00-3198-4c74-a363-8a8c16971711",
             "branch_id": 1,
             "user_id": 4,
-            "time_in": "2019-11-11 08:00:00"
+            "time_in": "2019-11-11 08:00:00",
+            "total": 90000,
+            "pay_status": 1
         },
         {
             "id": 2,
-            "table_id": 2,
-            "branch_id": 2,
+            "table_id": "13840bf4-64af-4fce-8c43-41a86c1e3687",
+            "branch_id": 1,
             "user_id": 5,
-            "time_in": "2019-11-11 08:00:00"
+            "time_in": "2019-11-11 08:00:00",
+            "total": 210000,
+            "pay_status": 0
+        },
+        {
+            "id": 3,
+            "table_id": "13840bf4-64af-4fce-8c43-41a86c1e3687",
+            "branch_id": 1,
+            "user_id": 4,
+            "time_in": "2019-11-11 08:00:00",
+            "total": 270000,
+            "pay_status": 1
+        },
+        {
+            "id": 4,
+            "table_id": "063cde00-3198-4c74-a363-8a8c16971711",
+            "branch_id": 1,
+            "user_id": 4,
+            "time_in": "2019-11-11 08:00:00",
+            "total": 360000,
+            "pay_status": 0
         }
     ],
     "bill_details": [
@@ -1584,6 +1564,34 @@
         {
             "id": 6,
             "bill_id": 2,
+            "dish_id": 6,
+            "quantity": 1,
+            "price": 90000
+        },
+        {
+            "id": 7,
+            "bill_id": 3,
+            "dish_id": 6,
+            "quantity": 1,
+            "price": 90000
+        },
+        {
+            "id": 8,
+            "bill_id": 3,
+            "dish_id": 6,
+            "quantity": 2,
+            "price": 90000
+        },
+        {
+            "id": 9,
+            "bill_id": 4,
+            "dish_id": 6,
+            "quantity": 3,
+            "price": 90000
+        },
+        {
+            "id": 10,
+            "bill_id": 4,
             "dish_id": 6,
             "quantity": 1,
             "price": 90000

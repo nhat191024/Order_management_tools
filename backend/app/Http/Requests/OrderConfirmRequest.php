@@ -26,6 +26,7 @@ class OrderConfirmRequest extends FormRequest
                 'branch_id' => 'required|integer|exists:branches,id',
                 'dishes' => 'required|array',
                 'dishes.*.dish_id' => 'required|integer|exists:dishes,id',
+                'dishes.*.price' => 'required|integer|min:0',
                 'dishes.*.quantity' => 'required|integer|min:1',
                 'dishes.*.note' => 'nullable|string'
         ];

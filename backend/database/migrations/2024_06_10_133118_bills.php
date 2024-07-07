@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('table_id');
+            $table->string('table_id');
             $table->unsignedBigInteger('branch_id');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamp('time_in')->useCurrent();

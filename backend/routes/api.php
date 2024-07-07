@@ -25,10 +25,10 @@ Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:sanc
 
 Route::group(['prefix' => 'staff', 'namespace' => 'App\Http\Controllers\Api', 'middleware' => ['auth:sanctum', 'ability:staff']], function () {
     Route::get('/menu', [TableDetailManagerController::class, 'menu']);
-    Route::get('/bill', [TableDetailManagerController::class, 'bill']);
     Route::get('/currentOrder/{table_id}', [TableDetailManagerController::class, 'currentOrder']);
     Route::post('/order', [TableDetailManagerController::class, 'order']);
     Route::get('/checkout/{id}',[CheckoutController::class,'show']);
+    Route::post('/checkout',[CheckoutController::class,'checkout']);
     Route::get('/table/{user_id}',[StaffTableListController::class,'tableList']);
 });
 

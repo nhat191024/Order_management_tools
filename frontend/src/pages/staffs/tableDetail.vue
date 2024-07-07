@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="col-start-4 col-span-5 self-center text-center font-bold text-4xl text-primary">
-            Bàn {{ id }}
+            Bàn {{ table }}
         </div>
         <div class="col-start-4 col-span-5 row-start-2 row-span-8 px-4 overflow-auto">
             <div v-for="(dishes, index) in tableDish"
@@ -83,7 +83,8 @@
             </div>
         </div>
         <div class="col-start-5 col-span-3 row-start-10 flex items-center justify-center">
-            <button class="btn btn-primary my-1 w-full text-white" @click="confirm()">
+            <button class="btn btn-primary my-1 w-full text-white" @click="confirm()"
+                :class="tableDish.length < 1 ? 'btn-disabled' : ''">
                 Xác Nhận Thêm Món
             </button>
         </div>
@@ -101,7 +102,9 @@
                     </span>
                 </p>
                 <p class="w-[10%] text-start">x{{ dishes.BillDetail_quantity }}</p>
-                <p class="w-[30%] font-bold text-end">{{ formatPrice(dishes.BillDetail_price) }}đ</p>
+                <p class="w-[30%] font-bold text-end">{{ formatPrice(dishes.BillDetail_price *
+                    dishes.BillDetail_quantity) }}đ
+                </p>
             </div>
         </div>
         <div class="col-start-9 col-span-4 row-start-9 row-span-full px-6 flex flex-col justify-center">
@@ -156,8 +159,10 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { RouterLink, useRoute } from "vue-router";
-import { formatPrice, getCookie } from "../../api/functions";
+import { formatPrice, getCookie, checkLogin } from "../../api/functions";
 import { getMenu, getTableCurrentBill, addOrderItems } from "../../api/tableDetail";
+
+checkLogin();
 const route = useRoute();
 const id = route.params.id;
 const total = ref(0);
@@ -165,6 +170,7 @@ const dishLength = ref(0);
 const tableDish = ref([]);
 const menu = ref([]);
 const tableBill = ref([]);
+const table = ref('');
 
 onMounted(async () => {
     getMenu(id).then((res) => {
@@ -172,21 +178,20 @@ onMounted(async () => {
     });
 });
 function loadData() {
-    let count = 0;
     let data = [];
     getTableCurrentBill(id).then((res) => {
-        res.Bill_detail.forEach((dish) => {
+        table.value = res.Table_number;
+        res.Table_bill.Bill_detail.forEach((dish) => {
             const index = data.findIndex((item) => item.BillDetail_Dish.Dish_id === dish.BillDetail_Dish.Dish_id);
             if (index === -1) {
                 data.push(dish);
             } else {
                 data[index].BillDetail_quantity += dish.BillDetail_quantity;
-                data[index].BillDetail_price += dish.BillDetail_price;
             }
         });
         tableBill.value = data;
         dishLength.value = tableBill.value.length;
-        total.value = res.Bill_total;
+        total.value = res.Table_bill.Bill_total;
     });
 }
 loadData();
@@ -248,6 +253,7 @@ async function addOrders() {
     tableDish.value.forEach((dish) => {
         dishes.push({
             dish_id: dish.dish_id,
+            price: dish.dish_price,
             quantity: dish.dish_quantity,
             note: dish.dish_note,
         });

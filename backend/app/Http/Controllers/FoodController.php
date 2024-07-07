@@ -71,7 +71,7 @@ class FoodController extends Controller
             $imageName = time() . '_' . $request->food_image->getClientOriginalName();
             $request->food_image->move(public_path('img'), $imageName);
             $oldImagePath = $this->foodService->getById($request->id)->image;
-            if (file_exists(public_path('img') . '/' . $oldImagePath)) {
+            if (file_exists(public_path('img') . '/' . $oldImagePath != null)) {
                 unlink(public_path('img') . '/' . $oldImagePath);
             }
         }

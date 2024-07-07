@@ -64,7 +64,7 @@ class KitchenController extends Controller
             $imageName = time() . '_' . $request->kitchen_image->getClientOriginalName();
             $request->kitchen_image->move(public_path('img'), $imageName);
             $oldImagePath = $this->kitchenService->getById($request->id)->image;
-            if (file_exists(public_path('img') . '/' . $oldImagePath)) {
+            if (file_exists(public_path('img') . '/' . $oldImagePath != null)) {
                 unlink(public_path('img') . '/' . $oldImagePath);
             }
         }

@@ -6,7 +6,7 @@
                 class=" rounded-full col-span-full row-span-3 self-center place-self-center w-[50%]">
             <Field type="text" name="username" placeholder="Tên Đăng Nhập"
                 class="row-start-4 col-span-full h-[60%] rounded-2xl text-center bg-white drop-shadow-2xl"
-                :rules="usernameRule" />
+                :rules="usernameRule" autocomplete="username"/>
             <ErrorMessage class="col-span-full row-start-4 self-end mb-1 place-self-center font-bold text-white"
                 name="username" />
             <p :class="{ 'hidden': auth === 'none' }"
@@ -14,7 +14,7 @@
                 Đăng nhập thất bại sai tên đăng nhập hoặc mật khẩu</p>
             <Field type="password" name="password" placeholder="Mật Khẩu"
                 class="row-start-5 col-span-full  h-[60%] rounded-2xl text-center bg-white drop-shadow-2xl"
-                :rules="passwordRule" />
+                :rules="passwordRule" autocomplete="current-password"/>
             <ErrorMessage class="col-span-full row-start-5 self-end mb-1 place-self-center text-white font-bold"
                 name="password" />
             <p :class="{ 'hidden': auth === 'none' }" class=" col-span-full row-start-5 self-end mb-1 place-self-center
@@ -30,12 +30,9 @@
 
 <script setup>
 import { loginHandle } from '../../api/login';
-import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import * as yup from 'yup';
-
-const router = useRouter();
 
 const usernameRule = yup.string().required('Tên Đăng Nhập là bắt buộc');
 const passwordRule = yup.string().required('Mật khẩu là bắt buộc').min(4, 'Mật khẩu phải có ít nhất 4 ký tự');
@@ -47,9 +44,9 @@ async function onSubmit(values) {
             if (res.message === 'success') {
                 auth.value = 'none';
                 if (res.role === 2)
-                    router.push('/staff/table');
+                    window.location.href = '/staff/table';    
                 else
-                    router.push('/staff/kitchen');
+                    window.location.href = '/staff/kitchen';
             } else {
                 auth.value = 'fail';
             }

@@ -9,9 +9,6 @@ use App\Models\BillDetail;
 
 use App\Service\KitchenService;
 
-use App\Events\OrderCreate;
-use App\Models\Kitchen;
-
 class CustomerService
 {
     private $kitchenService;
@@ -23,7 +20,13 @@ class CustomerService
 
     public function getMenu()
     {
-        $menu = Category::with('food.dish.cookingMethod')->get();
+        $menu = Category::has('food')
+            ->with(['food' => function ($query) {
+                $query
+                    ->has('dish')
+                    ->with('dish.cookingMethod');
+            }])
+            ->get();
         return $menu;
     }
 
@@ -36,9 +39,13 @@ class CustomerService
 
     public function getOrderConfirm($request)
     {
-        $table = Table::where('id', $request->table_id)->first();
-        // create variable
         $createdEntities = 0;
+        $table = Table::where('id', $request->table_id)
+            ->with(['bill' => function ($query) {
+                $query->where('pay_status', 0);
+            }])
+            ->first();
+
         if ($table->status == 1) { // If table not empty => update current bill
             $bill = $table->bill;
             foreach ($request->dishes as $dish) {
@@ -46,12 +53,12 @@ class CustomerService
                     'bill_id' => $bill->id,
                     'dish_id' => $dish['dish_id'],
                     'quantity' => $dish['quantity'],
-                    'price' => 0,
+                    'price' => $dish['price'],
                     'note' => $dish['note'],
                 ]);
-
-                $this->kitchenService->sendNewOrder($billDetail->id, $request->branch_id, $dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
                 $createdEntities++;
+                $bill->total += $dish['price'] * $dish['quantity'];
+                $this->kitchenService->sendNewOrder($billDetail->id, $request->branch_id, $dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
             }
         } else { // if table is empty => create new bill
             $table->status = 1;
@@ -66,32 +73,34 @@ class CustomerService
                     'bill_id' => $bill->id,
                     'dish_id' => $dish['dish_id'],
                     'quantity' => $dish['quantity'],
-                    'price' => 0,
+                    'price' => $dish['price'],
                     'note' => $dish['note'],
                 ]);
-                $this->kitchenService->sendNewOrder($billDetail->id, $request->branch_id, $dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
+                $bill->total += $dish['price'] * $dish['quantity'];
                 $createdEntities++;
+                $this->kitchenService->sendNewOrder($billDetail->id, $request->branch_id, $dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
             }
         }
+        $bill->save();
         return response()->json(['created' => $createdEntities], 200);
     }
 
     public function getOrderHistory($tableId)
     {
         $total = 0;
-        $bill = Bill::where('table_id', $tableId)
+        $bills = Bill::where('table_id', $tableId)
             ->where('pay_status', 0)
             ->with('billDetail.dish.cookingMethod')
             ->get();
 
-        $order = [];
-        foreach ($bill as $t) {
-            // Calculate total price of each dish in the bill
-            foreach ($t->billDetail as $billDetail) {
-                $billDetail;
-                $billDetail->price = ($billDetail->dish->food->price + $billDetail->dish->additional_price) * $billDetail->quantity;
-                $total += $billDetail->price;
+        $table = Table::where('id', $tableId)->first('table_number');
 
+        $order = [];
+        foreach ($bills as $bill) {
+            // Calculate total price of each dish in the bill
+            foreach ($bill->billDetail as $billDetail) {
+                $billDetail;
+                $total += $billDetail->price * $billDetail->quantity;
                 $order[] = [
                     'dishId' => $billDetail->dish->id,
                     'dishName' => $billDetail->dish->food->name . ' ' . $billDetail->dish->cookingMethod->name,
@@ -102,6 +111,6 @@ class CustomerService
                 ];
             }
         }
-        return ['orders' => $order, 'total' => $total];
+        return ['table' => $table['table_number'], 'orders' => $order, 'total' => $total];
     }
 }

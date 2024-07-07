@@ -9,6 +9,16 @@ export const useOrderStore = defineStore('order', () => {
         localStorage.setItem('dishes', JSON.stringify(dishes));
     }
 
+    function removeDish(index) {
+        dishes.splice(index, 1);
+        localStorage.setItem('dishes', JSON.stringify(dishes));
+    }
+
+    function updateDishQuantity(index, quantity) {
+        dishes[index].quantity = quantity;
+        localStorage.setItem('dishes', JSON.stringify(dishes));
+    }
+
     function clearDishes() {
         dishes.splice(0, dishes.length);
         localStorage.setItem('dishes', JSON.stringify(dishes));
@@ -17,6 +27,8 @@ export const useOrderStore = defineStore('order', () => {
     return {
         dishes,
         addDish,
+        updateDishQuantity,
+        removeDish,
         clearDishes
     }
 });

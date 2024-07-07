@@ -77,6 +77,7 @@ async function addOrders() {
   tableDish.forEach((dish) => {
     dishes.push({
       dish_id: dish.dishId,
+      price: dish.price,
       quantity: dish.quantity,
       note: dish.note,
     });

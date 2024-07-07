@@ -56,7 +56,7 @@ class CategoryController extends Controller
             $imageName = time() . '_' . $request->category_image->getClientOriginalName();
             $request->category_image->move(public_path('img'), $imageName);
             $oldImagePath = $this->categoryService->getById($request->id)->image;
-            if (file_exists(public_path('img') . '/' . $oldImagePath)) {
+            if (file_exists(public_path('img') . '/' . $oldImagePath != null)) {
                 unlink(public_path('img') . '/' . $oldImagePath);
             }
         }

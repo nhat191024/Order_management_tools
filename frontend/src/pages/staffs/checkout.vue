@@ -2,7 +2,8 @@
     <div class="grid grid-cols-12 grid-rows-12 gap-5 h-screen w-screen">
         <div class="col-span-6 row-span-12 grid z-10">
             <div class="p-4 h-0">
-                <RouterLink class="items-center bg-white drop-shadow-2x text-black inline-flex" :to="`/staff/table/${id}`">
+                <RouterLink class="items-center bg-white drop-shadow-2x text-black inline-flex"
+                    :to="`/staff/table/${id}`">
                     <div class="bg-primary w-10 h-10 m-2 drop-shadow-2xl rounded-xl p-1">
                         <img src="./../../assets/left-long-solid.svg" alt="My SVG Icon" class="">
                     </div>
@@ -40,7 +41,8 @@
                                 <td class="text-center">{{ formatPrice(item.BillDetail_quantity) }}</td>
                                 <td class="text-center">{{ formatPrice(item.BillDetail_Dish.Dish_food.Food_price) }}
                                 </td>
-                                <td class="text-center">{{ formatPrice(item.BillDetail_price) }}</td>
+                                <td class="text-center">{{ formatPrice(item.BillDetail_price * item.BillDetail_quantity)
+                                    }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -52,7 +54,8 @@
                 </div>
             </div>
             <div class="flex justify-center items-center">
-                <button class="btn btn-primary text-white shadow-md w-1/2 ml-16 text-xl">In Hoá Đơn</button>
+                <button class="btn btn-primary text-white shadow-md w-1/2 ml-16 text-xl"
+                    @click="confirmPrint(billId, time_leave)">In Hoá Đơn</button>
             </div>
         </div>
         <div class="flex justify-center items-center col-span-6 row-span-12 z-0">
@@ -61,13 +64,46 @@
             </div>
         </div>
     </div>
+
+    <dialog id="confirm" class="modal">
+        <form class="modal-box text-center">
+            <h3 class="font-bold text-lg text-orange-500">Xác nhận in?</h3>
+            <p class="py-4">
+                Hãy chắc chắn rằng bạn đã kiểm tra kỹ thông tin trước khi in hóa đơn!
+            </p>
+            <p class="py-4">
+                Và hãy chắc chắn rằng hóa đơn đã được thanh toán
+            </p>
+            <div class="modal-action border-t border-black pt-4 mt-0">
+                <form method="dialog">
+                    <button class="btn btn-primary text-white mx-2" @click="checkoutAndPrint(billId, time_leave)">Xác
+                        Nhận</button>
+                    <button class="btn btn-error text-white">Hủy</button>
+                </form>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="success" class="modal">
+        <div class="modal-box text-center">
+            <h3 class="text-lg font-bold text-orange-500">In hóa đơn & thanh toán thành công</h3>
+            <p class="py-4">
+                Bấm bất kỳ đâu ngoài hộp thoại để đóng và quay lại trang chính
+            </p>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button @click="returnToTable()"></button>
+        </form>
+    </dialog>
 </template>
 
 <script setup>
 import { onMounted, ref } from 'vue';
 import { useRoute, RouterLink } from "vue-router";
-import { getBillData } from '../../api/checkout';
-import { formatDateTime, formatPrice } from '../../api/functions';
+import { getBillData, checkout } from '../../api/checkout';
+import { formatDateTime, formatPrice, checkLogin } from '../../api/functions';
+
+checkLogin();
 const route = useRoute()
 const id = route.params.id;
 
@@ -77,15 +113,46 @@ const time_in = ref("");
 const time_leave = ref(formatDateTime(new Date()));
 const total = ref("");
 const billItems = ref([]);
+const billId = ref("");
 
 onMounted(async () => {
     getBillData(id).then(res => {
-        area.value = res.Bill_table.Table_branch.Branch_name;
-        table.value = res.Bill_table.Table_number;
-        time_in.value = res.Bill_time_in;
-        total.value = formatPrice(res.Bill_total);
-        billItems.value = res.Bill_detail;
+        let data = [];
+        billId.value = res.Table_bill.Bill_id;
+        area.value = res.Table_branch.Branch_name;
+        table.value = res.Table_number;
+        time_in.value = res.Table_bill.Bill_time_in;
+        total.value = formatPrice(res.Table_bill.Bill_total);
+        res.Table_bill.Bill_detail.forEach((dish) => {
+            const index = data.findIndex((item) => item.BillDetail_Dish.Dish_id === dish.BillDetail_Dish.Dish_id);
+            if (index === -1) {
+                data.push(dish);
+            } else {
+                data[index].BillDetail_quantity += dish.BillDetail_quantity;
+            }
+        });
+        billItems.value = data;
     });
 })
 
+function confirmPrint() {
+    const confirm = document.getElementById('confirm');
+    confirm.showModal();
+}
+
+function checkoutAndPrint(id, timeOut) {
+    const success = document.getElementById('success');
+    checkout(id, timeOut).then(res => {
+        if (res.status === 200) {
+            // window.print();
+            success.showModal();
+        } else {
+            alert("Thanh toán thất bại");
+        }
+    })
+}
+
+function returnToTable() {
+    window.location.href = `/staff/table`;
+}
 </script>

@@ -42,8 +42,9 @@
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { getKitchenCurrentOrder, updateOrderStatus, getKitchenName } from "../../api/kitchen";
-import { getCookie } from "../../api/functions";
+import { getCookie, checkLogin } from "../../api/functions";
 
+checkLogin();
 const id = useRoute().params.id;
 const branchId = getCookie("Branch_id");
 

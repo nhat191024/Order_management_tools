@@ -8,7 +8,7 @@ export async function getMenu() {
 
 export async function getTableCurrentBill(id) {
     return api.get(`/staff/currentOrder/${id}`).then((res) => {
-        return res.data.data[0].Table_bill;
+        return res.data.data;
     });
 }
 

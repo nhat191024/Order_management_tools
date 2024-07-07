@@ -23,7 +23,13 @@ class CustomerService
 
     public function getMenu()
     {
-        $menu = Category::with('food.dish.cookingMethod')->get();
+        $menu = Category::has('food')
+            ->with(['food' => function ($query) {
+                $query
+                    ->has('dish')
+                    ->with('dish.cookingMethod');
+            }])
+            ->get();
         return $menu;
     }
 

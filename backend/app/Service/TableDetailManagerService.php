@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Http\Resources\TableResource;
 use App\Models\Category;
 use App\Models\Bill;
 use App\Models\Table;
@@ -25,21 +26,13 @@ class TableDetailManagerService
 
     public function getTableCurrentBill($id)
     {
-        $table = Table::where('id', "=", $id);
-        $table = $table->with('bill', 'bill.billDetail', 'bill.billDetail.dish', 'bill.billDetail.dish.food', 'bill.billDetail.dish.cookingMethod')->get();
-        // Calculate total price of each bill
-        foreach ($table as $t) {
-            $bill = $t->bill;
-            $billDetails = $bill->billDetail;
-            $total = 0;
-            // Calculate total price of each dish in the bill
-            foreach ($billDetails as $billDetail) {
-                $billDetail->price = ($billDetail->dish->food->price + $billDetail->dish->additional_price) * $billDetail->quantity;
-                $total += $billDetail->price;
-            }
-            $bill->total = $total;
-        }
-        return $table;
+        $bill = Table::where('id', $id)
+            ->with(['bill' => function ($query) {
+                $query->where('pay_status', 0)
+                    ->with('billDetail.dish.cookingMethod', 'billDetail.dish.food');
+            }])
+            ->first();
+        return new TableResource($bill);
     }
 
     public function addDishToTableBill($request)

@@ -93,6 +93,8 @@ class CustomerService
             ->with('billDetail.dish.cookingMethod')
             ->get();
 
+        $table = Table::where('id', $tableId)->first('table_number');
+
         $order = [];
         foreach ($bills as $bill) {
             // Calculate total price of each dish in the bill
@@ -109,6 +111,6 @@ class CustomerService
                 ];
             }
         }
-        return ['orders' => $order, 'total' => $total];
+        return ['table' => $table['table_number'], 'orders' => $order, 'total' => $total];
     }
 }

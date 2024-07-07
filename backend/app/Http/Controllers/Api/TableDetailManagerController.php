@@ -24,7 +24,7 @@ class TableDetailManagerController extends Controller
     {
         $service = new TableDetailManagerService();
         $bill = $service->getTableCurrentBill($id);
-        return new TableResource($bill);
+        return $bill;
     }
 
     function order(StoreStaffOrderRequest $request)

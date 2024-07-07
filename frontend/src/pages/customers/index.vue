@@ -1,7 +1,7 @@
 <template>
     <div class="grid grid-rows-12 w-dvw h-dvh">
         <nav class="bg-primary row-span-1 flex items-center justify-between px-4 rounded-b-lg">
-            <img class="rounded-full w-14 h-14" src="/src/assets/logo.jpg" alt="Logo" />
+            <img class="rounded-full max-[400px]:w-12 max-[400px]:h-12 w-14 h-14" src="/src/assets/logo.jpg" alt="Logo" />
             <p class="text-white text-2xl font-semibold">Bàn {{ id }}</p>
         </nav>
         <!-- category -->
@@ -37,7 +37,7 @@
                                     food.Dishes.length > 1
                                         ? DetailDish(food.Food_id)
                                         : addDish(food.Food_id, food.Dishes[0].Dish_cooking_method.Cooking_method_id)"
-                                    class="col-start-12 flex justify-center items-center bg-primary rounded-lg m-px transition-all transform linear duration-300 active:scale-110">
+                                    class="col-start-12 flex justify-center items-center bg-primary rounded-lg m-px transition-all transform linear duration-300 active:scale-150">
                                     <img src="../../assets/plus-white.svg" alt="" class="w-10/12" />
                                 </button>
                     </div>
@@ -450,7 +450,10 @@ function addDish(id, cookingMethodId) {
 function dishDelete(id, index) {
     const dish = billTemp.value.find((item) => item.dishId === id);
     dish.quantity--;
-    orderStore.updateDishQuantity(index, dish.quantity);
+
+    if (orderStore.dishes.length != 0 && orderStore.dishes.find((item) => item.dishId === id) != undefined){
+        orderStore.updateDishQuantity(index, dish.quantity);
+    }
     if (dish.quantity === 0) {
         orderStore.removeDish(index);
         billTemp.value = billTemp.value.filter((item) => item.dishId !== id); 

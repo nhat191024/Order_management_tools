@@ -159,8 +159,10 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { RouterLink, useRoute } from "vue-router";
-import { formatPrice, getCookie } from "../../api/functions";
+import { formatPrice, getCookie, checkLogin } from "../../api/functions";
 import { getMenu, getTableCurrentBill, addOrderItems } from "../../api/tableDetail";
+
+checkLogin();
 const route = useRoute();
 const id = route.params.id;
 const total = ref(0);

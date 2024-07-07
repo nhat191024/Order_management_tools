@@ -32,8 +32,9 @@ import { ref, onMounted } from "vue";
 import { useRouter } from 'vue-router';
 import { logoutHandle } from '../../api/login';
 import { getKitchenData } from "../../api/kitchen";
-import { getCookie } from "../../api/functions";
+import { getCookie, checkLogin } from "../../api/functions";
 
+checkLogin();
 const router = useRouter();
 const kitchens = ref([])
 const branchId = getCookie("Branch_id");

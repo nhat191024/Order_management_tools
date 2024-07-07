@@ -101,7 +101,9 @@
 import { onMounted, ref } from 'vue';
 import { useRoute, RouterLink } from "vue-router";
 import { getBillData, checkout } from '../../api/checkout';
-import { formatDateTime, formatPrice } from '../../api/functions';
+import { formatDateTime, formatPrice, checkLogin } from '../../api/functions';
+
+checkLogin();
 const route = useRoute()
 const id = route.params.id;
 

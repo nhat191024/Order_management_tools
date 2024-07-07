@@ -42,8 +42,9 @@ import { onMounted, ref } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
 import { getTableData } from '../../api/table';
 import { logoutHandle } from '../../api/login';
-import { getCookie } from '../../api/functions';
+import { getCookie, checkLogin } from '../../api/functions';
 
+checkLogin();
 const router = useRouter();
 const tableList = ref([]);
 const username = getCookie('Username');

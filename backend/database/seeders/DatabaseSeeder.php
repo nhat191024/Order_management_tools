@@ -94,7 +94,8 @@ class DatabaseSeeder extends Seeder
                 "table_id" => $row['table_id'],
                 "branch_id" => $row['branch_id'],
                 "user_id" => $row['user_id'],
-                "time_in" => $row['time_in']
+                "time_in" => $row['time_in'],
+                'total' => $row['total'],
             ]);
         }
 

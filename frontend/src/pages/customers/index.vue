@@ -153,7 +153,7 @@
                 <div class="h-full grid grid-rows-10">
                     <h3 class="font-bold text-xl text-center pt-2 row-start-1 place-self-center">Giỏ hàng</h3>
                     <div class="overflow-auto row-start-2 row-span-full">
-                        <div v-for="dish in billTemp"
+                        <div v-for="(dish, index) in billTemp"
                             class="w-full h-24 grid grid-rows-4 grid-cols-12 text-lg font-light my-5 px-4">
                             <img src="../../assets/demo.jpg" alt="demo"
                                 class="row-span-full col-span-3 w-full h-full rounded-lg" />
@@ -170,7 +170,7 @@
                             </p>
                             <div
                                 class="col-start-10 col-span-full row-start-4 place-self-center w-full h-full flex items-center gap-3">
-                                <button @click="dishDelete(dish.dishId)"
+                                <button @click="dishDelete(dish.dishId, index)"
                                     class="join-item outline outline-1 p-1 outline-primary rounded-l-full transition-all transform linear duration-300 active:scale-125">
                                     <img src="../../assets/minus.svg" alt="" class="w-4" />
                                 </button>
@@ -448,11 +448,14 @@ function addDish(id, cookingMethodId) {
     tempNote.value = "";
 }
 
-function dishDelete(id) {
-    const index = billTemp.value.find((item) => item.dishId === id);
-    index.quantity--;
-    if (index.quantity === 0) {
-        billTemp.value = billTemp.value.filter((item) => item.dishId !== id);
+function dishDelete(id, index) {
+    const dish = billTemp.value.find((item) => item.dishId === id);
+    dish.quantity--;
+    orderStore.updateDishQuantity(index, dish.quantity);
+    if (dish.quantity === 0) {
+        orderStore.removeDish(index);
+        billTemp.value = billTemp.value.filter((item) => item.dishId !== id); 
+        return;
     }
 }
 

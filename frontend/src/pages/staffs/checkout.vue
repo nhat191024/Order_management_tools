@@ -40,7 +40,7 @@
                                 <td class="text-center">{{ formatPrice(item.BillDetail_quantity) }}</td>
                                 <td class="text-center">{{ formatPrice(item.BillDetail_Dish.Dish_food.Food_price) }}
                                 </td>
-                                <td class="text-center">{{ formatPrice(item.BillDetail_price) }}</td>
+                                <td class="text-center">{{ formatPrice(item.BillDetail_price * item.BillDetail_quantity) }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -80,12 +80,20 @@ const billItems = ref([]);
 
 onMounted(async () => {
     getBillData(id).then(res => {
-        area.value = res.Bill_table.Table_branch.Branch_name;
-        table.value = res.Bill_table.Table_number;
-        time_in.value = res.Bill_time_in;
-        total.value = formatPrice(res.Bill_total);
-        billItems.value = res.Bill_detail;
+        let data = [];
+        area.value = res.Table_branch.Branch_name;
+        table.value = res.Table_number;
+        time_in.value = res.Table_bill.Bill_time_in;
+        total.value = formatPrice(res.Table_bill.Bill_total);
+        res.Table_bill.Bill_detail.forEach((dish) => {
+            const index = data.findIndex((item) => item.BillDetail_Dish.Dish_id === dish.BillDetail_Dish.Dish_id);
+            if (index === -1) {
+                data.push(dish);
+            } else {
+                data[index].BillDetail_quantity += dish.BillDetail_quantity;
+            }
+        });
+        billItems.value = data;
     });
 })
-
 </script>

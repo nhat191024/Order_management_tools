@@ -27,6 +27,7 @@ class StoreStaffOrderRequest extends FormRequest
             'user_id' => 'required|integer|exists:users,id',
             'dishes' => 'required|array',
             'dishes.*.dish_id' => 'required|integer|exists:dishes,id',
+            'dishes.*.price' => 'required|integer|min:0',
             'dishes.*.quantity' => 'required|integer|min:1',
             'dishes.*.note' => 'nullable|string'
         ];

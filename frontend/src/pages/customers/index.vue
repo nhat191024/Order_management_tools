@@ -187,7 +187,7 @@
                             </p>
                         </div>
                         <div class="modal-action p-4 mt-2 border-t-2 border-grey-400">
-                            <button class="btn-secondary btn w-full" @click="confirmOrder()">Đặt món</button>
+                            <button class="btn-secondary btn w-full" @click="confirmOrder()" :class="billTemp.length < 1 ? 'btn-disabled' : ''">Đặt món</button>
                         </div>
                     </div>
                 </div>

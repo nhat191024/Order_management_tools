@@ -101,7 +101,7 @@
                     </span>
                 </p>
                 <p class="w-[10%] text-start">x{{ dishes.BillDetail_quantity }}</p>
-                <p class="w-[30%] font-bold text-end">{{ formatPrice(dishes.BillDetail_price) }}đ</p>
+                <p class="w-[30%] font-bold text-end">{{ formatPrice(dishes.BillDetail_price * dishes.BillDetail_quantity) }}đ</p>
             </div>
         </div>
         <div class="col-start-9 col-span-4 row-start-9 row-span-full px-6 flex flex-col justify-center">
@@ -172,7 +172,6 @@ onMounted(async () => {
     });
 });
 function loadData() {
-    let count = 0;
     let data = [];
     getTableCurrentBill(id).then((res) => {
         res.Bill_detail.forEach((dish) => {
@@ -181,7 +180,6 @@ function loadData() {
                 data.push(dish);
             } else {
                 data[index].BillDetail_quantity += dish.BillDetail_quantity;
-                data[index].BillDetail_price += dish.BillDetail_price;
             }
         });
         tableBill.value = data;

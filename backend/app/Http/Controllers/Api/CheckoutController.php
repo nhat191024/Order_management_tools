@@ -17,13 +17,13 @@ class CheckoutController extends Controller
         $this -> service = new CheckoutService();
     }
 
-    public function index()
-    {
-        return $this->service->getAllBill();
-    }
-
     public function show($id)
     {
         return $this->service->getBill($id);
+    }
+
+    public function checkout(Request $request)
+    {
+        return $this->service->checkout($request);
     }
 }

@@ -105,6 +105,7 @@ class DatabaseSeeder extends Seeder
                 "dish_id" => $row['dish_id'],
                 "quantity" => $row['quantity'],
                 "price" => $row['price'],
+                "pay_status" => $row['pay_status'],
             ]);
         }
 

@@ -121,9 +121,9 @@
                     </div>
                     <div>
                         <div class="my-2">
-                            <label for="" class="px-4">Ghi Chú:</label>
-                            <textarea class="outline-none w-full textarea-md py-1" placeholder="📝Ghi chú cho quán"
-                                v-model="tempNote"></textarea>
+                            <label for="note" class="px-4">Ghi Chú:</label>
+                            <textarea id="note" class="outline-none w-full textarea-md py-1"
+                                placeholder="📝Ghi chú cho quán" v-model="tempNote"></textarea>
                         </div>
                     </div>
                 </div>
@@ -334,7 +334,6 @@ function handleScroll(event) {
 
     for (const category of categories) {
         const rect = category.getBoundingClientRect();
-        // console.log(rect.top, rect.bottom, containerHeight);
         if (rect.bottom - 140 > 0 && rect.top <= container.offsetHeight) {
             currentId = category.id;
             break;

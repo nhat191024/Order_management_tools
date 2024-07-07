@@ -5,3 +5,12 @@ export async function getBillData(id) {
         return res.data.data;
     });
 }
+
+export async function checkout(id, timeOut) {
+    return await api.post('/staff/checkout', {
+        id: id,
+        timeOut: timeOut
+    }).then((res) => {
+        return res;
+    });
+}

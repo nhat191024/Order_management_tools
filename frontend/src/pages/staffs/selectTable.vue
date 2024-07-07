@@ -28,7 +28,7 @@
         <div
             class="row-span-7 col-start-2 col-span-10 overflow-auto mt-5 grid grid-row-4 grid-cols-5 gap-4 place-items-center">
             <RouterLink v-for="table in tableList" :class="table.status == 1 ? mainColor : disabled"
-                v-bind:to="{ path: '/staff/table/' + table.tableName }"
+                v-bind:to="{ path: '/staff/table/' + table.tableId }"
                 class="w-40 h-40 rounded-xl flex flex-col items-center justify-center drop-shadow-md">
                 <img src="./../../assets/sofa.svg" alt="My SVG Icon" class="w-3/4 p-5 rounded-xl">
                 <span class="text-black font-extrabold pb-5 text-xl">Bàn {{ table.tableName }}</span>
@@ -55,6 +55,7 @@ onMounted(async () => {
     getTableData(userId).then((res) => {
         res.forEach((table) => {
             tableList.value.push({
+                tableId: table.Table_id,
                 tableName: table.Table_number,
                 status: table.Table_status
             });

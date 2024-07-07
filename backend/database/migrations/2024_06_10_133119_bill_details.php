@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('bill_id');
             $table->unsignedBigInteger('dish_id');
             $table->integer('quantity');
-            $table->string('price');
+            $table->integer('price');
             $table->string('note')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();

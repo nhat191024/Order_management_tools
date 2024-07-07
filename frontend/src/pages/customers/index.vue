@@ -5,17 +5,18 @@
             <p class="text-white text-2xl font-semibold">Bàn {{ id }}</p>
         </nav>
         <!-- category -->
-        <div role="tablist" class="tabs tabs-bordered row-span-1 flex items-center overflow-auto">
+        <div role="tablist" class="tabs tabs-bordered row-span-1 items-center overflow-auto">
             <a v-for="(tab, index) in category" role="tab"
-                class="tab h-3/5 font-medium transition-all transform linear duration-500" :href="'#' + tab.id"
-                :class="tabStatus[index].status ? 'tab-active text-primary' : ''" @click="tabChange(tab.id)">
+                class="tab h-3/5 font-medium transition-all transform linear duration-500 text-nowrap"
+                :href="'#' + tab.id" :class="tabStatus[index].status ? 'tab-active text-primary' : ''"
+                @click="tabChange(tab.id)">
                 {{ tab.name }}
             </a>
         </div>
         <!-- Menu -->
-        <div class="row-span-9 px-3 flex flex-col overflow-auto scroll-smooth">
+        <div class="row-span-9 px-3 flex flex-col overflow-auto scroll-smooth" @scroll="handleScroll">
             <div v-for="category in menu" :id="category.Category_id"
-                class="flex flex-col mb-4 pb-4 border-b border-gray-400">
+                class="category flex flex-col mb-4 pb-4 border-b border-gray-400">
                 <p class="text-xl font-medium mb-4">
                     {{ category.Category_name }} ({{ category.Foods.length }})
                 </p>
@@ -217,7 +218,7 @@
                                 {{ order.cookingMethod }}
                             </p>
                             <input class="pl-3 row-start-3 col-start-4 col-span-full outline-none" placeholder="Ghi chú"
-                                v-model="order.note" disabled/>
+                                v-model="order.note" disabled />
                             <p class="text-gray-500 pl-3 col-span-4 row-start-4">
                                 {{ formatPrice(order.price) }}đ
                             </p>
@@ -306,6 +307,24 @@ function tabChange(id) {
             item.status = false;
         }
     });
+}
+
+function handleScroll(event) {
+    const container = event.target;
+    const categories = container.querySelectorAll('.category');
+
+    let currentId = '';
+
+    for (const category of categories) {
+        const rect = category.getBoundingClientRect();
+        // console.log(rect.top, rect.bottom, containerHeight);
+        if (rect.bottom-140 > 0 && rect.top <= container.offsetHeight) {
+            currentId = category.id;
+            break;
+        }
+    }
+    let id = parseInt(currentId);
+    tabChange(id);
 }
 
 function getCurrentOrder(id) {

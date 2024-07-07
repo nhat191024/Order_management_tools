@@ -1540,7 +1540,7 @@
             "branch_id": 1,
             "user_id": 4,
             "time_in": "2019-11-11 08:00:00",
-            "total": 240000,
+            "total": 270000,
             "pay_status": 1
         },
         {
@@ -1549,7 +1549,7 @@
             "branch_id": 1,
             "user_id": 4,
             "time_in": "2019-11-11 08:00:00",
-            "total": 270000,
+            "total": 360000,
             "pay_status": 0
         }
     ],

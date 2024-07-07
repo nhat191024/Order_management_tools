@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
-use App\Models\Category;
+use App\Http\Controllers\Controller;;
 
 use App\Http\Resources\CategoryCollection;
-use App\Http\Resources\TableCollection;
 
 use App\Http\Requests\StoreStaffOrderRequest;
-
+use App\Http\Resources\TableResource;
 use App\Service\TableDetailManagerService;
 
 class TableDetailManagerController extends Controller
@@ -28,7 +24,7 @@ class TableDetailManagerController extends Controller
     {
         $service = new TableDetailManagerService();
         $bill = $service->getTableCurrentBill($id);
-        return new TableCollection($bill);
+        return new TableResource($bill);
     }
 
     function order(StoreStaffOrderRequest $request)

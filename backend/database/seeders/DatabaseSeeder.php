@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Seeders;
 
 use App\Models\Category;
@@ -72,12 +73,16 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        $recordCount = 0;
         foreach ($dataArray['tables'] as $row) {
-            Table::create([
-                "table_number" => $row['tables_number'],
-                "branch_id" => $row['branch_id'],
-                "status" => isset($row['status']) ? $row['status'] : 0,
-            ]);
+            $recordCount++; // Tăng biến đếm
+            $id = $recordCount <= 2 ? $row['id'] : \Ramsey\Uuid\Uuid::uuid4()->toString();
+                Table::create([
+                    "id" => $id,
+                    "table_number" => $row['tables_number'],
+                    "branch_id" => $row['branch_id'],
+                    "status" => isset($row['status']) ? $row['status'] : 0,
+                ]);
         }
 
         foreach ($dataArray['users'] as $row) {
@@ -109,7 +114,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        foreach ($dataArray['kitchen_cooking_method'] as $row){
+        foreach ($dataArray['kitchen_cooking_method'] as $row) {
             KitchenCookingMethod::create([
                 'kitchen_id' => $row['kitchen_id'],
                 'cooking_method_id' => $row['cooking_method_id']

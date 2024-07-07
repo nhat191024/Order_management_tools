@@ -37,9 +37,13 @@ class TableDetailManagerService
 
     public function addDishToTableBill($request)
     {
-        $table = Table::where('id', $request->table_id)->first();
-        $updatedEntities = 0;
         $createdEntities = 0;
+        $table = Table::where('id', $request->table_id)
+            ->with(['bill' => function ($query) {
+                $query->where('pay_status', 0);
+            }])
+            ->first();
+
         if ($table->status == 1) { // Update bill if table is not empty
             $bill = $table->bill;
             foreach ($request->dishes as $dish) {
@@ -47,18 +51,19 @@ class TableDetailManagerService
                     'bill_id' => $bill->id,
                     'dish_id' => $dish['dish_id'],
                     'quantity' => $dish['quantity'],
-                    'price' => 0,
+                    'price' => $dish['price'],
                     'note' => $dish['note'],
                 ]);
-
-                $this->kitchenService->sendNewOrder($billDetail->id, $request->branch_id, $dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
                 $createdEntities++;
+                $bill->total += $dish['price'] * $dish['quantity'];
+                $this->kitchenService->sendNewOrder($billDetail->id, $request->branch_id, $dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
             }
         } else { // Create new bill if table is empty
             $table->status = 1;
             $table->save();
             $bill = Bill::create([
                 'table_id' => $request->table_id,
+                'branch_id' => $request->branch_id,
                 'user_id' => $request->user_id,
             ]);
             foreach ($request->dishes as $dish) {
@@ -66,13 +71,15 @@ class TableDetailManagerService
                     'bill_id' => $bill->id,
                     'dish_id' => $dish['dish_id'],
                     'quantity' => $dish['quantity'],
-                    'price' => 0,
+                    'price' => $dish['price'],
                     'note' => $dish['note'],
                 ]);
-                $this->kitchenService->sendNewOrder($billDetail->id, $request->branch_id, $dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
                 $createdEntities++;
+                $bill->total += $dish['price'] * $dish['quantity'];
+                $this->kitchenService->sendNewOrder($billDetail->id, $request->branch_id, $dish['dish_id'], $dish['note'], $dish['quantity'], $table->table_number);
             }
         }
+        $bill->save();
         return response()->json(['created' => $createdEntities], 200);
     }
 }

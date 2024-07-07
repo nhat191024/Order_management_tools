@@ -352,7 +352,6 @@ function getCurrentOrder(id) {
                 data.push(dish);
             } else {
                 data[index].quantity += dish.quantity;
-                data[index].price += dish.price;
             }
         });
         orderHistoryTotal.value = res.total;

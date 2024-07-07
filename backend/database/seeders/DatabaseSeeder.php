@@ -96,6 +96,7 @@ class DatabaseSeeder extends Seeder
                 "user_id" => $row['user_id'],
                 "time_in" => $row['time_in'],
                 'total' => $row['total'],
+                "pay_status" => $row['pay_status']
             ]);
         }
 
@@ -104,8 +105,7 @@ class DatabaseSeeder extends Seeder
                 "bill_id" => $row['bill_id'],
                 "dish_id" => $row['dish_id'],
                 "quantity" => $row['quantity'],
-                "price" => $row['price'],
-                "pay_status" => $row['pay_status'],
+                "price" => $row['price']
             ]);
         }
 

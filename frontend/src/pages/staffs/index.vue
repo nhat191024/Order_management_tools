@@ -30,12 +30,9 @@
 
 <script setup>
 import { loginHandle } from '../../api/login';
-import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import * as yup from 'yup';
-
-const router = useRouter();
 
 const usernameRule = yup.string().required('Tên Đăng Nhập là bắt buộc');
 const passwordRule = yup.string().required('Mật khẩu là bắt buộc').min(4, 'Mật khẩu phải có ít nhất 4 ký tự');
@@ -47,9 +44,9 @@ async function onSubmit(values) {
             if (res.message === 'success') {
                 auth.value = 'none';
                 if (res.role === 2)
-                    router.push('/staff/table');
+                    window.location.href = '/staff/table';    
                 else
-                    router.push('/staff/kitchen');
+                    window.location.href = '/staff/kitchen';
             } else {
                 auth.value = 'fail';
             }

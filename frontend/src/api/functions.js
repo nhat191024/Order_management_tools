@@ -31,7 +31,7 @@ export function getCookie(cookieName) {
 }
 
 export function checkLogin() {
-    const token = getCookie("token");
+    const token = getCookie("Token");
     if (token === "") {
         window.location.href = "/staff/login";
     }

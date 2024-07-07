@@ -1,7 +1,8 @@
 <template>
     <div class="grid grid-rows-12 w-dvw h-dvh">
         <nav class="bg-primary row-span-1 flex items-center justify-between px-4 rounded-b-lg">
-            <img class="rounded-full max-[400px]:w-12 max-[400px]:h-12 w-14 h-14" src="/src/assets/logo.jpg" alt="Logo" />
+            <img class="rounded-full max-[400px]:w-12 max-[400px]:h-12 w-14 h-14" src="/src/assets/logo.jpg"
+                alt="Logo" />
             <p class="text-white text-2xl font-semibold">Bàn {{ table }}</p>
         </nav>
         <!-- category -->
@@ -292,11 +293,6 @@ const orderHistory = ref([]);
 const orderHistoryTotal = ref(0);
 const table = ref('');
 
-
-if (orderStore.dishes) {
-    billTemp.value = [...orderStore.dishes];
-}
-
 onMounted(async () => {
     getMenuData().then((res) => {
         menu.value = res;
@@ -358,9 +354,24 @@ function getCurrentOrder(id) {
         });
         orderHistoryTotal.value = res.total;
         orderHistory.value = data;
+
+        loadDish(table.value);
     });
 }
 getCurrentOrder(id);
+
+function loadDish(tableName) {
+    if (orderStore.dishes.length === 0) return;
+    orderStore.dishes.forEach((item, index) => {
+        if (item.table === tableName) { 
+            console.log('add');
+            billTemp.value.push(item);
+        } else {
+            orderStore.clearDishes();
+            return;
+        }
+    })
+}
 
 function totalDish() {
     let total = 0;
@@ -453,12 +464,12 @@ function dishDelete(id, index) {
     const dish = billTemp.value.find((item) => item.dishId === id);
     dish.quantity--;
 
-    if (orderStore.dishes.length != 0 && orderStore.dishes.find((item) => item.dishId === id) != undefined){
+    if (orderStore.dishes.length != 0 && orderStore.dishes.find((item) => item.dishId === id) != undefined) {
         orderStore.updateDishQuantity(index, dish.quantity);
     }
     if (dish.quantity === 0) {
         orderStore.removeDish(index);
-        billTemp.value = billTemp.value.filter((item) => item.dishId !== id); 
+        billTemp.value = billTemp.value.filter((item) => item.dishId !== id);
         return;
     }
 }
@@ -480,6 +491,7 @@ function confirmOrder() {
     orderStore.clearDishes();
     billTemp.value.forEach((item) => {
         orderStore.addDish({
+            table: table.value,
             foodId: item.foodId,
             dishId: item.dishId,
             dishName: item.dishName,

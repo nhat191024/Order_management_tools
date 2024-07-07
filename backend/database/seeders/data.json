@@ -94,7 +94,7 @@
         },
         {
             "id": 11,
-            "category_id": 1,
+            "category_id": 3,
             "name": "Cà la",
             "price": 120000,
             "image": "demo.jpg"
@@ -707,20 +707,6 @@
             "id": 34,
             "food_id": 10,
             "cooking_method_id": 2,
-            "additional_price": 0,
-            "note": ""
-        },
-        {
-            "id": 35,
-            "food_id": 10,
-            "cooking_method_id": 3,
-            "additional_price": 0,
-            "note": ""
-        },
-        {
-            "id": 36,
-            "food_id": 10,
-            "cooking_method_id": 4,
             "additional_price": 0,
             "note": ""
         },

@@ -83,7 +83,8 @@
             </div>
         </div>
         <div class="col-start-5 col-span-3 row-start-10 flex items-center justify-center">
-            <button class="btn btn-primary my-1 w-full text-white" @click="confirm()">
+            <button class="btn btn-primary my-1 w-full text-white" @click="confirm()"
+                :class="tableDish.length < 1 ? 'btn-disabled' : ''">
                 Xác Nhận Thêm Món
             </button>
         </div>
@@ -101,7 +102,9 @@
                     </span>
                 </p>
                 <p class="w-[10%] text-start">x{{ dishes.BillDetail_quantity }}</p>
-                <p class="w-[30%] font-bold text-end">{{ formatPrice(dishes.BillDetail_price * dishes.BillDetail_quantity) }}đ</p>
+                <p class="w-[30%] font-bold text-end">{{ formatPrice(dishes.BillDetail_price *
+                    dishes.BillDetail_quantity) }}đ
+                </p>
             </div>
         </div>
         <div class="col-start-9 col-span-4 row-start-9 row-span-full px-6 flex flex-col justify-center">

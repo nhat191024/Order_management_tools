@@ -2,7 +2,7 @@
     <div class="grid grid-rows-12 w-dvw h-dvh">
         <nav class="bg-primary row-span-1 flex items-center justify-between px-4 rounded-b-lg">
             <img class="rounded-full max-[400px]:w-12 max-[400px]:h-12 w-14 h-14" src="/src/assets/logo.jpg" alt="Logo" />
-            <p class="text-white text-2xl font-semibold">Bàn {{ id }}</p>
+            <p class="text-white text-2xl font-semibold">Bàn {{ table }}</p>
         </nav>
         <!-- category -->
         <div role="tablist" class="tabs tabs-bordered row-span-1 items-center overflow-auto">
@@ -290,6 +290,7 @@ const dishDetail = ref([]);
 const menu = ref([]);
 const orderHistory = ref([]);
 const orderHistoryTotal = ref(0);
+const table = ref('');
 
 
 if (orderStore.dishes) {
@@ -345,6 +346,7 @@ function handleScroll(event) {
 
 function getCurrentOrder(id) {
     currentOrder(id).then((res) => {
+        table.value = res.table;
         let data = [];
         res.orders.forEach((dish) => {
             const index = data.findIndex((item) => item.dishId === dish.dishId);

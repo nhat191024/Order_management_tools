@@ -18,9 +18,9 @@
       <hr class="mt-2" />
     </div>
     <div class="grid gap-4 p-4 mt-20 place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-      <div v-for="(item, index) in items" :key="index"
+      <div v-for="(item, index) in items"
         class="flex flex-col items-center p-3 m-2 text-center text-white bg-primary rounded-lg shadow-lg w-64 relative">
-        <div class="text-xl font-bold w-full flex justify-between"><span>{{ index + 1 }}</span><span>Bàn {{ item.table
+        <div class="text-xl font-bold w-full flex justify-between"><span>{{ index+1 }}</span><span>Bàn {{ item.table
             }}</span></div>
         <div class="w-full border-t border-white"></div>
         <div class="text-lg font-bold mt-3">{{ item.quantity }}x {{ item.name }}</div>
@@ -28,14 +28,33 @@
         <div class="text-lg">{{ item.note ? item.note : 'Không có ghi chú' }}</div>
         <div class="flex items-center justify-end w-full mt-2">
           <div class="flex items-center justify-center min-w-12 h-12 p-2 bg-white rounded-full"
-            @click="completeOrder(item.id)">
+            @click="confirm(item.id)">
             <img src="./../../assets/check.svg" alt="Check Icon" />
           </div>
         </div>
-
       </div>
     </div>
   </div>
+
+  <dialog id="confirm" class="modal">
+    <form class="modal-box text-center">
+      <h3 class="font-bold text-lg text-orange-500">Xác nhận hoàn thành món?</h3>
+      <p class="py-4">
+        Hãy chắc chắn rằng bạn đã kiểm tra kỹ trước khi nhấn xác nhận!
+      </p>
+      <p class="py-4 font-bold">
+        Hệ thống sẽ tiến hành in đơn khi bạn xác nhận!
+      </p>
+      <div class="modal-action border-t border-black pt-4 mt-0">
+        <form method="dialog">
+          <button class="btn btn-primary text-white mx-2" @click="completeOrder()">
+            Xác Nhận
+          </button>
+          <button class="btn btn-error text-white">Hủy</button>
+        </form>
+      </div>
+    </form>
+  </dialog>
 </template>
 
 <script setup>
@@ -50,16 +69,21 @@ const branchId = getCookie("Branch_id");
 
 const name = ref("");
 const items = ref([]);
+const orderId = ref("");
 
 onMounted(() => {
-  getKitchenCurrentOrder(branchId, id).then((res) => {
-    items.value.push(...res);
-  });
-
   getKitchenName(id).then((res) => {
     name.value = res.name;
   });
 });
+
+async function getCurrentOrder() {
+  getKitchenCurrentOrder(branchId, id).then((res) => {
+    // items.value.push(...res);
+    items.value = res;
+  });
+}
+getCurrentOrder();
 
 window.Echo.channel('orders' + id)
   .listen('OrderCreate', (e) => {
@@ -67,10 +91,16 @@ window.Echo.channel('orders' + id)
     console.log(e);
   });
 
-async function completeOrder(id) {
-  updateOrderStatus(id).then((res) => {
+function confirm(id) {
+  const confirm = document.getElementById('confirm')
+  confirm.showModal();
+  orderId.value = id;
+}
+
+async function completeOrder() {
+  updateOrderStatus(orderId.value).then((res) => {
     if (res.message === 'success') {
-      items.value = items.value.filter(item => item.id !== id);
+      getCurrentOrder();
     } else {
       return;
     }

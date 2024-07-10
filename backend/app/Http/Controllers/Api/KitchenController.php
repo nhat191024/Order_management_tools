@@ -38,7 +38,8 @@ class KitchenController extends Controller
         return $orders;
     }
 
-    public function orderComplete($orderId){
+    public function orderComplete($orderId)
+    {
         $response = $this->service->changeOrderStatus($orderId);
 
         return $response;
@@ -52,5 +53,10 @@ class KitchenController extends Controller
             'name' => $kitchen->name,
         ]);
     }
-}
 
+    public function orderDelete($orderId)
+    {
+        $response = $this->service->orderDelete($orderId);
+        return $response;
+    }
+}

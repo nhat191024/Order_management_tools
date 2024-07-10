@@ -85,4 +85,16 @@ class KitchenService
             return response()->json(['message' => 'error'], 200);
         }
     }
+
+    public function orderDelete($orderId)
+    {
+        $billDetail = BillDetail::find($orderId)
+            ->delete();
+
+        if ($billDetail) {
+            return response()->json(['message' => 'success'], 200);
+        } else {
+            return response()->json(['message' => 'error'], 200);
+        }
+    }
 }

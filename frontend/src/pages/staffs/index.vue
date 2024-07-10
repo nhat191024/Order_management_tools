@@ -11,7 +11,7 @@
                 name="username" />
             <p :class="{ 'hidden': auth === 'none' }"
                 class="col-span-full row-start-4 self-end mb-1 place-self-center font-bold text-white">
-                Đăng nhập thất bại sai tên đăng nhập hoặc mật khẩu</p>
+                Đăng nhập thất bại</p>
             <Field type="password" name="password" placeholder="Mật Khẩu"
                 class="row-start-5 col-span-full  h-[60%] rounded-2xl text-center bg-white drop-shadow-2xl"
                 :rules="passwordRule" autocomplete="current-password"/>
@@ -19,7 +19,7 @@
                 name="password" />
             <p :class="{ 'hidden': auth === 'none' }" class=" col-span-full row-start-5 self-end mb-1 place-self-center
                 text-white font-bold">
-                Đăng nhập thất bại sai tên đăng nhập hoặc mật khẩu</p>
+                Đăng nhập thất bại</p>
             <button type="submit"
                 class="btn btn-secondary border-0 drop-shadow-lg text-white row-start-6 row-span-2 col-span-3 self-center">
                 Đăng Nhập

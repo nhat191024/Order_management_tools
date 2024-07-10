@@ -40,7 +40,7 @@ class KitchenService
 
         $dishes = Bill::where('branch_id', $branchId)
             ->where('pay_status', 0)
-            ->with('billDetail.dish', 'billDetail.dish.food', 'billDetail.dish.cookingMethod')
+            ->with('table', 'billDetail.dish.food', 'billDetail.dish.cookingMethod',)
             ->get();
         $kitchen = Kitchen::where('id', $kitchenId)
             ->where('branch_id', $branchId)
@@ -64,7 +64,7 @@ class KitchenService
                             'name' => $billDetail->dish->food->name . ' ' . $billDetail->dish->cookingMethod->name,
                             'quantity' => $billDetail->quantity,
                             'note' => $billDetail->note,
-                            'table' => $dish->table_id,
+                            'table' => $dish->table->table_number,
                         ];
                     }
                 }

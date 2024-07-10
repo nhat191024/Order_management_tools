@@ -1,6 +1,6 @@
 <template>
   <div class="grid grid-cols-12 grid-rows-8 gap-2 h-dvh w-dvw">
-    <div class="col-span-2 flex items-center justify-center">
+    <div class="col-span-3 flex items-center justify-center">
       <div class="dropdown">
         <div tabindex="0" role="button" class="m-1">
           <img class="bg-white w-16 h-16 mr-2 rounded-full border shadow-lg" src="../../assets/logo.jpg"></img>

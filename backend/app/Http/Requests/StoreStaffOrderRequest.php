@@ -22,7 +22,7 @@ class StoreStaffOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'table_id' => 'required|integer|exists:tables,id',
+            'table_id' => 'required|string|exists:tables,id',
             'branch_id' => 'required|integer|exists:branches,id',
             'user_id' => 'required|integer|exists:users,id',
             'dishes' => 'required|array',

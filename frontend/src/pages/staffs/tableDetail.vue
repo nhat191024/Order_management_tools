@@ -180,6 +180,7 @@ onMounted(async () => {
 function loadData() {
     let data = [];
     getTableCurrentBill(id).then((res) => {
+        if (!res.Table_bill) return;
         table.value = res.Table_number;
         res.Table_bill.Bill_detail.forEach((dish) => {
             const index = data.findIndex((item) => item.BillDetail_Dish.Dish_id === dish.BillDetail_Dish.Dish_id);

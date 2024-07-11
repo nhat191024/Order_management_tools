@@ -44,6 +44,7 @@ class KitchenService
             ->get();
         $kitchen = Kitchen::where('id', $kitchenId)
             ->where('branch_id', $branchId)
+            ->orderBy('created_at', 'desc')
             ->first();
 
         if ($dishes->isEmpty() || !$kitchen) {

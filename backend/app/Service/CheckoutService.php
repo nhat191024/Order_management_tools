@@ -27,7 +27,12 @@ class CheckoutService
         $bill = Bill::where('id', $request->id)
             ->where('pay_status', 0)
             ->with('table')
+            ->with(['billDetail' => function ($query) {
+                $query->where('status', 0);
+            }])
             ->first();
+
+            if($bill->billDetail->count() > 0) return response()->json(['message' => 'Checkout failed!'], 400);
 
         if ($bill) {
             $bill->update([

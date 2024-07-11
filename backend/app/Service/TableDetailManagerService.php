@@ -82,4 +82,21 @@ class TableDetailManagerService
         $bill->save();
         return response()->json(['created' => $createdEntities], 200);
     }
+
+    public function checkBillDetail($tableId){
+        $billId = Table::where('id', $tableId)
+            ->with(['bill' => function ($query) {
+                $query->where('pay_status', 0);
+            }])
+            ->first();
+
+        $billDetail = BillDetail::where('bill_id', $billId->bill->id)
+        ->where('status', 0);
+
+        if($billDetail->count() > 0){
+            return response()->json(['message' => 'invalid'], 200);
+        }else{
+            return response()->json(['message' => 'valid'], 200);
+        }
+    }
 }

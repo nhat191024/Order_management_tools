@@ -1748,6 +1748,10 @@
         },
         {
             "kitchen_id": 4,
+            "cooking_method_id": 21
+        },
+        {
+            "kitchen_id": 4,
             "cooking_method_id": 5
         },
         {
@@ -1785,6 +1789,10 @@
         {
             "kitchen_id": 5,
             "cooking_method_id": 4
+        },
+        {
+            "kitchen_id": 5,
+            "cooking_method_id": 21
         },
         {
             "kitchen_id": 5,
@@ -1825,6 +1833,10 @@
         {
             "kitchen_id": 6,
             "cooking_method_id": 4
+        },
+        {
+            "kitchen_id": 6,
+            "cooking_method_id": 21
         },
         {
             "kitchen_id": 6,

@@ -25,16 +25,17 @@ Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:sanc
 
 Route::group(['prefix' => 'staff', 'namespace' => 'App\Http\Controllers\Api', 'middleware' => ['auth:sanctum', 'ability:staff']], function () {
     Route::get('/menu', [TableDetailManagerController::class, 'menu']);
-    Route::get('/currentOrder/{table_id}', [TableDetailManagerController::class, 'currentOrder']);
+    Route::get('/currentOrder/{tableId}', [TableDetailManagerController::class, 'currentOrder']);
     Route::post('/order', [TableDetailManagerController::class, 'order']);
     Route::get('/checkout/{id}',[CheckoutController::class,'show']);
     Route::post('/checkout',[CheckoutController::class,'checkout']);
-    Route::get('/table/{user_id}',[StaffTableListController::class,'tableList']);
+    Route::get('/table/{userId}',[StaffTableListController::class,'tableList']);
+    Route::get('/checkBillDetail/{tableId}',[TableDetailManagerController::class,'checkBillDetail']);
 });
 
 Route::group(['prefix' => 'kitchen', 'namespace' => 'App\Http\Controllers\Api', 'middleware' => ['auth:sanctum', 'ability:kitchen']], function () {
-    Route::get('/{branch_id}', [KitchenController::class, 'getKitchensByBranch']);
-    Route::get('/name/{kitchen_id}', [KitchenController::class, 'getKitchenName']);
+    Route::get('/{branchId}', [KitchenController::class, 'getKitchensByBranch']);
+    Route::get('/name/{kitchenId}', [KitchenController::class, 'getKitchenName']);
     Route::post('/order', [KitchenController::class, 'getKitchenOrders']);
     Route::get('/orderComplete/{orderId}', [KitchenController::class, 'orderComplete']);
     Route::get('/orderDelete/{orderId}', [KitchenController::class, 'orderDelete']);

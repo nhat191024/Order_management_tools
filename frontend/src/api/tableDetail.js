@@ -21,4 +21,10 @@ export async function addOrderItems(table_id, branch_id, user_id, ...dishes) {
     }).then((res) => {
         return res;
     });
-} 
+}
+
+export async function checkBillDetail(tableId){
+    return await api.get(`/staff/checkBillDetail/${tableId}`).then((res) => {
+        return res;
+    });
+}

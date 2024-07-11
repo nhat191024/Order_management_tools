@@ -12,29 +12,35 @@ use App\Service\TableDetailManagerService;
 
 class TableDetailManagerController extends Controller
 {
+    private $service;
+
+    public function __construct()
+    {
+        $this->service = new TableDetailManagerService();
+    }
+
     function menu()
     {
-        $service = new TableDetailManagerService();
-        $menu = $service->getMenu();
+        $menu = $this->service->getMenu();
 
         return new CategoryCollection($menu);
     }
 
     function currentOrder($id)
     {
-        $service = new TableDetailManagerService();
-        $bill = $service->getTableCurrentBill($id);
+        $bill = $this->service->getTableCurrentBill($id);
         return $bill;
     }
 
     function order(StoreStaffOrderRequest $request)
     {
-        $service = new TableDetailManagerService();
-        $order = $service->addDishToTableBill($request);
+        $order = $this->service->addDishToTableBill($request);
         return $order;
     }
 
-    function checkOut()
+    function checkBillDetail($billId)
     {
+        $billDetail = $this->service->checkBillDetail($billId);
+        return $billDetail;
     }
 }

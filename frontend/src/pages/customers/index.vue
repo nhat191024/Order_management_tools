@@ -27,10 +27,10 @@
                         <img src="../../assets/demo.jpg" alt="demo"
                             class="row-span-full col-span-3 w-full h-full rounded-lg" />
                         <p class="col-start-4 col-span-full row-span-1 pl-3">
-                            {{ food.Food_note }}
+                            {{ food.Food_name }}
                         </p>
                         <p class="col-start-4 col-span-full row-start-2 row-span-1 pl-3">
-                            {{ food.Food_name }}
+                            {{ food.Food_note }}
                         </p>
                         <p class="col-start-4 col-span-full row-start-2  row-span-1 pl-3 text-sm">
                             {{ food.Dishes.length <= 1 ? food.Dishes[0].Dish_note : "" }} </p>

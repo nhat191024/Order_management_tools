@@ -95,6 +95,18 @@
             <button @click="returnToTable()"></button>
         </form>
     </dialog>
+
+    <dialog id="error" class="modal">
+        <div class="modal-box text-center">
+            <h3 class="text-lg font-bold text-orange-500">In hóa đơn thất bại</h3>
+            <p class="py-4">
+                Hãy kiểm tra xem tất cả món ăn của bàn đã được hoàn tất hoặc nếu không còn cần thì hãy hủy món!
+            </p>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button></button>
+        </form>
+    </dialog>
 </template>
 
 <script setup>
@@ -142,12 +154,14 @@ function confirmPrint() {
 
 function checkoutAndPrint(id, timeOut) {
     const success = document.getElementById('success');
+    const error = document.getElementById('error');
     checkout(id, timeOut).then(res => {
-        if (res.status === 200) {
+        console.log(res);
+        if (res.data.message === "Checkout successfully!") {
             // window.print();
             success.showModal();
         } else {
-            alert("Thanh toán thất bại");
+            error.showModal();
         }
     })
 }

@@ -32,7 +32,7 @@ class CheckoutService
             }])
             ->first();
 
-            if($bill->billDetail->count() > 0) return response()->json(['message' => 'Checkout failed!'], 400);
+            if($bill->billDetail->count() > 0) return response()->json(['message' => 'Checkout failed!'], 200);
 
         if ($bill) {
             $bill->update([
@@ -44,6 +44,6 @@ class CheckoutService
             ]);
             return response()->json(['message' => 'Checkout successfully!'], 200);
         } else
-            return response()->json(['message' => 'Checkout failed!'], 400);
+            return response()->json(['message' => 'Checkout failed!'], 200);
     }
 }

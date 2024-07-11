@@ -134,8 +134,8 @@
             </div>
             </p>
             <div class="modal-action border-t border-black pt-4 mt-0">
-                <RouterLink class="btn btn-primary text-white" :to="`/staff/checkout/${id}`">Xác Nhận</RouterLink>
                 <form method="dialog">
+                    <button class="btn btn-primary text-white mx-2" @click="checkBill()">Xác Nhận</button>
                     <button class="btn btn-error text-white">Close</button>
                 </form>
             </div>
@@ -155,14 +155,28 @@
             </div>
         </form>
     </dialog>
+
+    <dialog id="error" class="modal">
+        <div class="modal-box text-center">
+            <h3 class="text-lg font-bold text-orange-500">In hóa đơn thất bại</h3>
+            <p class="py-4">
+                Hãy kiểm tra xem tất cả món ăn của bàn đã được hoàn tất hoặc nếu không còn cần thì hãy hủy món!
+            </p>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button></button>
+        </form>
+    </dialog>
 </template>
 <script setup>
 import { ref, onMounted } from "vue";
-import { RouterLink, useRoute } from "vue-router";
+import { RouterLink, useRoute, useRouter } from "vue-router";
 import { formatPrice, getCookie, checkLogin } from "../../api/functions";
-import { getMenu, getTableCurrentBill, addOrderItems } from "../../api/tableDetail";
+import { getMenu, getTableCurrentBill, addOrderItems, checkBillDetail } from "../../api/tableDetail";
 
 checkLogin();
+
+const router = useRouter();
 const route = useRoute();
 const id = route.params.id;
 const total = ref(0);
@@ -196,6 +210,18 @@ function loadData() {
     });
 }
 loadData();
+
+function checkBill() {
+    const error = document.getElementById("error");
+    checkBillDetail(id).then((res) => {
+        if(res.data.message === 'invalid') {
+            error.showModal();
+            // console.log('invalid');
+        } else {
+            router.push(`/staff/checkout/${id}`);
+        }
+    });
+}
 
 function confirm() {
     const dialog = document.getElementById("confirm");

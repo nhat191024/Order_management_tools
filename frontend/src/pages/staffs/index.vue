@@ -6,7 +6,7 @@
                 class=" rounded-full col-span-full row-span-3 self-center place-self-center w-[50%]">
             <Field type="text" name="username" placeholder="Tên Đăng Nhập"
                 class="row-start-4 col-span-full h-[60%] rounded-2xl text-center bg-white drop-shadow-2xl"
-                :rules="usernameRule" autocomplete="username"/>
+                :rules="usernameRule" autocomplete="username" />
             <ErrorMessage class="col-span-full row-start-4 self-end mb-1 place-self-center font-bold text-white"
                 name="username" />
             <p :class="{ 'hidden': auth === 'none' }"
@@ -14,7 +14,7 @@
                 Đăng nhập thất bại</p>
             <Field type="password" name="password" placeholder="Mật Khẩu"
                 class="row-start-5 col-span-full  h-[60%] rounded-2xl text-center bg-white drop-shadow-2xl"
-                :rules="passwordRule" autocomplete="current-password"/>
+                :rules="passwordRule" autocomplete="current-password" />
             <ErrorMessage class="col-span-full row-start-5 self-end mb-1 place-self-center text-white font-bold"
                 name="password" />
             <p :class="{ 'hidden': auth === 'none' }" class=" col-span-full row-start-5 self-end mb-1 place-self-center
@@ -43,12 +43,17 @@ async function onSubmit(values) {
         .then(res => {
             if (res.message === 'success') {
                 auth.value = 'none';
-                if (res.role === 2)
-                    window.location.href = '/staff/table';    
-                else
-                    window.location.href = '/staff/kitchen';
-            } else {
-                auth.value = 'fail';
+                switch (res.role) {
+                    case 2:
+                        window.location.href = '/staff/table';
+                        break;
+                    case 3:
+                        window.location.href = '/staff/kitchen';
+                        break;
+                    default:
+                        auth.value = 'fail';
+                        break;
+                }
             }
         })
 }

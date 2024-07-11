@@ -110,7 +110,8 @@ class DatabaseSeeder extends Seeder
                 "bill_id" => $row['bill_id'],
                 "dish_id" => $row['dish_id'],
                 "quantity" => $row['quantity'],
-                "price" => $row['price']
+                "price" => $row['price'],
+                "status" => $row['status'],
             ]);
         }
 

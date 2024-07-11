@@ -158,7 +158,7 @@
 
     <dialog id="error" class="modal">
         <div class="modal-box text-center">
-            <h3 class="text-lg font-bold text-orange-500">In hóa đơn thất bại</h3>
+            <h3 class="text-lg font-bold text-orange-500">Thanh toán thất bại</h3>
             <p class="py-4">
                 Hãy kiểm tra xem tất cả món ăn của bàn đã được hoàn tất hoặc nếu không còn cần thì hãy hủy món!
             </p>

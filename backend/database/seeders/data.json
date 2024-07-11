@@ -1606,7 +1606,7 @@
             "dish_id": 4,
             "quantity": 1,
             "price": 30000,
-            "status": null
+            "status": 0
         },
         {
             "id": 5,
@@ -1614,7 +1614,7 @@
             "dish_id": 5,
             "quantity": 1,
             "price": 90000,
-            "status": null
+            "status": 0
         },
         {
             "id": 6,
@@ -1622,7 +1622,7 @@
             "dish_id": 6,
             "quantity": 1,
             "price": 90000,
-            "status": null
+            "status": 0
         },
         {
             "id": 7,
@@ -1646,7 +1646,7 @@
             "dish_id": 6,
             "quantity": 3,
             "price": 90000,
-            "status": null
+            "status": 0
         },
         {
             "id": 10,
@@ -1654,7 +1654,7 @@
             "dish_id": 6,
             "quantity": 1,
             "price": 90000,
-            "status": null
+            "status": 0
         }
     ],
     "kitchen_cooking_method": [

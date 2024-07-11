@@ -88,8 +88,15 @@ class KitchenService
 
     public function orderDelete($orderId)
     {
-        $billDetail = BillDetail::find($orderId)
-            ->delete();
+        $billDetail = BillDetail::find($orderId);
+        
+        if(!$billDetail) {
+            return response()->json(['message' => 'error'], 200);
+        }
+
+        $billDetail->bill->total -= $billDetail->quantity * $billDetail->price;
+        $billDetail->bill->save();
+        $billDetail->delete();
 
         if ($billDetail) {
             return response()->json(['message' => 'success'], 200);

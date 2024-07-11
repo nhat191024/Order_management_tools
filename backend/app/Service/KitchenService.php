@@ -30,7 +30,7 @@ class KitchenService
             ->get()
             ->toArray();
 
-        $kitchenId = $kitchen[0]['id'];
+        $kitchenId = $kitchen[0]['id']  ?? 1;
 
         event(new OrderCreate($billDetailId, $dishName, $note, $quantity, $table, $kitchenId));
     }

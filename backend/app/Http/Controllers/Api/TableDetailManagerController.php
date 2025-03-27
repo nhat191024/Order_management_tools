@@ -10,6 +10,8 @@ use App\Http\Requests\StoreStaffOrderRequest;
 use App\Http\Resources\TableResource;
 use App\Service\TableDetailManagerService;
 
+use Illuminate\Http\Request;
+
 class TableDetailManagerController extends Controller
 {
     private $service;
@@ -38,9 +40,9 @@ class TableDetailManagerController extends Controller
         return $order;
     }
 
-    function checkBillDetail($billId)
+    function checkBillDetail($tableId, Request $request)
     {
-        $billDetail = $this->service->checkBillDetail($billId);
+        $billDetail = $this->service->checkBillDetail($tableId, $request->input('paymentMethod'), $request->input('inputDiscount'));
         return $billDetail;
     }
 }

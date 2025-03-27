@@ -16,6 +16,8 @@ class Bill extends Model
         'time_out',
         'total',
         'pay_status',
+        'input_discount_amount',
+        'payment_method'
     ];
 
     public function table()

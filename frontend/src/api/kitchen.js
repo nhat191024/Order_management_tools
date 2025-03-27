@@ -33,3 +33,18 @@ export async function getKitchenName(kitchen_id) {
     return res.data;
   });
 }
+
+export async function getKitchenHisoryOrder(branch_id, kitchen_id) {
+  return await api.post(`kitchen/orderHistory`, {
+    branchId: branch_id,
+    kitchenId: kitchen_id
+  }).then((res) => {
+    return res.data;
+  });
+}
+
+export async function restoreKitchenOrder(billDetailId) {
+  return await api.get(`kitchen/orderHistory/restore/${billDetailId}`).then((res) => {
+    return res.data;
+  });
+}

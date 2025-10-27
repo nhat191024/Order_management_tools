@@ -40,6 +40,9 @@ class DishController extends Controller
 
         $query = $this->dishService->getDatatableQuery();
 
+        $totalRecords = clone $query;
+        $totalRecords = $totalRecords->count();
+
         // Search
         if (!empty($searchValue)) {
             $query->where(function ($q) use ($searchValue) {
@@ -53,8 +56,7 @@ class DishController extends Controller
             });
         }
 
-        $totalRecords = Dish::where('status', 1)->count();
-        $filteredRecords = $query->count();
+        $filteredRecords = $searchValue == '' ? $totalRecords : $query->count();
 
         $dishes = $query->orderBy($orderColumnName, $orderDir)
             ->skip($start)

@@ -21,7 +21,7 @@ class Dish extends Model
         return $this->belongsTo(Food::class);
     }
 
-    public function CookingMethod()
+    public function cookingMethod()
     {
         return $this->belongsTo(CookingMethod::class);
     }

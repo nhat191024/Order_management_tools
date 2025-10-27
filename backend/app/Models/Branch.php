@@ -26,10 +26,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Branch whereUpdatedAt($value)
  * @mixin \Eloquent
  */
+
 class Branch extends Model
 {
-    protected $table = 'branches';
-
     protected $fillable = [
         'name',
         'image'

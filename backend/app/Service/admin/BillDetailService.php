@@ -6,11 +6,11 @@ use App\Models\Bill;
 use App\Models\Branch;
 use App\Models\CookingMethod;
 
-class BillService
+class BillDetailService
 {
     public function getAll()
     {
-        $bill = Bill::all() ;
+        $bill = Bill::all();
         return $bill;
     }
 
@@ -20,7 +20,8 @@ class BillService
         return $billDetailArray;
     }
 
-    public function getById($id) {
+    public function getById($id)
+    {
         return Bill::where('id', $id)->where('status', 1)->first();
     }
 }

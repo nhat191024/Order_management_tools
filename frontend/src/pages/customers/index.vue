@@ -50,7 +50,7 @@
         </div>
         <div class="bg-white border-t-4 h-full flex justify-around">
             <div class="flex items-center justify-center" @click="showCart()">
-                <img src="/src/assets/Vector.svg" alt="Cart" class="h-10" />
+                <img src="/src/assets/Vector.svg" alt="Cart" class="h-12" />
                 <span class="rounded-full bg-primary self-start px-1 mt-1 -ml-4 text-white border border-white">
                     {{ totalDish() < 10 ? "0" + totalDish() : totalDish() }} </span>
             </div>
@@ -58,7 +58,7 @@
                 <img src="/src/assets/fpt.png" alt="Cart" class="h-10" />
             </div>
             <div class="flex items-center justify-center" @click="showOrderHistory()">
-                <img src="/src/assets/list.svg" alt="Cart" class="h-10" />
+                <img src="/src/assets/list.svg" alt="Cart" class="h-12" />
                 <span class="rounded-full bg-primary self-start px-1 mt-1 -ml-4 text-white border border-white">
                     {{ orderHistory.length < 10 ? "0" + orderHistory.length : orderHistory.length }} </span>
             </div>

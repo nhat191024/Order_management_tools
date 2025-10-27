@@ -7,6 +7,11 @@ use App\Models\Category;
 use App\Models\Bill;
 use App\Models\Table;
 use App\Models\BillDetail;
+use App\Service\KitchenService;
+use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 
 class TableDetailManagerService
 {
@@ -83,20 +88,48 @@ class TableDetailManagerService
         return response()->json(['created' => $createdEntities], 200);
     }
 
-    public function checkBillDetail($tableId){
-        $billId = Table::where('id', $tableId)
-            ->with(['bill' => function ($query) {
-                $query->where('pay_status', 0);
-            }])
-            ->first();
+    public function checkBillDetail($tableId, $paymentMethod, $inputDiscount)
+    {
 
-        $billDetail = BillDetail::where('bill_id', $billId->bill->id)
-        ->where('status', 0);
+        // DB transaction to ensure data consistency, no performance issue here
+        DB::beginTransaction();
+        try {
+            $table = Table::where('id', $tableId)
+                ->with(['bill' => function ($query) {
+                    $query->where('pay_status', 0);
+                }])
+                ->first();
 
-        if($billDetail->count() > 0){
+            if (!$table || !$table->bill) {
+                throw new Exception('Table or Bill not found');
+            }
+
+            $billDetail = BillDetail::where('bill_id', $table->bill->id)
+                ->where('status', 0);
+
+
+            $table->bill->update([
+                'input_discount_amount' => intval($inputDiscount),
+                'payment_method' => $paymentMethod
+            ]);
+
+            // return response()->json([
+            //     'input_discount_amount' => $inputDiscount,
+            //     'payment_method' => $paymentMethod,
+            //     'table_id' => $tableId,
+            //     'input_discount' => $table->bill->input_discount_amount,
+            // ], 200);
+
+            if ($billDetail->count() > 0) {
+                DB::rollBack();
+                return response()->json(['message' => 'invalid'], 200);
+            } else {
+                DB::commit();
+                return response()->json(['message' => 'valid'], 200);
+            }
+        } catch (Exception $e) {
+            DB::rollBack();
             return response()->json(['message' => 'invalid'], 200);
-        }else{
-            return response()->json(['message' => 'valid'], 200);
         }
     }
 }

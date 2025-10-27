@@ -19,6 +19,7 @@ class KitchenService
         $cookingMethod = $dish->cookingMethod;
         $cookingMethodName = $foodCookMethod->count() > 1 ? " " . $cookingMethod->name : '';
         $dishName = $food->name . $cookingMethodName;
+        $created_at = BillDetail::find($billDetailId)->created_at;
 
         $kitchen = Kitchen::where("branch_id", $branchId)
             ->whereHas('cookingMethod', function ($query) use ($cookingMethod) {
@@ -32,7 +33,7 @@ class KitchenService
 
         $kitchenId = $kitchen[0]['id']  ?? 1;
 
-        event(new OrderCreate($billDetailId, $dishName, $note, $quantity, $table, $kitchenId));
+        event(new OrderCreate($billDetailId, $dishName, $note, $quantity, $table, $kitchenId, $created_at));
     }
 
     public function getCurrentOrders($kitchenId, $branchId)
@@ -66,6 +67,47 @@ class KitchenService
                             'quantity' => $billDetail->quantity,
                             'note' => $billDetail->note,
                             'table' => $dish->table->table_number,
+                            'created_at' => $billDetail->created_at,
+                        ];
+                    }
+                }
+            }
+        }
+        return $orders;
+    }
+
+    public function getCurrentOrderHistory($kitchenId, $branchId)
+    {
+
+        $dishes = Bill::where('branch_id', $branchId)
+            ->where('pay_status', 0)
+            ->with('table', 'billDetail.dish.food', 'billDetail.dish.cookingMethod',)
+            ->get();
+        $kitchen = Kitchen::where('id', $kitchenId)
+            ->where('branch_id', $branchId)
+            ->orderBy('created_at', 'desc')
+            ->first();
+
+        if ($dishes->isEmpty() || !$kitchen) {
+            return response()->json(['message' => 'Hiện không có đơn được đặt'], 200);
+        }
+
+        $kitchenCookingMethods = KitchenCookingMethod::where('kitchen_id', $kitchenId)->get();
+
+        $orders = [];
+
+        foreach ($dishes as $dish) {
+            foreach ($dish->billDetail as $billDetail) {
+                $cookingMethodId = $billDetail->dish->cooking_method_id;
+                if ($billDetail->status == 1) {
+                    if (in_array($cookingMethodId, $kitchenCookingMethods->pluck('cooking_method_id')->toArray())) {
+                        $orders[] = [
+                            'id' => $billDetail->id,
+                            'name' => $billDetail->dish->food->name . ' ' . $billDetail->dish->cookingMethod->name,
+                            'quantity' => $billDetail->quantity,
+                            'note' => $billDetail->note,
+                            'table' => $dish->table->table_number,
+                            'created_at' => $billDetail->created_at,
                         ];
                     }
                 }
@@ -104,5 +146,12 @@ class KitchenService
         } else {
             return response()->json(['message' => 'error'], 200);
         }
+    }
+
+    public function restoreKitchenOrder($billDetailId)
+    {
+        $billDetail = BillDetail::find($billDetailId);
+        $billDetail->status = 0;
+        $billDetail->save();
     }
 }

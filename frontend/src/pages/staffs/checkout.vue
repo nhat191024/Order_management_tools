@@ -48,8 +48,18 @@
                     </table>
                 </div>
                 <div class="mx-7 flex justify-between items-center border-t border-black">
-                    <h1 class="text-center translate-y-4 text-xl font-semibold">Tổng cộng:</h1>
-                    <h1 class="text-center translate-y-4 text-xl font-semibold">{{ total }} VND
+                    <h1 class="text-center translate-y-4 text-xl">Tổng tạm tính:</h1>
+                    <h1 class="text-center translate-y-4 text-xl">{{ total }} VND
+                    </h1>
+                </div>
+                <div class="mx-7 flex justify-between items-center">
+                    <h1 class="text-center translate-y-4 text-xl">Giảm giá:</h1>
+                    <h1 class="text-center translate-y-4 text-xl">{{ discountAmount }} VND
+                    </h1>
+                </div>
+                <div class="mx-7 flex justify-between items-center">
+                    <h1 class="text-center translate-y-4 text-xl font-semibold">Tổng cuối cùng:</h1>
+                    <h1 class="text-center translate-y-4 text-xl font-semibold">{{ finalTotal }} VND
                     </h1>
                 </div>
             </div>
@@ -126,6 +136,8 @@ const time_leave = ref(formatDateTime(new Date()));
 const total = ref("");
 const billItems = ref([]);
 const billId = ref("");
+const discountAmount = ref(0);
+const finalTotal = ref(0);
 
 onMounted(async () => {
     getBillData(id).then(res => {
@@ -135,6 +147,9 @@ onMounted(async () => {
         table.value = res.Table_number;
         time_in.value = res.Table_bill.Bill_time_in;
         total.value = formatPrice(res.Table_bill.Bill_total);
+        discountAmount.value = formatPrice(res.Table_bill.Bill_input_discount_amount);
+        finalTotal.value = formatPrice(res.Table_bill.Bill_total - res.Table_bill.Bill_input_discount_amount);
+
         res.Table_bill.Bill_detail.forEach((dish) => {
             const index = data.findIndex((item) => item.BillDetail_Dish.Dish_id === dish.BillDetail_Dish.Dish_id);
             if (index === -1) {

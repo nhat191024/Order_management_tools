@@ -18,6 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamp('time_in')->useCurrent();
             $table->timestamp('time_out')->nullable();
+            $table->integer('input_discount_amount')->default(0);
+            $table->string('payment_method')->default('transfer');
             $table->integer('total')->default(0);
             $table->tinyInteger('pay_status')->default(0);
             $table->timestamps();

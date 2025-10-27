@@ -1,6 +1,9 @@
 <template>
-  <div class="h-screen w-screen overflow-scroll">
-    <div class="fixed w-full bg-white shadow-md">
+  <div class="h-screen w-screen overflow-hidden">
+    <div>
+      <BillDetailsHistoryModal :historyItems="historyItems" @click="fetchHistoryItems" @restore="restoreItem" />
+    </div>
+    <div class="fixed w-full bg-white shadow-md z-10">
       <div class="flex items-center p-2">
         <div class="flex items-center justify-center col-span-2">
           <a class="flex items-center text-black bg-white drop-shadow-2x" href="/staff/kitchen">
@@ -17,26 +20,8 @@
       </div>
       <hr class="mt-2" />
     </div>
-    <div class="grid gap-4 p-4 mt-20 place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-      <div v-for="(item, index) in items"
-        class="flex flex-col items-center p-3 m-2 text-center text-white bg-primary rounded-lg shadow-lg w-64 relative">
-        <div class="text-xl font-bold w-full flex justify-between"><span>{{ index + 1 }}</span><span>Bàn {{ item.table
-            }}</span></div>
-        <div class="w-full border-t border-white"></div>
-        <div class="text-lg font-bold mt-3">{{ item.quantity }}x {{ item.name }}</div>
-        <div class="w-full my-2 border-t border-white"></div>
-        <div class="text-lg">{{ item.note ? item.note : 'Không có ghi chú' }}</div>
-        <div class="flex items-center gap-5 justify-end w-full mt-2">
-          <div class="flex items-center justify-center min-w-12 h-12 p-2 bg-white rounded-full"
-            @click="cancel(item.id)">
-            <img src="./../../assets/xmark.svg" alt="Check Icon" />
-          </div>
-          <div class="flex items-center justify-center min-w-12 h-12 p-2 bg-white rounded-full"
-            @click="confirm(item.id)">
-            <img src="./../../assets/check.svg" alt="Check Icon" />
-          </div>
-        </div>
-      </div>
+    <div class="gap-4 p-0 mt-20 overflow-hidden">
+      <PagedGridLayout :items="items" @on-confirm="confirm" @on-cancel="cancel" />
     </div>
   </div>
 
@@ -84,8 +69,10 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
-import { getKitchenCurrentOrder, updateOrderStatus, getKitchenName, orderDelete } from "../../api/kitchen";
+import { getKitchenCurrentOrder, updateOrderStatus, getKitchenName, orderDelete, getKitchenHisoryOrder, restoreKitchenOrder } from "../../api/kitchen";
 import { getCookie, checkLogin } from "../../api/functions";
+import BillDetailsHistoryModal from "../../components/kitchen/BillDetailsHistoryModal.vue";
+import PagedGridLayout from '../../components/kitchen/PagedGridLayout.vue';
 
 checkLogin();
 const id = useRoute().params.id;
@@ -93,6 +80,7 @@ const branchId = getCookie("Branch_id");
 
 const name = ref("");
 const items = ref([]);
+const historyItems = ref([]);
 const orderId = ref("");
 
 onMounted(() => {
@@ -104,20 +92,43 @@ onMounted(() => {
 async function getCurrentOrder() {
   getKitchenCurrentOrder(branchId, id).then((res) => {
     items.value = res;
+    console.log(res);
   });
 }
 getCurrentOrder();
 
 window.Echo.channel('orders' + id)
   .listen('OrderCreate', (e) => {
-    items.value.push(e);
     console.log(e);
+    items.value.push(e);
   });
 
+function restoreItem(billDetailId) {
+  // alert('Restore item with id: ' + billDetailId);
+  restoreKitchenOrder(billDetailId).then((res) => {
+    getCurrentOrder();
+  });
+  
+}
+
+function fetchHistoryItems() {
+  getKitchenHisoryOrder(branchId, id).then((res) => {
+    historyItems.value = res;
+  });
+  // historyItems.value = [
+  //   {id: 4, name: 'Ốc mít hấp mẻ', quantity: 1, note: null, table: '2', status: 2},
+  //   {id: 5, name: 'Ốc mít luộc lá chanh', quantity: 1, note: null, table: '2', status: 2},
+  //   {id: 6, name: 'Ốc mít luộc Mắm', quantity: 1, note: null, table: '2', status: 2},
+  //   {id: 9, name: 'Ốc mít luộc Mắm', quantity: 3, note: null, table: '1', status: 2},
+  //   {id: 10, name: 'Ốc mít luộc Mắm', quantity: 1, note: null, table: '1', status: 2},
+  // ]
+}
+
 function confirm(id) {
-  const confirm = document.getElementById('confirm')
-  confirm.showModal();
+  // const confirm = document.getElementById('confirm')
+  // confirm.showModal();
   orderId.value = id;
+  completeOrder()
 }
 
 function cancel(id) {

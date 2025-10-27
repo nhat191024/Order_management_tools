@@ -37,6 +37,8 @@ Route::group(['prefix' => 'kitchen', 'namespace' => 'App\Http\Controllers\Api', 
     Route::get('/{branchId}', [KitchenController::class, 'getKitchensByBranch']);
     Route::get('/name/{kitchenId}', [KitchenController::class, 'getKitchenName']);
     Route::post('/order', [KitchenController::class, 'getKitchenOrders']);
+    Route::post('/orderHistory', [KitchenController::class, 'getKitchenOrderHistory']);
+    Route::get('/orderHistory/restore/{billDetailId}', [KitchenController::class, 'restoreKitchenOrder']);
     Route::get('/orderComplete/{orderId}', [KitchenController::class, 'orderComplete']);
     Route::get('/orderDelete/{orderId}', [KitchenController::class, 'orderDelete']);
 });

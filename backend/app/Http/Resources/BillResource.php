@@ -24,6 +24,8 @@ class BillResource extends JsonResource
             'Bill_time_in' => Carbon::parse($this->time_in)->format('H:i:s d:m:Y'),
             'Bill_time_out' => Carbon::parse($this->time_out)->format('H:i:s d:m:Y'),
             'Bill_detail' => new BillDetailCollection($this->whenLoaded('billDetail')),
+            'Bill_input_discount_amount' => $this->input_discount_amount,
+            'Bill_payment_method' => $this->payment_method
         ];
     }
 }

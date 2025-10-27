@@ -59,4 +59,14 @@ class KitchenController extends Controller
         $response = $this->service->orderDelete($orderId);
         return $response;
     }
+
+    public function getKitchenOrderHistory(Request $request)
+    {
+        $orders = $this->service->getCurrentOrderHistory($request->kitchenId, $request->branchId);
+        return $orders;
+    }
+
+    public function restoreKitchenOrder($billDetailId) {
+        $this->service->restoreKitchenOrder($billDetailId);
+    }
 }

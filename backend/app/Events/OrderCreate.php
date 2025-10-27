@@ -20,10 +20,11 @@ class OrderCreate implements ShouldBroadcast
     public $quantity;
     public $table;
     public $kitchen;
+    public $created_at;
     /**
      * Create a new event instance.
      */
-    public function __construct($billDetailId, $name, $note, $quantity, $table, $kitchen)
+    public function __construct($billDetailId, $name, $note, $quantity, $table, $kitchen, $created_at)
     {
         $this->id = $billDetailId;
         $this->name = $name;
@@ -31,6 +32,7 @@ class OrderCreate implements ShouldBroadcast
         $this->quantity = $quantity;
         $this->table = $table;
         $this->kitchen = $kitchen;
+        $this->created_at = $created_at;
     }
 
     /**

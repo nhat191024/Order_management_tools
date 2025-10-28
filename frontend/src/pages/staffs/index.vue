@@ -29,32 +29,34 @@
 </template>
 
 <script setup>
-import { loginHandle } from '../../api/login';
-import { ref } from 'vue';
-import { Form, Field, ErrorMessage } from 'vee-validate';
-import * as yup from 'yup';
+    import { loginHandle } from '../../api/login';
+    import { ref } from 'vue';
+    import { Form, Field, ErrorMessage } from 'vee-validate';
+    import * as yup from 'yup';
+    import { useRouter } from 'vue-router';
 
-const usernameRule = yup.string().required('Tên Đăng Nhập là bắt buộc');
-const passwordRule = yup.string().required('Mật khẩu là bắt buộc').min(4, 'Mật khẩu phải có ít nhất 4 ký tự');
-const auth = ref('none');
+    const router = useRouter();
+    const usernameRule = yup.string().required('Tên Đăng Nhập là bắt buộc');
+    const passwordRule = yup.string().required('Mật khẩu là bắt buộc').min(4, 'Mật khẩu phải có ít nhất 4 ký tự');
+    const auth = ref('none');
 
-async function onSubmit(values) {
-    await loginHandle(values.username, values.password)
-        .then(res => {
-            if (res.message === 'success') {
-                auth.value = 'none';
-                switch (res.role) {
-                    case 2:
-                        window.location.href = '/staff/table';
-                        break;
-                    case 3:
-                        window.location.href = '/staff/kitchen';
-                        break;
-                    default:
-                        auth.value = 'fail';
-                        break;
+    async function onSubmit(values) {
+        await loginHandle(values.username, values.password)
+            .then(res => {
+                if (res.message === 'success') {
+                    auth.value = 'none';
+                    switch (res.role) {
+                        case 2:
+                            router.push('/staff/table');
+                            break;
+                        case 3:
+                            router.push('/staff/kitchen');
+                            break;
+                        default:
+                            auth.value = 'fail';
+                            break;
+                    }
                 }
-            }
-        })
-}
+            })
+    }
 </script>

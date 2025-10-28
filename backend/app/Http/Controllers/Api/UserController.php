@@ -10,6 +10,8 @@ use App\Http\Resources\UserLoginResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Symfony\Component\HttpFoundation\Response;
+
 class UserController extends Controller
 {
     public function login(UserLoginRequest $request)
@@ -21,30 +23,34 @@ class UserController extends Controller
             return response()->json(['message' => 'Login Failed'], 401);
         }
 
-        /** @var \App\Models\User $user **/  $user = Auth::user();
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
         if ($user->status == 0) {
-            abort(403, 'User is inactive');
+            abort(Response::HTTP_FORBIDDEN, 'User is inactive');
         }
 
-        switch ($user->role) {
-            case 1:
-                $user->token = $user->createToken('admin-token', ['admin'], now()->addDay())->plainTextToken;
-                return new UserLoginResource($user);
-            case 2:
-                $user->token = $user->createToken('staff-token', ['staff'], now()->addDay())->plainTextToken;
-                return new UserLoginResource($user);
-            case 3:
-                $user->token = $user->createToken('kitchen-token', ['kitchen'], now()->addDay())->plainTextToken;
-                return new UserLoginResource($user);
+        $roleConfig = [
+            1 => ['name' => 'admin-token', 'abilities' => ['admin']],
+            2 => ['name' => 'staff-token', 'abilities' => ['staff']],
+            3 => ['name' => 'kitchen-token', 'abilities' => ['kitchen']],
+        ];
+
+        if (!isset($roleConfig[$user->role])) {
+            abort(Response::HTTP_FORBIDDEN, 'Invalid user role');
         }
+
+        $config = $roleConfig[$user->role];
+        $user->token = $user->createToken($config['name'], $config['abilities'], now()->addDay())->plainTextToken;
+
+        return new UserLoginResource($user);
     }
 
-    public function logout(Request $request)
+    public function logout(Request $request): \Illuminate\Http\JsonResponse
     {
         $request->user()->tokens()->delete();
 
-        return response([
+        return response()->json([
             'message' => 'logout success'
-        ], 201);
+        ], Response::HTTP_OK);
     }
 }

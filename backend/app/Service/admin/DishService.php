@@ -10,11 +10,22 @@ class DishService
 {
     public function getAll()
     {
-        $dish = Dish::all()->where('status', 1);
+        $dish = Dish::with(['food', 'cookingMethod'])
+            ->where('status', 1)
+            ->get();
+
         return $dish;
     }
 
-    public function getById($id) {
+    public function getDatatableQuery()
+    {
+        return Dish::with(['food', 'cookingMethod'])
+            ->where('status', 1)
+            ->select('dishes.*');
+    }
+
+    public function getById($id)
+    {
         return Dish::where('id', $id)->where('status', 1)->first();
     }
 
@@ -36,13 +47,15 @@ class DishService
         $dish->save();
     }
 
-    public function checkHasChildren($idDish) {
+    public function checkHasChildren($idDish)
+    {
         // return Dish::find($idDish)->billDetail()->get()->count() > 0;
         return false;
     }
 
 
-    public function delete($idDish) {
+    public function delete($idDish)
+    {
         $dish = Dish::find($idDish);
         $dish->status = 0;
         $dish->save();

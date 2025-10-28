@@ -10,12 +10,15 @@ class UserService
 {
     public function getAll()
     {
-        $user = User::where('status', 1)->get();
+        $user = User::with('branch')
+            ->where('status', 1)
+            ->get();
         return $user;
     }
 
-    public function getById($id) {
-        return User::where('id', $id)->where('status', 1)->first();
+    public function getById($id)
+    {
+        return User::with('branch')->where('id', $id)->where('status', 1)->first();
     }
 
     public function add($branchId, $username, $password, $roleId)

@@ -26,9 +26,8 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [CategoryController::class, 'index']);
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.index');
 
     Route::prefix('/category')->group(function () {
@@ -70,6 +69,7 @@ Route::prefix('admin')->group(function () {
 
     Route::prefix('/dish')->group(function () {
         Route::get('/', [DishController::class, 'index'])->name('admin.dish.index');
+        Route::get('/datatable', [DishController::class, 'datatable'])->name('admin.dish.datatable');
         Route::get('/add', [DishController::class, 'showAddDish'])->name('admin.dish.show_add');
         Route::post('/add', [DishController::class, 'addDish'])->name('admin.dish.add');
         Route::post('/edit', [DishController::class, 'editDish'])->name('admin.dish.edit');
@@ -78,7 +78,7 @@ Route::prefix('admin')->group(function () {
     });
 
     Route::prefix('/table')->group(function () {
-        Route::get('/', [TableController::class, 'index'])->name('admin.table.index'); 
+        Route::get('/', [TableController::class, 'index'])->name('admin.table.index');
         Route::get('/add', [TableController::class, 'showAddTable'])->name('admin.table.show_add');
         Route::post('/add', [TableController::class, 'addTable'])->name('admin.table.add');
         Route::post('/edit', [TableController::class, 'editTable'])->name('admin.table.edit');
@@ -96,12 +96,12 @@ Route::prefix('admin')->group(function () {
         Route::post('/add-kitchen-method', [KitchenController::class, 'addKitchenMethod'])->name('admin.kitchen.add_kitchen_method');
         Route::post('/get-kitchen-method', [KitchenController::class, 'getKitchenMethod'])->name('admin.kitchen.get_kitchen_method');
     });
-    
+
     Route::prefix('/bill')->group(function () {
-        Route::get('/', [BillController::class, 'index'])->name('admin.bill.index'); 
+        Route::get('/', [BillController::class, 'index'])->name('admin.bill.index');
         Route::get('/{id}', [BillController::class, 'showDetail'])->name('admin.bill.show_detail');
     });
-    
+
     Route::prefix('/user')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
         Route::get('/add', [UserController::class, 'showAddUser'])->name('admin.user.show_add');
@@ -111,5 +111,4 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id}', [UserController::class, 'deleteUser'])->name('admin.user.delete');
         Route::get('/reset/{id}', [UserController::class, 'resetUser'])->name('admin.user.reset');
     });
-
 });

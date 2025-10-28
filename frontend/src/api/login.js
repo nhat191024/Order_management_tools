@@ -8,12 +8,13 @@ export async function loginHandle(username, password) {
             username: username,
             password: password
         });
+
         if (response.data.data.message == 'Login Success') {
-            document.cookie = `Username=${username}; expires=${expires.toUTCString}; path=/`;
-            document.cookie = `Token=${response.data.data.token}; expires=${expires.toUTCString}; path=/`;
-            document.cookie = `Role=${response.data.data.role}; expires=${expires.toUTCString}; path=/`;
-            document.cookie = `Id=${response.data.data.id}; expires=${expires.toUTCString}; path=/`;
-            document.cookie = `Branch_id=${response.data.data.branch_id}; expires=${expires.toUTCString}; path=/`;
+            document.cookie = `Username=${username}; expires=${expires.toUTCString()}; path=/`;
+            document.cookie = `Token=${response.data.data.token}; expires=${expires.toUTCString()}; path=/`;
+            document.cookie = `Role=${response.data.data.role}; expires=${expires.toUTCString()}; path=/`;
+            document.cookie = `Id=${response.data.data.id}; expires=${expires.toUTCString()}; path=/`;
+            document.cookie = `Branch_id=${response.data.data.branch_id}; expires=${expires.toUTCString()}; path=/`;
             return {
                 message: 'success',
                 role: response.data.data.role
